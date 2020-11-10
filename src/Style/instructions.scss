@@ -1,0 +1,79 @@
+.Instruction{
+    display: flex;
+    flex-direction: column;
+    background-color: #5680e9;
+    // justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    .scango{
+        margin-top: 30px;
+        width: 40vw;
+        // margin-bottom: 5vh;
+    }
+    .tutorial{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 80vw;
+        height: 60vh;
+        margin-top: 15vh;
+        background-color: white;
+        text-align: center;
+        .scanYourItems{
+            h5{
+                font-size: 0.9rem;
+                margin-top: 1vw;
+                margin-bottom: 1vw;
+            }
+            p{
+                font-size: 0.7rem;
+                margin-bottom: 1vh;
+                margin-top: 1vw;
+            }
+            .barcode{
+                width: 6vw;
+            }
+        }
+        .payWithPhone{
+            h5{
+                margin-top: 1vw;
+                font-size: 0.9rem;
+                margin-bottom: 1vw;
+            }
+            p{
+                font-size: 0.7rem;
+                margin-bottom: 1vh;
+                margin-top: 1vw;
+            }
+            .phoneIcon{
+                width: 6vw;
+            }
+        }
+        .getYourReceipt{
+            h5{
+                margin-top: 1vw;
+                font-size: 0.9rem;
+                margin-bottom: 1vw;
+            }
+            p{
+                font-size: 0.7rem;
+                margin-top: 1vw;
+                margin-bottom: 1vh;
+            }
+            .recieptIcon{
+                width: 8vw;
+            }
+        }
+        .ProceedToCamera{
+            background-color: #0d19a3;
+            border: none;
+            border-radius: 20px;
+            padding: 2vw 7vw;
+            color: white;
+            font-weight: 700;
+        }
+    }
+
+
+}
