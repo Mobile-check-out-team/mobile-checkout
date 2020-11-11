@@ -1,13 +1,32 @@
 import React from 'react';
-
+import '../Style/instructions.scss';
+// import {Link} from 'react-router-dom';
 
 function Instructions(props) {
 
 
-
-
     return(
-        <p>Instructions</p>
+        <div className="Instruction">
+            <img src="https://inventory-upc-codes.s3-us-west-1.amazonaws.com/scango-logos/scan+%26+go.svg" alt="scan & go" className="scango" />
+            <div className="tutorial">
+                <div className="scanYourItems">
+                    <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/barcode.svg" alt="barcode" className="barcode" />
+                    <h5 className="Headertxt">Scan your items</h5>
+                    <p>Scan the barcode of items as you shop</p>
+                </div>
+                <div className="payWithPhone">
+                    <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/phoneIcon.svg" alt="phone icon" className="phoneIcon" />
+                    <h5 className="Headertxt">Pay with your phone</h5>
+                    <p>Skip the lines, pay with your phone <br></br>when you are finished</p>
+                </div>
+                <div className="getYourReceipt">
+                    <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/invoice.svg" alt="reciept" className="recieptIcon" />
+                    <h5 className="Headertxt">Get your receipt</h5>
+                    <p>Scan the QR code at the self-checkout <br></br>if you do not have a card on file!</p>
+                </div>
+                <button className="ProceedToCamera">Start Shopping</button>
+            </div>
+        </div>
 
     )
 }

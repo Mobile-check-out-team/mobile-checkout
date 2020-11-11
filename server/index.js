@@ -25,6 +25,7 @@ massive({
 }).then(db => {
     app.set('db', db);
     console.log('db connected');
+    app.listen(SERVER_PORT, () => console.log(`Server connected to port ${SERVER_PORT}`))
 });
 
 //Auth Endpoints
