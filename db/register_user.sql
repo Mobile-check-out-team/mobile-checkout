@@ -1,4 +1,4 @@
-INSERT INTO app_user(
+INSERT INTO checkout_users(
     first_name,
     last_name,
     email,
