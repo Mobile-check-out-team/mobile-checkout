@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authCtrl = require('./authController');
+const invCtrl = require('./inventoryController');
 const nodeMailerCtrl = require('./nodeMailerController');
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const app = express();
@@ -34,5 +35,7 @@ app.post('/api/login', authCtrl.login);
 app.post('/api/logout', authCtrl.logout);
 //NodeMailer
 app.post('/api/email', nodeMailerCtrl.email);
+//Inventory
+app.get('/api/getItem/:upc', invCtrl.getItem)
 
-app.listen(SERVER_PORT, () => console.log(`Server connected to port ${SERVER_PORT}`))
+// app.listen(SERVER_PORT, () => console.log(`Server connected to port ${SERVER_PORT}`))

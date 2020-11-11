@@ -1,2 +1,2 @@
-SELECT * FROM app_user
+SELECT * FROM checkout_users
 WHERE email = ${email};
