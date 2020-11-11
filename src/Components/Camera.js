@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import {connect} from 'react-redux';
 import {updateCart} from '../Redux/cartReducer'
@@ -7,7 +7,7 @@ function Camera(props) {
     const [ data, setData ] = React.useState('');
 
     if(data.length > 10){
-        console.log('data', data)
+        // console.log('data', data)
         updateCart(data)
 
     }
@@ -22,7 +22,6 @@ function Camera(props) {
           
             if (result){
               setData(result.text)
-            //   updateCart(data)
             }
         
         }}

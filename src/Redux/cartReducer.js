@@ -17,7 +17,6 @@ export function getCart(){
 
 export function updateCart(data){
     let invObj = axios.get(`/api/getItem/${data}`)
-    console.log("I am Reducer", invObj)
     return{
         type: UPDATE_CART,
         payload: invObj
