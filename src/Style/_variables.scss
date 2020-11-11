@@ -1,6 +1,9 @@
+// variables
+$header-color: #5680e9;
+
 @mixin flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: $primary-font-family;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $primary-font-family;
 }
