@@ -1,5 +1,8 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { getCart, updateCart, clearCart } from "../Redux/cartReducer";
+import { withRouter } from "react-router-dom";
 import "../Style/Cart.scss";
 
 const qtyOptions = [
@@ -198,10 +201,14 @@ function Cart(props) {
 
       <section className="second-last-cart">
         <p className="remove-all-text">Remove All</p>
+        <img
+          className="camera-logo"
+          src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/camera+icon+WHITE.svg"
+        />
       </section>
 
       <section className="bottom-of-cart">
-        <p>Checkout Button</p>
+        <button className="checkout-button">Checkout</button>
         <div className="checkout-cart">
           <p className="amount-of-items">x items</p>
           <div className="Subtotal-cart">
@@ -214,4 +221,8 @@ function Cart(props) {
   );
 }
 
-export default Cart;
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, { getCart, clearCart, updateCart })(
+  withRouter(Cart)
+);
