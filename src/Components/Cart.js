@@ -1,6 +1,16 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { getCart, updateCart, clearCart } from "../Redux/cartReducer";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 import "../Style/Cart.scss";
+import { loadStripe } from "@stripe/stripe-js";
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(
+  "pk_test_51HdVx7GwZEaH5JVh0j5mSh6bwTYCmFN50iYTpTTtqZLjRYLyi0i9M5ZRmOcMXNU2TGN6XhZAS5YMBsUBZs6ZmIkO00KEZ8tkIo"
+);
 
 const qtyOptions = [
   {
@@ -54,6 +64,46 @@ const qtyOptions = [
     value: 10,
   },
 ];
+
+// checkoutButton.addEventListener("click", function () {
+//   fetch("/create-session", {
+//     method: "POST",
+//   })
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (session) {
+//       return stripe.redirectToCheckout({ sessionId: session.id });
+//     })
+//     .then(function (result) {
+//       // If redirectToCheckout fails due to a browser or network
+//       // error, you should display the localized error message to your
+//       // customer using error.message.
+//       if (result.error) {
+//         alert(result.error.message);
+//       }
+//     })
+//     .catch(function (error) {
+//       console.error("Error:", error);
+//     });
+
+const checkout = async () => {
+  const stripe = await stripePromise;
+  axios
+    .post("/createSession", { price: 100 })
+    .then((res) => {
+      const id = res.data.id;
+      return stripe.redirectToCheckout({ sessionId: id });
+    })
+    .then((res) => {
+      if (res.error) {
+        alert(res.error.message);
+      }
+    })
+    .catch((err) => {
+      console.error("error", err);
+    });
+};
 
 function Cart(props) {
   return (
@@ -198,10 +248,19 @@ function Cart(props) {
 
       <section className="second-last-cart">
         <p className="remove-all-text">Remove All</p>
+        <img
+          onClick={() => {
+            props.history.push("/camera");
+          }}
+          className="camera-logo"
+          src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/camera+icon+WHITE.svg"
+        />
       </section>
 
       <section className="bottom-of-cart">
-        <p>Checkout Button</p>
+        <button onClick={checkout} className="checkout-button">
+          Checkout
+        </button>
         <div className="checkout-cart">
           <p className="amount-of-items">x items</p>
           <div className="Subtotal-cart">
@@ -214,4 +273,8 @@ function Cart(props) {
   );
 }
 
-export default Cart;
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, { getCart, clearCart, updateCart })(
+  withRouter(Cart)
+);
