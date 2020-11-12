@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { getCart, updateCart, clearCart } from "../Redux/cartReducer";
@@ -65,28 +65,6 @@ const qtyOptions = [
   },
 ];
 
-// checkoutButton.addEventListener("click", function () {
-//   fetch("/create-session", {
-//     method: "POST",
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (session) {
-//       return stripe.redirectToCheckout({ sessionId: session.id });
-//     })
-//     .then(function (result) {
-//       // If redirectToCheckout fails due to a browser or network
-//       // error, you should display the localized error message to your
-//       // customer using error.message.
-//       if (result.error) {
-//         alert(result.error.message);
-//       }
-//     })
-//     .catch(function (error) {
-//       console.error("Error:", error);
-//     });
-
 const checkout = async () => {
   const stripe = await stripePromise;
   axios
@@ -104,8 +82,15 @@ const checkout = async () => {
       console.error("error", err);
     });
 };
+//////////////////////////////////////////////////
 
 function Cart(props) {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    setCart(props.cartReducer.cart);
+  }, []);
+
   return (
     <div className="cart">
       <section className="cart-header">
@@ -115,135 +100,35 @@ function Cart(props) {
       </section>
 
       <section className="cart-items">
-        <div className="cart-indiv-item">
-          <div className="item-img-box">
-            <img
-              className="cart-item-img"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-books-2018-14-1543248111.jpg?crop=1xw:1xh;center,top&resize=480:*"
-            />
-          </div>
-          <div className="item-descrip-box">
-            <p className="item-description-title">This Is Going To Hurt</p>
-            <div className="item-price">
-              <p className="dollartext">$</p>
-              <p className="price-item">30</p>
+        {props.cartReducer.cart.map((el, i) => {
+          return (
+            <div className="cart-indiv-item">
+              <div className="item-img-box">
+                <img className="cart-item-img" src={el.img_url} />
+              </div>
+              <div className="item-descrip-box">
+                <p className="item-description-title">{el.description}</p>
+                <div className="item-price">
+                  <p className="dollartext">$</p>
+                  <p className="price-item">{el.price * el.qty}</p>
+                </div>
+                <div className="qty-box">
+                  <p className="qty-text">Qty</p>
+                  <Dropdown
+                    compact
+                    selection
+                    value={el.qty}
+                    options={qtyOptions}
+                    onChange={(e, data) => {
+                      setCart((el.qty = data.value));
+                    }}
+                  />
+                </div>
+              </div>
+              <p className="x-text">x</p>
             </div>
-            <div className="qty-box">
-              <p className="qty-text">Qty</p>
-              <Dropdown
-                defaultValue={1}
-                compact
-                selection
-                options={qtyOptions}
-              />
-            </div>
-          </div>
-          <p className="x-text">x</p>
-        </div>
-
-        <div className="cart-indiv-item">
-          <div className="item-img-box">
-            <img
-              className="cart-item-img"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-books-2018-14-1543248111.jpg?crop=1xw:1xh;center,top&resize=480:*"
-            />
-          </div>
-          <div className="item-descrip-box">
-            <p className="item-description-title">This Is Going To Hurt</p>
-            <div className="item-price">
-              <p className="dollartext">$</p>
-              <p className="price-item">30</p>
-            </div>
-            <div className="qty-box">
-              <p className="qty-text">Qty</p>
-              <Dropdown
-                defaultValue={1}
-                compact
-                selection
-                options={qtyOptions}
-              />
-            </div>
-          </div>
-          <p className="x-text">x</p>
-        </div>
-
-        <div className="cart-indiv-item">
-          <div className="item-img-box">
-            <img
-              className="cart-item-img"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-books-2018-14-1543248111.jpg?crop=1xw:1xh;center,top&resize=480:*"
-            />
-          </div>
-          <div className="item-descrip-box">
-            <p className="item-description-title">This Is Going To Hurt</p>
-            <div className="item-price">
-              <p className="dollartext">$</p>
-              <p className="price-item">30</p>
-            </div>
-            <div className="qty-box">
-              <p className="qty-text">Qty</p>
-              <Dropdown
-                defaultValue={1}
-                compact
-                selection
-                options={qtyOptions}
-              />
-            </div>
-          </div>
-          <p className="x-text">x</p>
-        </div>
-
-        <div className="cart-indiv-item">
-          <div className="item-img-box">
-            <img
-              className="cart-item-img"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-books-2018-14-1543248111.jpg?crop=1xw:1xh;center,top&resize=480:*"
-            />
-          </div>
-          <div className="item-descrip-box">
-            <p className="item-description-title">This Is Going To Hurt</p>
-            <div className="item-price">
-              <p className="dollartext">$</p>
-              <p className="price-item">30</p>
-            </div>
-            <div className="qty-box">
-              <p className="qty-text">Qty</p>
-              <Dropdown
-                defaultValue={1}
-                compact
-                selection
-                options={qtyOptions}
-              />
-            </div>
-          </div>
-          <p className="x-text">x</p>
-        </div>
-
-        <div className="cart-indiv-item">
-          <div className="item-img-box">
-            <img
-              className="cart-item-img"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-books-2018-14-1543248111.jpg?crop=1xw:1xh;center,top&resize=480:*"
-            />
-          </div>
-          <div className="item-descrip-box">
-            <p className="item-description-title">This Is Going To Hurt</p>
-            <div className="item-price">
-              <p className="dollartext">$</p>
-              <p className="price-item">30</p>
-            </div>
-            <div className="qty-box">
-              <p className="qty-text">Qty</p>
-              <Dropdown
-                defaultValue={1}
-                compact
-                selection
-                options={qtyOptions}
-              />
-            </div>
-          </div>
-          <p className="x-text">x</p>
-        </div>
+          );
+        })}
       </section>
 
       <section className="second-last-cart">
@@ -265,7 +150,14 @@ function Cart(props) {
           <p className="amount-of-items">x items</p>
           <div className="Subtotal-cart">
             <p>Subtotal</p>
-            <p>$Price</p>
+            <p>
+              $
+              {/* {props.cartReducer.cart.reduce((acc, el) => {
+                const sum = el.qty * el.price;
+                acc = acc + sum;
+                return acc;
+              })} */}
+            </p>
           </div>
         </div>
       </section>
