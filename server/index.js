@@ -47,6 +47,10 @@ app.post("/api/email", nodeMailerCtrl.email);
 //Inventory
 app.get("/api/getItem/:upc", invCtrl.getItem);
 
+//Cart
+app.get("/api/getCart", invCtrl.getCart);
+app.post("/api/saveCart", invCtrl.saveCart);
+
 //Stripe API Post Request
 app.post("/createSession", async (req, res) => {
   const session = await stripe.checkout.sessions.create({

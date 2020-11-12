@@ -97,8 +97,18 @@ function Cart(props) {
     return acc + sum;
   }, 0);
 
+  const cartLoader = axios
+    .get("/api/getCart")
+    .then((res) => {
+      return res.data;
+    })
+    .catch(() => {
+      return [];
+    });
+
   useEffect(() => {
     setCart(props.cartReducer.cart);
+    axios.post("/api/saveCart", { cart: props.cartReducer.cart });
   }, []);
 
   useEffect(() => {
@@ -114,46 +124,87 @@ function Cart(props) {
       </section>
 
       <section className="cart-items">
-        {props.cartReducer.cart.map((el, i) => {
-          return (
-            <div className="cart-indiv-item">
-              <div className="item-img-box">
-                <img className="cart-item-img" src={el.img_url} />
-              </div>
-              <div className="item-descrip-box">
-                <p className="item-description-title">{el.description}</p>
-                <div className="item-price">
-                  <p className="dollartext">$</p>
-                  <p className="price-item">{el.price * el.qty}</p>
-                </div>
-                <div className="qty-box">
-                  <p className="qty-text">Qty</p>
-                  <Dropdown
-                    compact
-                    selection
-                    value={el.qty}
-                    options={qtyOptions}
-                    onChange={(e, data) => {
-                      // const index = cart.indexOf(el)
-                      // const newArr = [...cart, cart[index].qty = data.value]
-                      setCart((el.qty = data.value));
+        {props.cartReducer.cart !== []
+          ? props.cartReducer.cart.map((el, i) => {
+              return (
+                <div className="cart-indiv-item">
+                  <div className="item-img-box">
+                    <img className="cart-item-img" src={el.img_url} />
+                  </div>
+                  <div className="item-descrip-box">
+                    <p className="item-description-title">{el.description}</p>
+                    <div className="item-price">
+                      <p className="dollartext">$</p>
+                      <p className="price-item">{el.price * el.qty}</p>
+                    </div>
+                    <div className="qty-box">
+                      <p className="qty-text">Qty</p>
+                      <Dropdown
+                        compact
+                        selection
+                        value={el.qty}
+                        options={qtyOptions}
+                        onChange={(e, data) => {
+                          // const index = cart.indexOf(el)
+                          // const newArr = [...cart, cart[index].qty = data.value]
+                          setCart((el.qty = data.value));
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <p
+                    onClick={() => {
+                      const newCart = [...props.cartReducer.cart];
+                      newCart.splice(i, 1);
+                      props.updateCart(newCart);
                     }}
-                  />
+                    className="x-text"
+                  >
+                    x
+                  </p>
                 </div>
-              </div>
-              <p
-                onClick={() => {
-                  const newCart = [...props.cartReducer.cart];
-                  newCart.splice(i, 1);
-                  props.updateCart(newCart);
-                }}
-                className="x-text"
-              >
-                x
-              </p>
-            </div>
-          );
-        })}
+              );
+            })
+          : cartLoader.map((el, i) => {
+              return (
+                <div className="cart-indiv-item">
+                  <div className="item-img-box">
+                    <img className="cart-item-img" src={el.img_url} />
+                  </div>
+                  <div className="item-descrip-box">
+                    <p className="item-description-title">{el.description}</p>
+                    <div className="item-price">
+                      <p className="dollartext">$</p>
+                      <p className="price-item">{el.price * el.qty}</p>
+                    </div>
+                    <div className="qty-box">
+                      <p className="qty-text">Qty</p>
+                      <Dropdown
+                        compact
+                        selection
+                        value={el.qty}
+                        options={qtyOptions}
+                        onChange={(e, data) => {
+                          // const index = cart.indexOf(el)
+                          // const newArr = [...cart, cart[index].qty = data.value]
+                          setCart((el.qty = data.value));
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <p
+                    onClick={() => {
+                      const newCart = [...props.cartReducer.cart];
+                      newCart.splice(i, 1);
+                      props.updateCart(newCart);
+                    }}
+                    className="x-text"
+                  >
+                    x
+                  </p>
+                </div>
+              );
+            })}
       </section>
 
       <section className="second-last-cart">
