@@ -1,6 +1,109 @@
 @import './variables';
 
+.Auth{
+    background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
+    background-size: 450vw;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    // background-color: #5680e9;
+    height: 100vh;
+    width: 100vw;
+    .scango{
+        margin-top: 30px;
+        width: 15vw;
+    }
+    .scangotxt{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 5px;
+        font-size: 3.5vw;
+        margin-bottom: 0;
+    }
+    h1{
+        color: white;
+    }
+    button{
+        background-color: #0d19a3;
+        border: none;
+        border-radius: 20px;
+        padding: 2vw 7vw;
+        color: white;
+        font-weight: 700;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 3.5vw;
+    }
 
+    .auth-box{
+        
+        h5{
+            margin-top: 0;
+            margin-bottom: 0;
+            color: grey;
+            font-size: 3.5vw;
+        }
+        margin-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80vw;
+        height: 65vh;
+        background-color: white;
 
+        .auth-input-fields{
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            text-align: left;
+            width: 60vw;
+            // .auth_input{
+            //     font-size: 1.0rem;
+            //     border-radius: 10px;
+            // }
+            input{
+                margin-bottom: 1vw;
+                width: 60vw;
+                font-size: 3.5vw;
+                border: rgb(201, 201, 201) solid 1px;
+                padding: 10px;
+                font-size: 3vw;
+            }
+        }
+        
+        h5{
+            justify-content: left;
+            align-items: left;
+            width: 60vw;
+            text-align: left;
+            font-size: 0.8rem;
+        }
 
+        input{
+            // margin-bottom: 10px;
+            width: 60vw;
+            font-size: 3.5vw;
+            border: rgb(201, 201, 201) solid 1px;
+            padding: 10px;
+        }
 
+        .ChangeViewsContext{
+            font-size: 3.5vw;
+            margin-bottom: 0;
+        }
+
+        .ChangeViews{
+            color: grey;
+            text-decoration: underline;
+            font-size: 3.5vw;
+        }
+
+        .forgotPassword{
+            color: grey;
+            text-decoration: underline;
+            font-size: 3.5vw;
+            // align-items: left;
+        }
+    }
+}
