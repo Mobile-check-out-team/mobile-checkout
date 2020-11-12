@@ -15,25 +15,11 @@ function Camera(props) {
         }
     },[data])
 
-    // if(data.length > 10){
-    //     props.updateCart(data)
-    //     // axios
-    //     //     .get(`/api/getItem/${data}`)
-    //     //     .then(res => {
-    //     //         console.log(res)
-    //     //         props.updateCart(res.data)
-    //     //         // props.history.push('/cart')
-    //     //     })
-    //     //     .catch(err => {
-    //     //         console.log(err)
-    //     //     })
-    // }
-
     return(
-        <>s
-      <BarcodeScannerComponent
-        width={500}
-        height={500}
+        <>
+      <BarcodeScannerComponent className="BarcodeScanner"
+        width={'100%'}
+        height={'100%'}
         onUpdate={(err, result) => {
             if (result){
               setData(result.text)
