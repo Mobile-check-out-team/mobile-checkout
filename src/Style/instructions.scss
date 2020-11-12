@@ -1,14 +1,22 @@
 .Instruction{
     display: flex;
     flex-direction: column;
-    background-color: #5680e9;
+    // background-color: #5680e9;
+    background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
+    background-size: 450vw;
     // justify-content: space-around;
     align-items: center;
     height: 100vh;
     .scango{
         margin-top: 30px;
-        width: 40vw;
-        // margin-bottom: 5vh;
+        width: 15vw;
+    }
+    .scangotxt{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 5px;
+        font-size: 3.5vw;
+        margin-bottom: 0;
     }
     .tutorial{
         display: flex;
@@ -17,17 +25,17 @@
         align-items: center;
         width: 80vw;
         height: 60vh;
-        margin-top: 15vh;
+        margin-top: 5vh;
         background-color: white;
         text-align: center;
         .scanYourItems{
             h5{
-                font-size: 0.9rem;
+                font-size: 4vw;
                 margin-top: 1vw;
                 margin-bottom: 1vw;
             }
             p{
-                font-size: 0.7rem;
+                font-size: 3.5vw;
                 margin-bottom: 1vh;
                 margin-top: 1vw;
             }
@@ -37,12 +45,12 @@
         }
         .payWithPhone{
             h5{
+                font-size: 4vw;
                 margin-top: 1vw;
-                font-size: 0.9rem;
                 margin-bottom: 1vw;
             }
             p{
-                font-size: 0.7rem;
+                font-size: 3.5vw;
                 margin-bottom: 1vh;
                 margin-top: 1vw;
             }
@@ -52,14 +60,14 @@
         }
         .getYourReceipt{
             h5{
+                font-size: 4vw;
                 margin-top: 1vw;
-                font-size: 0.9rem;
                 margin-bottom: 1vw;
             }
             p{
-                font-size: 0.7rem;
-                margin-top: 1vw;
+                font-size: 3.5vw;
                 margin-bottom: 1vh;
+                margin-top: 1vw;
             }
             .recieptIcon{
                 width: 8vw;

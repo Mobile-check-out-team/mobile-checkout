@@ -59,72 +59,65 @@ function Auth(props) {
     }
 
     return (    
-        <div>
+        <div className="Auth">
             <header className='auth-header'>
-                 {state.registerView
-                ?<span 
-                    name='registerView'
-                    onClick={handleToggle}>LOG IN</span>
-                :<span 
-                    name='registerView'
-                    onClick={handleToggle}>CREATE ACCOUNT</span>
-                }
+                <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
+                <h5 className="scangotxt">SCAN AND GO</h5>
             </header>
             
             <section className='auth-box'>
-                {/* <img className='logo' src={logo} alt='Logo'/> */}
-                
                 {state.registerView
-                ? <h1 >Create Your Account</h1> 
-                : <h1 >Log into Journalize</h1>}
-
-
-                <div>
+                ? <h1>Create Your Account</h1> 
+                : <h1>Login</h1>}
+                <div className="auth-input-fields">
                     {state.registerView
                     ?
                     <>
+                        <h5>FIRST NAME:</h5>
                         <input
                             className='auth-input'
                             value={state.firstName}
                             name='firstName'
-                            placeholder='First Name'
+                            // placeholder='First Name'
                             onChange={(e) =>  handleInput(e)}
                         />
+                        <h5>LAST NAME:</h5>
                         <input
                             className='auth-input'
                             value={state.lastName}
                             name='lastName'
-                            placeholder='Last Name'
+                            // placeholder='Last Name'
                             onChange={(e) =>  handleInput(e)}
                     />
                     </>     
                     :null
                     }
-
+                    <h5>EMAIL:</h5>
                     <input
                         className='auth-input'
                         value={state.email}
                         name='email'
-                        placeholder='Email Address'
+                        // placeholder='Email Address'
                         onChange={(e) =>  handleInput(e)}/>
-                    
+                    <h5>PASSWORD:</h5>
                     <input 
                         className='auth-input'
                         type='password'
                         value={state.password}
                         name='password'
-                        placeholder='Password'
+                        // placeholder='Password'
                         onChange={(e) => handleInput(e)}/>
                 </div>
 
                 {state.registerView
                     ? (<>
+                        <h5>VERIFY PASSWORD:</h5>
                         <input 
                             className='auth-input'
                             type='password'
                             value={state.verPassword}
                             name='verPassword'
-                            placeholder='Verify Password'
+                            // placeholder='Verify Password'
                             onChange={(e) => handleInput(e)}/>
                         <button 
                             className={state.firstName && state.lastName && state.email && state.password && state.verPassword?'auth-button change':'auth-button'}
@@ -139,9 +132,23 @@ function Auth(props) {
                         
                        </div>)
                 }
+                {state.registerView
+                ?<div>
+                    <p className="ChangeViewsContext">Already have an account? </p>
+                    <span className="ChangeViews"
+                    name='registerView'
+                    onClick={handleToggle}>Log in</span>
+                </div>
+                :<div>
+                    <p className="ChangeViewsContext">Don't have an account?</p>
+                    <span className="ChangeViews" 
+                    name='registerView'
+                    onClick={handleToggle}>Create account</span>
+                </div>
+                }<br></br>
                 {state.registerView?null:
                 <Link className='forgot-pw-link' to='/forgotpassword'> 
-                    <span>CAN'T LOG IN?</span>
+                    <span className="forgotPassword">Forgot your password?</span>
                 </Link>
                 }
             </section>

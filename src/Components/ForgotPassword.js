@@ -39,20 +39,24 @@ function ForgotPassword(props) {
 
     return(
         <div className='fpw-component'>
+            <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
+            <h5 className="scangotxt">SCAN AND GO</h5>
             <div className ='fpw-box'>
-                <h1>Logo</h1>
-                <h1 >Forgot your password?</h1> 
-                <span>Enter your account's email and we'll send you an email to reset the password</span>
+                <h1 className="ForgotPasswordTxt">Forgot your password?</h1> 
+                <span className="fpw-texts">Enter your account's email and we'll 
+                    send<br></br> you an email to reset the password</span>
                 <Form>
+                    <h5 className="fpw-email">EMAIL: </h5>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter email (required)" onChange={(e) =>  setEmail(e.target.value)}/>
+                        <Form.Control className="fpw-email-input" type="email" onChange={(e) =>  setEmail(e.target.value)}/>
                     </Form.Group>
                 </Form>
-                <Button variant="secondary" 
-                        onClick={sendEmail}>SEND EMAIL</Button>{' '}
+                <button onClick={sendEmail}>
+                        SEND EMAIL</button>{' '}
                 <div>
                     <span>Remember your password?</span>
-                    <Link to='/'>Sign in</Link>
+                    <br></br>
+                    <Link to='/' className="links">Sign in</Link>
                 </div>
             </div>
         </div>

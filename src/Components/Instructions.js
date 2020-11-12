@@ -7,7 +7,8 @@ function Instructions(props) {
 
     return(
         <div className="Instruction">
-            <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/scan+and+go+USE+ME.svg" alt="scan & go" className="scango" />
+            <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
+            <h5 className="scangotxt">SCAN AND GO</h5>
             <div className="tutorial">
                 <div className="scanYourItems">
                     <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/barcode.svg" alt="barcode" className="barcode" />
