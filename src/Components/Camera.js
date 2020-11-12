@@ -1,28 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import {connect} from 'react-redux';
 import {updateCart} from '../Redux/cartReducer'
+// import axios from 'axios';
 
 function Camera(props) {
-    const [ data, setData ] = React.useState('');
+    const [ data, setData ] = useState('');
 
-    if(data.length > 10){
-        console.log('data', data)
-        updateCart(data)
+    useEffect(async() => {
+        if(data.length > 11){
+            await props.updateCart(data)
+            setData('')
+            props.history.push('/cart')
+        }
+    },[data])
 
-    }
+    // if(data.length > 10){
+    //     props.updateCart(data)
+    //     // axios
+    //     //     .get(`/api/getItem/${data}`)
+    //     //     .then(res => {
+    //     //         console.log(res)
+    //     //         props.updateCart(res.data)
+    //     //         // props.history.push('/cart')
+    //     //     })
+    //     //     .catch(err => {
+    //     //         console.log(err)
+    //     //     })
+    // }
 
     return(
-        <>
+        <>s
       <BarcodeScannerComponent
         width={500}
         height={500}
-        //when data set data to reducer
         onUpdate={(err, result) => {
-          
             if (result){
               setData(result.text)
-            //   updateCart(data)
             }
         
         }}
