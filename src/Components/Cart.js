@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { getCart, updateCart, clearCart } from "../Redux/cartReducer";
+import {
+  getCart,
+  updateCart,
+  clearCart,
+  updateTotalPrice,
+} from "../Redux/cartReducer";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "../Style/Cart.scss";
@@ -65,10 +70,10 @@ const qtyOptions = [
   },
 ];
 
-const checkout = async () => {
+const checkout = async (props) => {
   const stripe = await stripePromise;
   axios
-    .post("/createSession", { price: 100 })
+    .post("/createSession", { price: props.cartReducer.totalPrice })
     .then((res) => {
       const id = res.data.id;
       return stripe.redirectToCheckout({ sessionId: id });
@@ -87,9 +92,18 @@ const checkout = async () => {
 function Cart(props) {
   const [cart, setCart] = useState([]);
 
+  let totalPrice = props.cartReducer.cart.reduce((acc, el) => {
+    const sum = el.price * el.qty;
+    return acc + sum;
+  }, 0);
+
   useEffect(() => {
     setCart(props.cartReducer.cart);
   }, []);
+
+  useEffect(() => {
+    props.updateTotalPrice(totalPrice);
+  }, [totalPrice]);
 
   return (
     <div className="cart">
@@ -120,19 +134,32 @@ function Cart(props) {
                     value={el.qty}
                     options={qtyOptions}
                     onChange={(e, data) => {
+                      // const index = cart.indexOf(el)
+                      // const newArr = [...cart, cart[index].qty = data.value]
                       setCart((el.qty = data.value));
                     }}
                   />
                 </div>
               </div>
-              <p className="x-text">x</p>
+              <p
+                onClick={() => {
+                  const newCart = [...props.cartReducer.cart];
+                  newCart.splice(i, 1);
+                  props.updateCart(newCart);
+                }}
+                className="x-text"
+              >
+                x
+              </p>
             </div>
           );
         })}
       </section>
 
       <section className="second-last-cart">
-        <p className="remove-all-text">Remove All</p>
+        <p onClick={props.clearCart} className="remove-all-text">
+          Remove All
+        </p>
         <img
           onClick={() => {
             props.history.push("/camera");
@@ -143,20 +170,29 @@ function Cart(props) {
       </section>
 
       <section className="bottom-of-cart">
-        <button onClick={checkout} className="checkout-button">
+        <button
+          onClick={() => {
+            checkout(props);
+          }}
+          className="checkout-button"
+        >
           Checkout
         </button>
         <div className="checkout-cart">
-          <p className="amount-of-items">x items</p>
+          <p className="amount-of-items">
+            {props.cartReducer.cart.reduce((acc, el) => {
+              return acc + 1;
+            }, 0)}
+            items
+          </p>
           <div className="Subtotal-cart">
             <p>Subtotal</p>
             <p>
               $
-              {/* {props.cartReducer.cart.reduce((acc, el) => {
-                const sum = el.qty * el.price;
-                acc = acc + sum;
-                return acc;
-              })} */}
+              {props.cartReducer.cart.reduce((acc, el) => {
+                const sum = el.price * el.qty;
+                return acc + sum;
+              }, 0)}
             </p>
           </div>
         </div>
@@ -167,6 +203,9 @@ function Cart(props) {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { getCart, clearCart, updateCart })(
-  withRouter(Cart)
-);
+export default connect(mapStateToProps, {
+  getCart,
+  clearCart,
+  updateCart,
+  updateTotalPrice,
+})(withRouter(Cart));

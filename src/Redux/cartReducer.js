@@ -9,6 +9,14 @@ const GET_CART = "GET_CART";
 const ADD_TO_CART = "ADD_TO_CART";
 const CLEAR_CART = "CLEAR_CART";
 const UPDATE_CART = "UPDATE_CART";
+const UPDATE_PRICE = "UPDATE_PRICE";
+
+export function updateTotalPrice(price) {
+  return {
+    type: UPDATE_PRICE,
+    payload: price,
+  };
+}
 
 export function updateCart(newArr) {
   return {
@@ -49,7 +57,7 @@ export default function reducer(state = initialState, action) {
 
     ///////// UPDATE_CART ///////////
     case UPDATE_CART:
-      return state;
+      return { ...state, cart: payload };
 
     /////////// ADD_TO_CART ////////////
     case ADD_TO_CART + "_PENDING":
@@ -58,6 +66,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, cart: [...state.cart, { ...payload.data, qty: 1 }] };
     case ADD_TO_CART + "_REJECTED":
       return state;
+
+    //////////UPDATE_PRICE/////////////
+    case UPDATE_PRICE:
+      return { ...state, totalPrice: payload };
 
     ////////// CLEAR_ CART ////////////
     case CLEAR_CART:
