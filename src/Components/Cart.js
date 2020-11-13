@@ -117,6 +117,8 @@ function Cart(props) {
     props.updateTotalPrice(totalPrice);
   }, [totalPrice]);
 
+  // console.log(props.cartReducer.totalPrice);
+
   return (
     <div className="cart">
       <section className="cart-header">
