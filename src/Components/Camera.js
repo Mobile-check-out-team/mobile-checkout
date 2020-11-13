@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import { connect } from "react-redux";
 import { addToCart } from "../Redux/cartReducer";
+import {Link} from 'react-router-dom';
+import '../Style/Camera.scss'
 // import axios from 'axios';
 
 function Camera(props) {
@@ -16,21 +18,26 @@ function Camera(props) {
   }, [data]);
 
     return(
+      <div className="cameraContainer">
+        <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
+        <h5 className="scangotxt">SCAN AND GO</h5>
       <>
-        {/* <div className="BarcodeScannerContainer"> */}
       <BarcodeScannerComponent className="BarcodeScanner"
         width={'100%'}
-        height={'100%'}
+        height={300}
+        // height={'100%'}
         onUpdate={(err, result) => {
           if (result) {
             setData(result.text);
           }
         }}
       />
-      <div className='BarcodeScannerContainer'></div>
       <p>{data}</p>
-    {/* </div> */}
+      <Link to="/cart">
+        <button class="backToCart">Back to Cart</button>
+      </Link>
       </>
+      </div>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;

@@ -141,16 +141,13 @@ function Cart(props) {
                   />
                 </div>
               </div>
-              <p
-                onClick={() => {
-                  const newCart = [...props.cartReducer.cart];
-                  newCart.splice(i, 1);
-                  props.updateCart(newCart);
-                }}
-                className="x-text"
-              >
-                x
-              </p>
+              <img 
+              onClick={() => {
+                const newCart = [...props.cartReducer.cart];
+                newCart.splice(i, 1);
+                props.updateCart(newCart);
+              }}
+              src='https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon.svg' alt="x icon" className="x-icon" />
             </div>
           );
         })}
