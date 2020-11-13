@@ -63,7 +63,15 @@ export default function reducer(state = initialState, action) {
     case ADD_TO_CART + "_PENDING":
       return state;
     case ADD_TO_CART + "_FULFILLED":
-      return { ...state, cart: [...state.cart, { ...payload.data, qty: 1 }] };
+
+     if(state.cart.some(el => el.inventory_id === payload.data.inventory_id)){
+      let i = state.cart.map(el => el.inventory_id).indexOf(payload.data.inventory_id)
+      let newArray = [...state.cart]
+      let currQty = newArray[i].qty
+      newArray[i] = {...newArray[i], qty: ++currQty}
+      return { ...state, cart: newArray }
+     }else{
+      return { ...state, cart: [...state.cart, { ...payload.data, qty: 1 }] }}
     case ADD_TO_CART + "_REJECTED":
       return state;
 
