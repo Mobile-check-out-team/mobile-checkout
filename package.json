@@ -6,6 +6,7 @@
   "proxy": "http://localhost:4001",
   "secure": false,
   "dependencies": {
+    "@createnextapp/react-barcode": "^1.1.1",
     "@stripe/stripe-js": "^1.11.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
