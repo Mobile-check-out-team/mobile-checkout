@@ -99,6 +99,18 @@ function Cart(props) {
 
   useEffect(() => {
     setCart(props.cartReducer.cart);
+    if (props.cartReducer.cart === []) {
+      axios
+        .get("/api/getCart")
+        .then((res) => {
+          if (res.data !== undefined) {
+            props.updateCart(res.data.cart);
+          }
+        })
+        .catch(() => {
+          return [];
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -172,7 +184,11 @@ function Cart(props) {
       <section className="bottom-of-cart">
         <button
           onClick={() => {
-            checkout(props);
+            axios
+              .post("/api/saveCart", { cart: props.cartReducer.cart })
+              .then(() => {
+                checkout(props);
+              });
           }}
           className="checkout-button"
         >
