@@ -1,53 +1,88 @@
-import axios from 'axios';
+import axios from "axios";
 
 const initialState = {
-    cart:[]
+  cart: [],
+  totalPrice: 0,
 };
 
-const GET_CART = 'GET_CART';
-const UPDATE_CART = 'UPDATE_CART';
-const CLEAR_CART = 'CLEAR_CART';
+const GET_CART = "GET_CART";
+const ADD_TO_CART = "ADD_TO_CART";
+const CLEAR_CART = "CLEAR_CART";
+const UPDATE_CART = "UPDATE_CART";
+const UPDATE_PRICE = "UPDATE_PRICE";
 
-export function getCart(){
-    return{
-        type: GET_CART,
-        payload: initialState
-    }
+export function updateTotalPrice(price) {
+  return {
+    type: UPDATE_PRICE,
+    payload: price,
+  };
 }
 
-export function updateCart(data){
-    let invObj = axios.get(`/api/getItem/${data}`)
-    return{
-        type: UPDATE_CART,
-        payload: invObj
-    }
+export function updateCart(newArr) {
+  return {
+    type: UPDATE_CART,
+    payload: newArr,
+  };
 }
 
-
-export function clearCart(){
-    return{
-        type: CLEAR_CART,
-        payload: []
-    }
+export function getCart() {
+  return {
+    type: GET_CART,
+    payload: initialState,
+  };
 }
 
-export default function reducer(state = initialState, action){
-    const {type, payload} = action;
+export function addToCart(data) {
+  let invObj = axios.get(`/api/getItem/${data}`);
+  return {
+    type: ADD_TO_CART,
+    payload: invObj,
+  };
+}
 
-    switch(type){
-        case GET_CART:
-            return {...state, cart: payload}
+export function clearCart() {
+  return {
+    type: CLEAR_CART,
+    payload: [],
+  };
+}
 
-        case UPDATE_CART + '_PENDING':
-            return state ;
-        case UPDATE_CART + '_FULFILLED':
-            return {...state, cart: [...state.cart, payload.data]}
-        case UPDATE_CART + '_REJECTED':
-            return state;
+export default function reducer(state = initialState, action) {
+  const { type, payload } = action;
 
-        case CLEAR_CART:
-            return {...state, cart: payload}
-        default:
-            return state;
-    }
+  switch (type) {
+    ////////// GET_CART /////////////
+    case GET_CART:
+      return { ...state, cart: payload };
+
+    ///////// UPDATE_CART ///////////
+    case UPDATE_CART:
+      return { ...state, cart: payload };
+
+    /////////// ADD_TO_CART ////////////
+    case ADD_TO_CART + "_PENDING":
+      return state;
+    case ADD_TO_CART + "_FULFILLED":
+
+     if(state.cart.some(el => el.inventory_id === payload.data.inventory_id)){
+      let i = state.cart.map(el => el.inventory_id).indexOf(payload.data.inventory_id)
+      let newArray = [...state.cart]
+      let currQty = newArray[i].qty
+      newArray[i] = {...newArray[i], qty: ++currQty}
+      return { ...state, cart: newArray }
+     }else{
+      return { ...state, cart: [...state.cart, { ...payload.data, qty: 1 }] }}
+    case ADD_TO_CART + "_REJECTED":
+      return state;
+
+    //////////UPDATE_PRICE/////////////
+    case UPDATE_PRICE:
+      return { ...state, totalPrice: payload };
+
+    ////////// CLEAR_ CART ////////////
+    case CLEAR_CART:
+      return { ...state, cart: payload };
+    default:
+      return state;
+  }
 }
