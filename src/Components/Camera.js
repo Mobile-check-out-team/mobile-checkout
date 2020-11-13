@@ -15,33 +15,22 @@ function Camera(props) {
     }
   }, [data]);
 
-  // if(data.length > 10){
-  //     props.updateCart(data)
-  //     // axios
-  //     //     .get(`/api/getItem/${data}`)
-  //     //     .then(res => {
-  //     //         console.log(res)
-  //     //         props.updateCart(res.data)
-  //     //         // props.history.push('/cart')
-  //     //     })
-  //     //     .catch(err => {
-  //     //         console.log(err)
-  //     //     })
-  // }
-
-  return (
-    <>
-      <BarcodeScannerComponent
-        width={500}
-        height={500}
+    return(
+      <>
+        {/* <div className="BarcodeScannerContainer"> */}
+      <BarcodeScannerComponent className="BarcodeScanner"
+        width={'100%'}
+        height={'100%'}
         onUpdate={(err, result) => {
           if (result) {
             setData(result.text);
           }
         }}
       />
+      <div className='BarcodeScannerContainer'></div>
       <p>{data}</p>
-    </>
+    {/* </div> */}
+      </>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;

@@ -1,1 +1,13 @@
 @import './variables';
+.BarcodeScannerContainer{
+    // background-color: black;
+    background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/camera+Background.svg");
+    background-size: 450vw;
+    width: 100vw;
+    height: 100vh;
+    body{
+        background-color: black;
+    }
+    .BarcodeScanner{
+    }
+}
