@@ -108,7 +108,11 @@ function Cart(props) {
   return (
     <div className="cart">
       <section className="cart-header">
-        <p className="cart-exit">Exit</p>
+        <p className="cart-exit"  onClick={() => {
+            props.clearCart()
+            props.history.push("/instructions")
+
+          }}>Exit</p>
         <p className="cart-title">Scan and Go Cart</p>
         <button className="cart-faq">?</button>
       </section>
@@ -116,7 +120,7 @@ function Cart(props) {
       <section className="cart-items">
         {props.cartReducer.cart.map((el, i) => {
           return (
-            <div className="cart-indiv-item">
+            <div className="cart-indiv-item" key={i}>
               <div className="item-img-box">
                 <img className="cart-item-img" src={el.img_url} />
               </div>
@@ -129,6 +133,7 @@ function Cart(props) {
                 <div className="qty-box">
                   <p className="qty-text">Qty</p>
                   <Dropdown
+                    className ='dropdown'
                     compact
                     selection
                     value={el.qty}
@@ -181,9 +186,8 @@ function Cart(props) {
         <div className="checkout-cart">
           <p className="amount-of-items">
             {props.cartReducer.cart.reduce((acc, el) => {
-              return acc + 1;
-            }, 0)}
-            items
+              return acc + el.qty;
+            }, 0)} items
           </p>
           <div className="Subtotal-cart">
             <p>Subtotal</p>
