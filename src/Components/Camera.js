@@ -25,7 +25,7 @@ function Camera(props) {
       <BarcodeScannerComponent className="BarcodeScanner"
         width={'100%'}
         height={300}
-        // height={'100%'}
+        // height={'70%'}
         onUpdate={(err, result) => {
           if (result) {
             setData(result.text);

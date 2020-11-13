@@ -7,6 +7,7 @@
   "secure": false,
   "dependencies": {
     "@createnextapp/react-barcode": "^1.1.1",
+    "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.11.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
@@ -27,6 +28,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-stripe-elements": "^6.1.2",
     "react-webcam-barcode-scanner": "0.0.2-rc2",
     "redux": "^4.0.5",
     "redux-promise-middleware": "^6.1.2",
