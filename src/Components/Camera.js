@@ -16,7 +16,8 @@ function Camera(props) {
   }, [data]);
 
     return(
-        <>
+      <>
+        {/* <div className="BarcodeScannerContainer"> */}
       <BarcodeScannerComponent className="BarcodeScanner"
         width={'100%'}
         height={'100%'}
@@ -26,8 +27,10 @@ function Camera(props) {
           }
         }}
       />
+      <div className='BarcodeScannerContainer'></div>
       <p>{data}</p>
-    </>
+    {/* </div> */}
+      </>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;
