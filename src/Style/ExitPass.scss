@@ -1,4 +1,24 @@
 @import './variables';
-
-
-
+@media screen and (min-width: 0px) and (max-width: 773px) {
+  .exit-pass {
+    background-color: $header-color;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 20px 25px;
+    color: white;
+    }
+  .exit-head{
+    display: flex;
+    text-align: flex-end;
+    justify-content: space-between;
+    background-color: red;
+  }
+  .exit-page{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end ;
+    }
+}
