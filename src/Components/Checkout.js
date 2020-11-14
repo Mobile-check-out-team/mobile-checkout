@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {getCart} from '../Redux/cartReducer';
 import axios from 'axios';
@@ -18,10 +18,10 @@ const stripePromise = loadStripe("pk_test_51HdVx7GwZEaH5JVh0j5mSh6bwTYCmFN50iYTp
 
 const CheckoutForm = (props) => {
     const [state, cState] = useState({
-        fullName: '',
-        email: '',
-        address: '',
-        zip: ''
+        firstName: '',
+        lastName: '',
+        // address: '',
+        // zip: ''
     });
 
     const handleInput = (event) => {
@@ -54,42 +54,38 @@ const CheckoutForm = (props) => {
       };
 
     return(
-        <form onSubmit={handleSubmit} style={{maxWidth:'400px', margin: '0 auto' }}>
-            <input 
-                className="CardEmail"
-                type="email"
-                value={state.email}
-                name="email"
-                onChange={(e) => handleInput(e)}
-                placeholder="email"
-            />
+        <form onSubmit={handleSubmit} className='checkout-form'>
+
             {/* <CardNumberElement />
             <CardExpiryElement />
             <CardCvcElement /> */}
             <CardElement />
-            <input 
-                className="CardFullName"
-                type="text"
-                value={state.fullName}
-                name="fullName"
-                onChange={(e) => handleInput(e)}
-                placeholder="Name on Card"
-            />
-            <input 
-                className="Address"
-                type="address"
-                value={state.address}
-                name="address"
-                onChange={(e) => handleInput(e)}
-                placeholder="address"
-            />
-            <button type="submit" disabled={!stripe}>Pay</button>
+            <div className='name-flex'>
+                <input 
+                    className="first-name"
+                    type="text"
+                    value={state.firstName}
+                    name="firstName"
+                    onChange={(e) => handleInput(e)}
+                    placeholder="First name"
+                    />
+                <input 
+                    className="last-name"
+                    type="text"
+                    value={state.lastName}
+                    name="lastName"
+                    onChange={(e) => handleInput(e)}
+                    placeholder="Last name"
+                    />
+            </div>
+            <button className='pay-button' type="submit" disabled={!stripe}>Pay</button>
         </form>
     )
 }
 
 const Checkout = (props) => {
     const [status, setStatus] = useState('');
+    
     if (status === "success"){
         // return <div>Congrats on your purchase</div>
         props.history.push('/ExitPass')
@@ -98,9 +94,48 @@ const Checkout = (props) => {
     const success = () => {
         setStatus('success')
     }
-
+    
+    let subtotal = props.cartReducer.cart.reduce((acc, el) => {
+        const sum = el.price * el.qty;
+        return acc + sum;
+        }, 0)
+    let tax = subtotal*.0825
+    let total = subtotal + tax
+        
     
     return(
+        <div>
+            <header className="checkout-header">
+                <p className="checkout-exit"  onClick={() => {
+                    props.history.push("/cart")
+                }}>Back</p>
+                <p className="checkout-title">Checkout</p>
+                <button className="checkout-faq">?</button>
+            </header>
+            <div className='summary-title'>Summary</div>
+            <section className='summary-box'>
+                <div className='inner-summary-box'>
+                    <div className='subtotal'>
+                        <span>Subtotal ({props.cartReducer.cart.reduce((acc, el) => {
+                            return acc + el.qty;}, 0)} items)</span>
+                        <span>${props.cartReducer.cart.reduce((acc, el) => {
+                            const sum = el.price * el.qty;
+                            return acc + sum;
+                        }, 0)}</span>
+                    </div>
+                    <div className='tax'>
+                        <span>Tax</span>
+                        <span>{tax.toFixed(2)}</span>
+                    </div>
+                    <div className='total'>
+                        <span>Total</span>
+                        <span>{total.toFixed(2)}</span>
+                    </div>
+                </div>
+
+
+            </section>
+
             <Elements stripe={stripePromise}>
                 <CheckoutForm 
                     success={success}
@@ -108,6 +143,7 @@ const Checkout = (props) => {
                     
 
             </Elements>
+        </div>
         )
     }
 
