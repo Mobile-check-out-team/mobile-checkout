@@ -12,7 +12,7 @@ import {Elements,
         CardCvcElement,
         PaymentRequestButtonElement,
         CardElement} from '@stripe/react-stripe-js';
-import { Card } from 'semantic-ui-react';
+// import { Card } from 'semantic-ui-react';
 
 const stripePromise = loadStripe("pk_test_51HdVx7GwZEaH5JVh0j5mSh6bwTYCmFN50iYTpTTtqZLjRYLyi0i9M5ZRmOcMXNU2TGN6XhZAS5YMBsUBZs6ZmIkO00KEZ8tkIo");
 
@@ -31,30 +31,30 @@ const CheckoutForm = (props) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const handleSubmit = async event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
-            // test: console.log(elements.getElement(CardElement)),
             card: elements.getElement(CardElement),
         });
         
         if (!error) {
-            // console.log(paymentMethod);
           const { id } = paymentMethod;
 
     
           try {
-            const amount = props.cartReducer.totalPrice * 100;
+            const amount = props.amount;
             const response = await axios.post('/api/charge', {id, amount})
+            props.success();
+            console.log(response);
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
         }
       };
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{maxWidth:'400px', margin: '0 auto' }}>
             <input 
                 className="CardEmail"
                 type="email"
@@ -88,12 +88,25 @@ const CheckoutForm = (props) => {
     )
 }
 
-function Checkout(props) {
-    console.log(props.cartReducer.totalPrice * 100);
+const Checkout = (props) => {
+    const [status, setStatus] = useState('');
+    if (status === "success"){
+        // return <div>Congrats on your purchase</div>
+        props.history.push('/ExitPass')
+    }
+    const amount = props.cartReducer.totalPrice * 100;
+    const success = () => {
+        setStatus('success')
+    }
+
     
     return(
             <Elements stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm 
+                    success={success}
+                    amount={amount}/>
+                    
+
             </Elements>
         )
     }
