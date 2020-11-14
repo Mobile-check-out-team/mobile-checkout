@@ -16,7 +16,7 @@ export default (
     <Route path="/instructions" component={Instructions} />
     <Route path="/cart" component={Cart} />
     <Route path="/camera" component={Camera} />
-    <Route exact path="/checkout" component={Checkout} />
+    <Route path="/checkout" component={Checkout} />
     <Route path="/exitpass" component={ExitPass} />
     <Route path="/forgotPassword" component={ForgotPassword} />
     <Route path="/checkout/success" component={Success} />
