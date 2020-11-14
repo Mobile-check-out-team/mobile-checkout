@@ -1,2 +1,101 @@
 @import './variables';
 
+@media screen and (min-width: 0px) and (max-width: 773px) {
+    .checkout-header {
+      background-color: $header-color;
+      margin-top: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100vw;
+      padding: 20px 25px;
+      color: white;
+    }
+    .checkout-exit {
+        margin-bottom: 0px;
+    }
+    .checkout-faq {
+        border-radius: 100px;
+        border: 2px solid white;
+        background-color: $header-color;
+        color: white;
+    }
+    .checkout-title {
+        font-weight: 900;
+        margin-bottom: 0px;
+    }
+    .summary-title{
+        width: 90vw;
+        margin: 10px 10px 10px 21px;
+        text-align:left;
+    }
+    .summary-box{
+        width: 90vw;
+        border: 1px solid black;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+    .inner-summary-box div{
+        display:flex;
+        justify-content: space-between;
+    }
+    .inner-summary-box{
+        width:80vw;
+        margin: 10px auto;
+        // border-bottom: 1px solid lightgray;
+    }
+    .tax{
+        padding-bottom:10px;
+    }
+    .total{
+        font-weight: 900;
+        font-size: 16px;
+        border-top: 1px solid lightgray;
+        padding-top: 10px;
+    }
+    .checkout-form{
+        width: 85vw;
+        margin: 20px auto;
+    }
+    .checkout-form{
+        display:flex;
+        flex-direction: column;
+    }
+    .name-flex{
+        display:flex; 
+        justify-content: space-between;
+        margin: 20px 0px 20px 0px;
+
+    }
+    .first-name{
+        width:40vw;
+        outline: none;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: solid;
+        border-width: .5px;
+        border-color: rgb(200, 200, 200);
+        font-size: 16px;
+        text-indent: 5px;
+    }
+    .last-name{
+        width:40vw;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: solid;
+        border-width: .5px;
+        border-color: rgb(200, 200, 200);
+        font-size: 16px;
+        text-indent: 5px;
+    }
+    .pay-button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: #515ccf;
+        color: white;
+      }
+
+}

@@ -32,8 +32,7 @@ export function getCart() {
   };
 }
 
-export function addToCart(data) {
-  let invObj = axios.get(`/api/getItem/${data}`);
+export function addToCart(invObj) {
   return {
     type: ADD_TO_CART,
     payload: invObj,
@@ -60,20 +59,17 @@ export default function reducer(state = initialState, action) {
       return { ...state, cart: payload };
 
     /////////// ADD_TO_CART ////////////
-    case ADD_TO_CART + "_PENDING":
-      return state;
-    case ADD_TO_CART + "_FULFILLED":
 
-     if(state.cart.some(el => el.inventory_id === payload.data.inventory_id)){
-      let i = state.cart.map(el => el.inventory_id).indexOf(payload.data.inventory_id)
+    case ADD_TO_CART:
+     if(state.cart.some(el => el.inventory_id === payload.inventory_id)){
+      let i = state.cart.map(el => el.inventory_id).indexOf(payload.inventory_id)
       let newArray = [...state.cart]
       let currQty = newArray[i].qty
       newArray[i] = {...newArray[i], qty: ++currQty}
-      return { ...state, cart: newArray }
+      return { ...state, cart: newArray };
      }else{
-      return { ...state, cart: [...state.cart, { ...payload.data, qty: 1 }] }}
-    case ADD_TO_CART + "_REJECTED":
-      return state;
+      return { ...state, cart: [...state.cart, { ...payload, qty: 1 }] }};
+
 
     //////////UPDATE_PRICE/////////////
     case UPDATE_PRICE:
