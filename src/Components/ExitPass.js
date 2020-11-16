@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { useBarcode } from "@createnextapp/react-barcode";
 import {connect} from 'react-redux';
 import '../Style/ExitPass.scss'
+import { clearCart } from "../Redux/cartReducer";
 
 function ExitPass(props) {
   const { inputRef } = useBarcode({
     value: props.invoiceReducer.invoice.invoice_number.toString().padStart(14, "0"),
     options: {
     background: "white",
+<<<<<<< HEAD
+    height: "30",
+    fontSize: '12',
+    
+=======
+>>>>>>> main
     },
   });
   let date = new Date(props.invoiceReducer.invoice.invoice_date)
@@ -19,13 +26,18 @@ function ExitPass(props) {
       <div className='exit-head'>
         <p>Exit Pass </p>
       </div>
-       <p className='exit-page'>Done</p>
+       <p className='exit-page'  onClick={() => {
+         props.clearCart()
+         props.history.push('/')
+
+       }}>Done </p>
     <div className='bar-code-box'>
+      <div className='pass-date'>
          <p className='bar-pass'>Exit Pass </p>
-      <div className='name-date'>
-         <span className='name'>{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
          <span className='date'>{date.toDateString()} </span>
-      </div>
+       </div>
+         <span className='name'>name{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
+      
       <div className='total-item'>
          <span className='totalAmount'>Total ${total.toFixed(2)} </span>
          {props.invoiceReducer.invoice.numitems === 1?
@@ -41,4 +53,4 @@ function ExitPass(props) {
   );
 }
 const mapStateToProps = (reduxState) => reduxState;
-export default connect(mapStateToProps, null)(ExitPass);
+export default connect(mapStateToProps, {clearCart})(ExitPass);
