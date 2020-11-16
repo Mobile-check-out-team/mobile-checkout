@@ -1,15 +1,20 @@
 @import "./variables";
 
-@media screen and (min-width: 0px) and (max-width: 773px) {
+@media screen and (min-width: 0px) and (max-width: 470px) {
+}
+
+@media screen and (min-width: 471px) {
+}
+@media screen and (max-width: 10000000px) {
   .cart-header {
+    padding: 20px;
     background-color: $header-color;
     margin-top: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100vw;
-    padding: 20px 25px;
     color: white;
+    width: 100vw;
   }
 
   .cart-items {
@@ -35,16 +40,24 @@
     border: 2px solid white;
     background-color: $header-color;
     color: white;
+    position: absolute;
+    right: 22px;
+    top: 20px;
   }
   .cart-faq:focus {
     outline: none;
   }
+
   .cart-title {
     font-weight: 900;
     margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .cart-exit {
     margin-bottom: 0px;
+    position: absolute;
+    left: 30px;
   }
   .cart-items {
     display: flex;
@@ -52,11 +65,11 @@
   }
 
   .item-img-box {
-    width: 40vw;
     height: 169.5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 65px;
   }
 
   .cart-indiv-item {
@@ -64,11 +77,14 @@
     align-items: flex-start;
     justify-content: flex-start;
     border-bottom: 1px solid rgb(221, 221, 221);
+    position: relative;
   }
 
   .cart-item-img {
     height: 120px;
     width: auto;
+    position: absolute;
+    left: 30px;
   }
   .item-price {
     display: flex;
@@ -87,17 +103,20 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
-    margin-left: 0px;
     height: 150px;
+    margin-left: 70px;
   }
   .qty-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100px;
+    width: 80px;
   }
   .qty-text {
     margin-bottom: 0px;
+  }
+  .dropdown {
+    margin-left: 10px;
   }
   .dollartext {
     margin-bottom: 0px;
@@ -120,10 +139,12 @@
     color: grey;
   }
 
-  .x-icon{
+  .x-icon {
+    position: absolute;
     width: 2.5vh;
     margin-top: 25px;
     margin-left: 10vw;
+    right: 20px;
   }
 
   //   second-last-cart
@@ -137,7 +158,7 @@
   }
 
   .remove-all-text {
-    margin-left: 20px;
+    margin-left: 33px;
     text-decoration: underline;
   }
 
@@ -187,10 +208,21 @@
     outline: none;
     background-color: #2f3dd4;
   }
-}
+  .speechBubble {
+    height: 35vh;
+    position: absolute;
+    transform: scaleX(-0.8) rotateY(180deg) rotateX(0deg) rotateZ(180deg);
+    top: 39px;
+    right: -20px;
+    z-index: 1;
+  }
 
-@media screen and (min-width: 774px) {
-  .cart {
-    display: none;
+  .cart-faq-text {
+    position: absolute;
+    top: 95px;
+    left: 213px;
+    width: 150px;
+    font-weight: 800;
+    z-index: 2;
   }
 }
