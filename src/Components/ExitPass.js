@@ -9,12 +9,12 @@ function ExitPass(props) {
     value: props.invoiceReducer.invoice.invoice_number.toString().padStart(14, "0"),
     options: {
     background: "white",
-<<<<<<< HEAD
-    height: "30",
-    fontSize: '12',
+// <<<<<<< HEAD
+//     height: "30",
+//     fontSize: '12',
     
-=======
->>>>>>> main
+// =======
+// >>>>>>> main
     },
   });
   let date = new Date(props.invoiceReducer.invoice.invoice_date)
