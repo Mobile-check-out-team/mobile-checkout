@@ -47,6 +47,9 @@ app.post("/api/email", nodeMailerCtrl.email);
 //Inventory
 app.get("/api/getItem/:upc", invCtrl.getItem);
 
+//Invoice
+app.post('/api/createInvoice', invCtrl.createInvoice)
+
 //Cart
 app.get("/api/getCart", invCtrl.getCart);
 app.post("/api/saveCart", invCtrl.saveCart);
