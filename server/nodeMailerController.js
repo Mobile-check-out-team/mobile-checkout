@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer'),
-      {EMAIL, PASSWORD} = process.env;
+const nodemailer = require('nodemailer')
+const {EMAIL, PASSWORD} = process.env;
 
 module.exports = {
     email: async(req, res) => {

@@ -5,11 +5,11 @@ const session = require("express-session");
 const authCtrl = require("./authController");
 const invCtrl = require("./inventoryController");
 const nodeMailerCtrl = require("./nodeMailerController");
-const stripe = require("stripe")(
-  "sk_test_51HdVx7GwZEaH5JVhgidjmT0rrlhZGIqRrIabFwjCrZ83B89KWzGDO5Yjmy1r7TdyzEcJDh9jgB5DJGGjzKx47q8R00wL3WPhsg"
-);
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const stripeCtrl = require('./stripeController');
+
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, STRIPE_SECRET} = process.env;
 const app = express();
+const stripe = require("stripe")(STRIPE_SECRET);
 
 //FOR req.body
 app.use(express.json());
@@ -47,9 +47,15 @@ app.post("/api/email", nodeMailerCtrl.email);
 //Inventory
 app.get("/api/getItem/:upc", invCtrl.getItem);
 
+//Invoice
+app.post('/api/createInvoice', invCtrl.createInvoice)
+
 //Cart
 app.get("/api/getCart", invCtrl.getCart);
 app.post("/api/saveCart", invCtrl.saveCart);
+
+//Stripe Element Post Request
+app.post('/api/charge', stripeCtrl.charge)
 
 //Stripe API Post Request
 app.post("/createSession", async (req, res) => {
@@ -71,7 +77,7 @@ app.post("/createSession", async (req, res) => {
       },
     ],
     mode: "payment",
-    success_url: `http://localhost:3000/#/checkout/success`,
+    success_url: `http://localhost:3000/#/ExitPass`,
     cancel_url: `http://localhost:3000/#/checkout/cancel`,
   });
   res.json({ id: session.id });
