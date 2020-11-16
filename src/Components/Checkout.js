@@ -44,9 +44,17 @@ const CheckoutForm = (props) => {
     const [state, cState] = useState({
         firstName: '',
         lastName: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: ''
         // address: '',
         // zip: ''
     });
+
+    const handleFocus = () => {
+        console.log('[focus]')
+    };
 
     const handleChange = (event) => {
         if (event.error) {
@@ -87,15 +95,6 @@ const CheckoutForm = (props) => {
     return(
         <form onSubmit={handleSubmit} className='checkout-form'>
 
-            {/* <CardNumberElement />
-            <CardExpiryElement />
-            <CardCvcElement /> */}
-            <CardElement 
-                id='card-element'
-                options={CARD_ELEMENT_OPTIONS}
-                onChange={handleChange}
-            />
-            <div className="card-errors" role="alert">{error}</div>
             <div className='name-flex'>
                 <input 
                     className="first-name"
@@ -103,7 +102,7 @@ const CheckoutForm = (props) => {
                     value={state.firstName}
                     name="firstName"
                     onChange={(e) => handleInput(e)}
-                    placeholder="First name"
+                    placeholder="Jane"
                     />
                 <input 
                     className="last-name"
@@ -111,9 +110,56 @@ const CheckoutForm = (props) => {
                     value={state.lastName}
                     name="lastName"
                     onChange={(e) => handleInput(e)}
-                    placeholder="Last name"
+                    placeholder="Doe"
                     />
             </div>
+            <input 
+                className="address"
+                type="text"
+                value={state.address}
+                name="address"
+                onChange={(e) => handleInput(e)}
+                placeholder="1234 Address St."
+            />
+            <div className="addressInfo">
+                <input 
+                    className="city"
+                    type="text"
+                    value={state.city}
+                    name="city"
+                    onChange={(e) => handleInput(e)}
+                    placeholder="Salt Lake City"
+                />
+                <input 
+                    className="state"
+                    type="text"
+                    value={state.state}
+                    name="state"
+                    onChange={(e) => handleInput(e)}
+                    placeholder="UT"
+                />
+                <input 
+                    className="zip"
+                    type="text"
+                    value={state.zip}
+                    name="zip"
+                    onChange={(e) => handleInput(e)}
+                    placeholder="84101"
+                />
+            </div>
+
+            {/* <CardNumberElement />
+            <CardExpiryElement />
+            <CardCvcElement /> */}
+            <CardElement 
+                onFocus={handleFocus}
+                id='card-element'
+                options={CARD_ELEMENT_OPTIONS}
+                onChange={handleChange}
+            />
+
+            <div className="card-errors" role="alert">{error}</div>
+
             <button className='pay-button' type="submit" disabled={!stripe}>Pay</button>
         </form>
     )

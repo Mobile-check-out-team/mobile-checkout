@@ -11,6 +11,21 @@
       padding: 20px 25px;
       color: white;
     }
+
+    input::placeholder{
+        color: rgb(199, 199, 199);
+    }
+
+    .StripeElement{
+        border-bottom: 0.5px solid rgb(197, 197, 197);
+        margin-bottom: 20px;
+    }
+
+    .StripeElement--focus{
+        transition: 0.2s;
+        border-bottom: 0.5px solid black;
+    }
+
     .checkout-exit {
         margin-bottom: 0px;
     }
@@ -79,6 +94,12 @@
         font-size: 16px;
         text-indent: 5px;
     }
+
+    .first-name:focus{
+        transition: 0.2s;
+        border-bottom: 0.5px solid black;
+    }
+
     .last-name{
         width:40vw;
         border-top-style: hidden;
@@ -90,12 +111,99 @@
         font-size: 16px;
         text-indent: 5px;
     }
+
+    .last-name:focus{
+        transition: 0.2s;
+        border-bottom: 0.5px solid black;
+    }
+
     .pay-button {
         border: none;
         padding: 10px 20px;
         border-radius: 20px;
         background-color: #515ccf;
         color: white;
+      }
+
+      .address{
+        // width:80vw;
+        width: 100%;
+        outline: none;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: solid;
+        border-width: .5px;
+        border-color: rgb(200, 200, 200);
+        font-size: 16px;
+        text-indent: 5px;
+        margin-bottom: 20px;
+      }
+
+      .address:focus{
+        transition: 0.2s;
+        border-bottom: 0.5px solid black;
+      }
+
+      .addressInfo{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          .city{
+            width:40vw;
+            outline: none;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: solid;
+            border-width: .5px;
+            border-color: rgb(200, 200, 200);
+            font-size: 16px;
+            text-indent: 5px;
+          }
+
+          .city:focus{
+            transition: 0.2s;
+            border-bottom: 0.5px solid black;
+          }
+
+          .state{
+            width:20vw;
+            outline: none;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: solid;
+            border-width: .5px;
+            border-color: rgb(200, 200, 200);
+            font-size: 16px;
+            text-indent: 5px;
+          }
+
+          .state:focus{
+            transition: 0.2s;
+            border-bottom: 0.5px solid black;
+          }
+
+          .zip{
+            width:20vw;
+            outline: none;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: solid;
+            border-width: .5px;
+            border-color: rgb(200, 200, 200);
+            font-size: 16px;
+            text-indent: 5px;
+          }
+
+          .zip:focus{
+            transition: 0.2s;
+            border-bottom: 0.5px solid black;
+          }
+
       }
 
 }
