@@ -42,6 +42,7 @@
     color: white;
     position: absolute;
     right: 22px;
+    top: 20px;
   }
   .cart-faq:focus {
     outline: none;
@@ -208,5 +209,22 @@
   .checkout-button:focus {
     outline: none;
     background-color: #2f3dd4;
+  }
+  .speechBubble {
+    height: 35vh;
+    position: absolute;
+    transform: scaleX(-0.8) rotateY(180deg) rotateX(0deg) rotateZ(180deg);
+    top: 39px;
+    right: -20px;
+    z-index: 1;
+  }
+
+  .cart-faq-text {
+    position: absolute;
+    top: 95px;
+    left: 213px;
+    width: 150px;
+    font-weight: 800;
+    z-index: 2;
   }
 }

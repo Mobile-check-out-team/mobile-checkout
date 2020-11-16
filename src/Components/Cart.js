@@ -91,6 +91,7 @@ const checkout = async (props) => {
 
 function Cart(props) {
   const [cart, setCart] = useState([]);
+  const [faq, toggleFaq] = useState(false);
 
   let totalPrice = props.cartReducer.cart.reduce((acc, el) => {
     const sum = el.price * el.qty;
@@ -131,12 +132,27 @@ function Cart(props) {
         </p>
         <p className="cart-title">Scan and Go Cart</p>
         <div className="cart-faq-div">
-          <button className="cart-faq">?</button>
-          <p className="cart-faq-text">
-            When utilizing Scan And Go, use the dropdown menu to change
-            quantities and press the camera button to{" "}
-          </p>
-          <img />
+          <button
+            onClick={() => {
+              toggleFaq(!faq);
+            }}
+            className="cart-faq"
+          >
+            ?
+          </button>
+          {faq ? (
+            <>
+              <p className="cart-faq-text">
+                When utilizing Scan And Go, use the dropdown menu to change
+                quantities and press the camera button to scan a new item! Once
+                you're done, press checkout and follow payment directions!
+              </p>
+              <img
+                className="speechBubble"
+                src="https://img.icons8.com/officel/344/speech-bubble.png"
+              />{" "}
+            </>
+          ) : null}
         </div>
       </section>
 
