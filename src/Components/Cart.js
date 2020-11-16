@@ -70,27 +70,11 @@ const qtyOptions = [
   },
 ];
 
-const checkout = async (props) => {
-  const stripe = await stripePromise;
-  axios
-    .post("/createSession", { price: props.cartReducer.totalPrice })
-    .then((res) => {
-      const id = res.data.id;
-      return stripe.redirectToCheckout({ sessionId: id });
-    })
-    .then((res) => {
-      if (res.error) {
-        alert(res.error.message);
-      }
-    })
-    .catch((err) => {
-      console.error("error", err);
-    });
-};
 //////////////////////////////////////////////////
 
 function Cart(props) {
   const [cart, setCart] = useState([]);
+  const [faq, toggleFaq] = useState(false);
 
   let totalPrice = props.cartReducer.cart.reduce((acc, el) => {
     const sum = el.price * el.qty;
@@ -122,13 +106,39 @@ function Cart(props) {
   return (
     <div className="cart">
       <section className="cart-header">
-        <p className="cart-exit"  onClick={() => {
-            props.clearCart()
-            props.history.push("/instructions")
-
-          }}>Exit</p>
+        <p
+          className="cart-exit"
+          onClick={() => {
+            props.clearCart();
+            props.history.push("/instructions");
+          }}
+        >
+          Exit
+        </p>
         <p className="cart-title">Scan and Go Cart</p>
-        <button className="cart-faq">?</button>
+        <div className="cart-faq-div">
+          <button
+            onClick={() => {
+              toggleFaq(!faq);
+            }}
+            className="cart-faq"
+          >
+            ?
+          </button>
+          {faq ? (
+            <>
+              <p className="cart-faq-text">
+                When utilizing Scan And Go, use the dropdown menu to change
+                quantities and press the camera button to scan a new item! Once
+                you're done, press checkout and follow payment directions!
+              </p>
+              <img
+                className="speechBubble"
+                src="https://img.icons8.com/officel/344/speech-bubble.png"
+              />{" "}
+            </>
+          ) : null}
+        </div>
       </section>
 
       <section className="cart-items">
@@ -147,26 +157,27 @@ function Cart(props) {
                 <div className="qty-box">
                   <p className="qty-text">Qty</p>
                   <Dropdown
-                    className ='dropdown'
+                    className="dropdown"
                     compact
                     selection
                     value={el.qty}
                     options={qtyOptions}
                     onChange={(e, data) => {
-                      // const index = cart.indexOf(el)
-                      // const newArr = [...cart, cart[index].qty = data.value]
                       setCart((el.qty = data.value));
                     }}
                   />
                 </div>
               </div>
-              <img 
-              onClick={() => {
-                const newCart = [...props.cartReducer.cart];
-                newCart.splice(i, 1);
-                props.updateCart(newCart);
-              }}
-              src='https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon.svg' alt="x icon" className="x-icon" />
+              <img
+                onClick={() => {
+                  const newCart = [...props.cartReducer.cart];
+                  newCart.splice(i, 1);
+                  props.updateCart(newCart);
+                }}
+                src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon.svg"
+                alt="x icon"
+                className="x-icon"
+              />
             </div>
           );
         })}
@@ -204,7 +215,8 @@ function Cart(props) {
           <p className="amount-of-items">
             {props.cartReducer.cart.reduce((acc, el) => {
               return acc + el.qty;
-            }, 0)} items
+            }, 0)}{" "}
+            items
           </p>
           <div className="Subtotal-cart">
             <p>Subtotal</p>

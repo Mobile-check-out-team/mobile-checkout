@@ -6,14 +6,20 @@ import { clearCart } from "../Redux/cartReducer";
 
 function ExitPass(props) {
   const { inputRef } = useBarcode({
-    value: props.invoiceReducer.invoice.invoice_number,
+    value: props.invoiceReducer.invoice.invoice_number.toString().padStart(14, "0"),
     options: {
     background: "white",
+<<<<<<< HEAD
     height: "30",
     fontSize: '12',
     
+=======
+>>>>>>> main
     },
   });
+  let date = new Date(props.invoiceReducer.invoice.invoice_date)
+  let total = +props.invoiceReducer.invoice.total
+  
   return (
     <header className='exit-body'>
       
@@ -28,12 +34,12 @@ function ExitPass(props) {
     <div className='bar-code-box'>
       <div className='pass-date'>
          <p className='bar-pass'>Exit Pass </p>
-         <span className='date'>date{props.invoiceReducer.invoice.invoice_date} </span>
+         <span className='date'>{date.toDateString()} </span>
        </div>
-         
          <span className='name'>name{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
+      
       <div className='total-item'>
-         <span className='totalAmount'>Total ${props.invoiceReducer.invoice.total} </span>
+         <span className='totalAmount'>Total ${total.toFixed(2)} </span>
          {props.invoiceReducer.invoice.numitems === 1?
          <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} item</span>:
          <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} items</span>}
