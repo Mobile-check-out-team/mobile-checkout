@@ -17,7 +17,7 @@ function ExitPass(props) {
       <div className='exit-head'>
         <p>Exit Pass </p>
       </div>
-       <p className='exit-page'>Done </p>
+       <p className='exit-page'>Done</p>
     <div className='bar-code-box'>
          <p className='bar-pass'>Exit Pass </p>
       <div className='name-date'>

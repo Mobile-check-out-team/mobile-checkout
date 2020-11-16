@@ -120,25 +120,21 @@ const CheckoutForm = (props) => {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Checkout = (props) => {
-    const [status, setStatus] = useState('');
-    const success = () => {
-        setStatus('success')
-    }
-
+    
     let subtotal = props.cartReducer.cart.reduce((acc, el) => {
         const sum = el.price * el.qty;
         return acc + sum;
-        }, 0)
+    }, 0)
     let tax = subtotal*.0825
     let total = subtotal + tax
     let numItems = props.cartReducer.cart.reduce((acc, el) => {
         return acc + el.qty;}, 0)
-
-    const createInv = () =>  {
-        const {user_id} = props.authReducer.user
-        const date = new Date()
-
-        axios
+        
+        const createInv = () =>  {
+            const {user_id} = props.authReducer.user
+            const date = new Date()
+            
+            axios
             .post('/api/createInvoice', {user_id, date, total, numItems})
             .then(res => {
                 console.log(res.data)
@@ -146,16 +142,22 @@ const Checkout = (props) => {
                 props.history.push('/ExitPass')
             })
             .catch(err => console.log(err))
-    }
-    
-    if (status === "success"){
-        createInv()
-    }
-    const amount = props.cartReducer.totalPrice * 100;
-
-    
-    return(
-        <div>
+        }
+        const [status, setStatus] = useState('');
+        useEffect(()=>{
+            if (status === "success"){
+                createInv()
+            }
+        },[status])
+        
+        const amount = props.cartReducer.totalPrice * 100;
+        
+        const success = () => {
+            setStatus('success')
+        }
+        
+        return(
+            <div>
             <header className="checkout-header">
                 <p className="checkout-exit"  onClick={() => {
                     props.history.push("/cart")

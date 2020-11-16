@@ -70,23 +70,6 @@ const qtyOptions = [
   },
 ];
 
-const checkout = async (props) => {
-  const stripe = await stripePromise;
-  axios
-    .post("/createSession", { price: props.cartReducer.totalPrice })
-    .then((res) => {
-      const id = res.data.id;
-      return stripe.redirectToCheckout({ sessionId: id });
-    })
-    .then((res) => {
-      if (res.error) {
-        alert(res.error.message);
-      }
-    })
-    .catch((err) => {
-      console.error("error", err);
-    });
-};
 //////////////////////////////////////////////////
 
 function Cart(props) {
@@ -153,8 +136,6 @@ function Cart(props) {
                     value={el.qty}
                     options={qtyOptions}
                     onChange={(e, data) => {
-                      // const index = cart.indexOf(el)
-                      // const newArr = [...cart, cart[index].qty = data.value]
                       setCart((el.qty = data.value));
                     }}
                   />
