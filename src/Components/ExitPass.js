@@ -11,7 +11,6 @@ function ExitPass(props) {
     background: "white",
     height: "30",
     fontSize: '12',
-    
     },
   });
   let date = new Date(props.invoiceReducer.invoice.invoice_date)

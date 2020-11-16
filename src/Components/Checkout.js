@@ -8,9 +8,9 @@ import {loadStripe} from '@stripe/stripe-js';
 import {Elements,
         useStripe, 
         useElements, 
-        CardNumberElement,
-        CardExpiryElement,
-        CardCvcElement,
+        // CardNumberElement,
+        // CardExpiryElement,
+        // CardCvcElement,
         // PaymentRequestButtonElement,
         CardElement} from '@stripe/react-stripe-js';
 // import { Card } from 'semantic-ui-react';
@@ -116,7 +116,7 @@ const CheckoutForm = (props) => {
             <input 
                 className="address"
                 type="text"
-                value={state.lastName}
+                value={state.address}
                 name="address"
                 onChange={(e) => handleInput(e)}
                 placeholder="1234 Address St."
@@ -125,7 +125,7 @@ const CheckoutForm = (props) => {
                 <input 
                     className="city"
                     type="text"
-                    value={state.lastName}
+                    value={state.city}
                     name="city"
                     onChange={(e) => handleInput(e)}
                     placeholder="Salt Lake City"
@@ -133,7 +133,7 @@ const CheckoutForm = (props) => {
                 <input 
                     className="state"
                     type="text"
-                    value={state.lastName}
+                    value={state.state}
                     name="state"
                     onChange={(e) => handleInput(e)}
                     placeholder="UT"
@@ -141,7 +141,7 @@ const CheckoutForm = (props) => {
                 <input 
                     className="zip"
                     type="text"
-                    value={state.lastName}
+                    value={state.zip}
                     name="zip"
                     onChange={(e) => handleInput(e)}
                     placeholder="84101"
