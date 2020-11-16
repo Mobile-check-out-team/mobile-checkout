@@ -24,7 +24,7 @@ function ExitPass(props) {
          <p className='bar-pass'>Exit Pass </p>
       <div className='name-date'>
          <span className='name'>{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
-         <span className='date'>{date.toDateString()} </span>
+         <span className='date'>{date.toLocaleString()}</span>
       </div>
       <div className='total-item'>
          <span className='totalAmount'>Total ${total.toFixed(2)} </span>
