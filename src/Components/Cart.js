@@ -120,13 +120,24 @@ function Cart(props) {
   return (
     <div className="cart">
       <section className="cart-header">
-        <p className="cart-exit"  onClick={() => {
-            props.clearCart()
-            props.history.push("/instructions")
-
-          }}>Exit</p>
+        <p
+          className="cart-exit"
+          onClick={() => {
+            props.clearCart();
+            props.history.push("/instructions");
+          }}
+        >
+          Exit
+        </p>
         <p className="cart-title">Scan and Go Cart</p>
-        <button className="cart-faq">?</button>
+        <div className="cart-faq-div">
+          <button className="cart-faq">?</button>
+          <p className="cart-faq-text">
+            When utilizing Scan And Go, use the dropdown menu to change
+            quantities and press the camera button to{" "}
+          </p>
+          <img />
+        </div>
       </section>
 
       <section className="cart-items">
@@ -145,7 +156,7 @@ function Cart(props) {
                 <div className="qty-box">
                   <p className="qty-text">Qty</p>
                   <Dropdown
-                    className ='dropdown'
+                    className="dropdown"
                     compact
                     selection
                     value={el.qty}
@@ -158,13 +169,16 @@ function Cart(props) {
                   />
                 </div>
               </div>
-              <img 
-              onClick={() => {
-                const newCart = [...props.cartReducer.cart];
-                newCart.splice(i, 1);
-                props.updateCart(newCart);
-              }}
-              src='https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon.svg' alt="x icon" className="x-icon" />
+              <img
+                onClick={() => {
+                  const newCart = [...props.cartReducer.cart];
+                  newCart.splice(i, 1);
+                  props.updateCart(newCart);
+                }}
+                src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon.svg"
+                alt="x icon"
+                className="x-icon"
+              />
             </div>
           );
         })}
@@ -200,7 +214,8 @@ function Cart(props) {
           <p className="amount-of-items">
             {props.cartReducer.cart.reduce((acc, el) => {
               return acc + el.qty;
-            }, 0)} items
+            }, 0)}{" "}
+            items
           </p>
           <div className="Subtotal-cart">
             <p>Subtotal</p>
