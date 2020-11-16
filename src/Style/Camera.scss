@@ -5,6 +5,13 @@
     height: 100vh;
     background-size: 450vw;
 
+    .camera-exit{
+        position:fixed;
+        left:30px;
+        top: 30px;
+        font-size: 24px;
+    }
+
     .scango{
         margin-top: 30px;
         width: 15vw;
@@ -18,14 +25,14 @@
         font-size: 3.5vw;
         margin-bottom: 80px;
     }
-    .backToCart{
+    .camera-toggle{
         background-color: #0d19a3;
         border: none;
         border-radius: 20px;
         padding: 2vw 7vw;
         color: white;
         font-weight: 700;
-        margin-top: 10px;
+        margin-top: 20px;
         margin-bottom: 20px;
         font-size: 1.0rem;
     }

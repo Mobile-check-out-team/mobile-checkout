@@ -3,7 +3,9 @@ module.exports = {
     const { upc } = req.params;
     const db = req.app.get("db");
     const invObj = await db.inventory.get_item(upc);
-    console.log("I am invObj", invObj[0]);
+    if (!invObj[0]) {
+      return res.status(400).send("UPC is not in the system");
+    }
     res.status(200).send(invObj[0]);
   },
   getCart: async (req, res) => {
