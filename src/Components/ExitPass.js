@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { useBarcode } from "@createnextapp/react-barcode";
+import {connect} from 'react-redux';
 import '../Style/ExitPass.scss'
+
 function ExitPass(props) {
-  const [state, sState] = useState({
-    date: new Date(),
-  });
-  // useEffect(() => {
-
-  //   },[])
-
   const { inputRef } = useBarcode({
-    value: "1234567890",
+    value: props.invoiceReducer.invoice.invoice_number,
     options: {
     background: "white",
     
@@ -26,19 +21,22 @@ function ExitPass(props) {
     <div className='bar-code-box'>
          <p className='bar-pass'>Exit Pass </p>
       <div className='name-date'>
-         <span className='name'>Ellie McQueen </span>
-         <span className='date'>Date </span>
+         <span className='name'>{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
+         <span className='date'>{props.invoiceReducer.invoice.invoice_date} </span>
       </div>
       <div className='total-item'>
-         <span className='totalAmount'>Total </span>
-         <span className='itemTotal'>item </span>
+         <span className='totalAmount'>Total ${props.invoiceReducer.invoice.total} </span>
+         {props.invoiceReducer.invoice.numitems === 1?
+         <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} item</span>:
+         <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} items</span>}
       </div>
       <div className='bar-code'>
-      <img ref={inputRef} />
+      <img ref={inputRef} className='exit-pass-barcode'/>
       </div>
     </div>
     
     </header>
   );
 }
-export default ExitPass;
+const mapStateToProps = (reduxState) => reduxState;
+export default connect(mapStateToProps, null)(ExitPass);
