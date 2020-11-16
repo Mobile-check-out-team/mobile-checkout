@@ -5,12 +5,14 @@ import '../Style/ExitPass.scss'
 
 function ExitPass(props) {
   const { inputRef } = useBarcode({
-    value: props.invoiceReducer.invoice.invoice_number,
+    value: props.invoiceReducer.invoice.invoice_number.toString().padStart(14, "0"),
     options: {
     background: "white",
-    
     },
   });
+  let date = new Date(props.invoiceReducer.invoice.invoice_date)
+  let total = +props.invoiceReducer.invoice.total
+  
   return (
     <header className='exit-body'>
       
@@ -22,10 +24,10 @@ function ExitPass(props) {
          <p className='bar-pass'>Exit Pass </p>
       <div className='name-date'>
          <span className='name'>{props.authReducer.user.first_name} {props.authReducer.user.last_name}</span>
-         <span className='date'>{props.invoiceReducer.invoice.invoice_date} </span>
+         <span className='date'>{date.toDateString()} </span>
       </div>
       <div className='total-item'>
-         <span className='totalAmount'>Total ${props.invoiceReducer.invoice.total} </span>
+         <span className='totalAmount'>Total ${total.toFixed(2)} </span>
          {props.invoiceReducer.invoice.numitems === 1?
          <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} item</span>:
          <span className='itemTotal'>{props.invoiceReducer.invoice.numitems} items</span>}
