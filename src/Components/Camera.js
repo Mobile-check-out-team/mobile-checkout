@@ -31,8 +31,10 @@ function Camera(props) {
     return(
       <div className="cameraContainer">
          {props.cartReducer.cart[0]?
-        <span className='camera-exit' onClick={() => {props.history.push('/cart')}}>&#10005;</span>:
-        <span className='camera-exit' onClick={() => {props.history.push('/instructions')}}>&#10005;</span>}
+         <img onClick={() => {props.history.push('/cart')}} src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="exit" className="x-Icon" />:
+        // <span className='camera-exit' onClick={() => {props.history.push('/cart')}}>&#10005;</span>:
+        <img onClick={() => {props.history.push('/instructions')}} src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="exit" class="x-Icon" />}
+        {/* <span className='camera-exit' onClick={() => {props.history.push('/instructions')}}>&#10005;</span>} */}
         <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
         <h5 className="scangotxt">SCAN AND GO</h5>
         {toggle?

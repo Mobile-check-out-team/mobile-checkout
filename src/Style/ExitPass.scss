@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 @media screen and (min-width: 0px) and (max-width: 773px) {
   .exit-body {
@@ -6,9 +6,8 @@
     margin-top: 0px;
     height: 800vw;
     width: 100vw;
- 
-   }
-  .exit-head{
+  }
+  .exit-head {
     display: flex;
     box-sizing: inherit;
     padding-top: 20px;
@@ -20,9 +19,8 @@
     font-weight: 900;
     font-size: 16px;
     color: white;
-    
   }
-  .exit-page{
+  .exit-page {
     width: 100%;
     padding-right: 25px;
     padding-top: 0px;
@@ -30,89 +28,86 @@
     display: flex;
     box-sizing: inherit;
     background-color: $header-color;
-    justify-content: flex-end ;
+    justify-content: flex-end;
     font-weight: 900;
     color: white;
-   
-    }
-    .bar-code-box{
-      background-color: white;
-      padding: 20px;
-      border: 5px;
-      border-radius: 8px;
-      box-shadow: 0 14px 28px 0 rgba(0,0,0,.25),
-                  0 10px 10px 0 rgba(0,0,0,.26);
-     height: 55vh;
-      width: 80%;
-      margin: 10px auto;
-      display:flex;
-      justify-content: flex-start;
-      flex-direction: column;
-      border-color: 10px dimgray;
-    }
-    
-    .bar-pass{
-      display: flex;
-      align-items: flex-start;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 1000;
-      width: 50%;
-      color: $header-color;
+  }
+  .bar-code-box {
+    background-color: white;
+    padding: 20px;
+    border: 5px;
+    border-radius: 8px;
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25),
+      0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    height: 55vh;
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-color: 10px dimgray;
+  }
 
-    }
-    .name-date{
-      display: flex;
-      width: 100%;
-      Height: 30px;
-      padding-bottom: 20px;
+  .pass-date {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    padding-bottom: 20px;
+  }
 
-    }
-    .date{
-      width: 50%;
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 10px;
-      height: 30px;
-    }
-    .name{
-      width: 50%;
-      display: flex;
-      align-items: flex-start;
-      padding-left: 2px;
-      font-size: 15px;
-      font-weight: 1000;
-      height: 30px
+  .bar-pass {
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 1000;
+    width: 50%;
+    color: $header-color;
+  }
+  .date {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    height: 30px;
+    font-size: 13px;
+  }
 
-    }
-    .total-item{
-      display: flex;
-      width: 100%;
-      height: 30px;
-     
-    }
-    .totalAmount{
-      display: flex;
-      align-items: flex-end;
-      width: 50%;
-    }
-    .itemTotal{
-      width: 50%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      
-    }
-    .bar-code{
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 20px;
-      box-sizing: inherit;
-      padding-top: 80px;
-      padding-left: 20px;
-    }
-    .exit-pass-barcode{
-      margin: 0 auto;
-    }
+  .name {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 2px;
+    font-size: 18px;
+    font-weight: 900;
+    height: 30px;
+  }
+  .total-item {
+    display: flex;
+    width: 100%;
+    height: 30px;
+  }
+  .totalAmount {
+    display: flex;
+    align-items: flex-end;
+    width: 50%;
+  }
+  .itemTotal {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .bar-code {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    box-sizing: inherit;
+    padding-top: 80px;
+    padding-left: 20px;
+  }
+  .exit-pass-barcode {
+    margin: 0 auto;
+  }
 }
