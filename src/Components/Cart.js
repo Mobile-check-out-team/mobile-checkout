@@ -203,11 +203,6 @@ function Cart(props) {
       <section className="bottom-of-cart">
         <button
           onClick={() => {
-            // axios
-            //   .post("/api/saveCart", { cart: props.cartReducer.cart })
-            //   .then(() => {
-            //     checkout(props);
-            //   });
             props.history.push("/checkout");
           }}
           className="checkout-button"
