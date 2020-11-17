@@ -48,8 +48,6 @@ const CheckoutForm = (props) => {
         city: '',
         state: '',
         zip: ''
-        // address: '',
-        // zip: ''
     });
 
     const handleFocus = () => {
