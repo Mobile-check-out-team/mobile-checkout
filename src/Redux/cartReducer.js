@@ -61,15 +61,17 @@ export default function reducer(state = initialState, action) {
     /////////// ADD_TO_CART ////////////
 
     case ADD_TO_CART:
-     if(state.cart.some(el => el.inventory_id === payload.inventory_id)){
-      let i = state.cart.map(el => el.inventory_id).indexOf(payload.inventory_id)
-      let newArray = [...state.cart]
-      let currQty = newArray[i].qty
-      newArray[i] = {...newArray[i], qty: ++currQty}
-      return { ...state, cart: newArray };
-     }else{
-      return { ...state, cart: [...state.cart, { ...payload, qty: 1 }] }};
-
+      if (state.cart.some((el) => el.inventory_id === payload.inventory_id)) {
+        let i = state.cart
+          .map((el) => el.inventory_id)
+          .indexOf(payload.inventory_id);
+        let newArray = [...state.cart];
+        let currQty = newArray[i].qty;
+        newArray[i] = { ...newArray[i], qty: ++currQty };
+        return { ...state, cart: newArray };
+      } else {
+        return { ...state, cart: [...state.cart, { ...payload, qty: 1 }] };
+      }
 
     //////////UPDATE_PRICE/////////////
     case UPDATE_PRICE:

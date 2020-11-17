@@ -127,15 +127,18 @@ function Cart(props) {
           </button>
           {faq ? (
             <>
-              <p className="cart-faq-text">
-                When utilizing Scan And Go, use the dropdown menu to change
-                quantities and press the camera button to scan a new item! Once
-                you're done, press checkout and follow payment directions!
-              </p>
               <img
                 className="speechBubble"
-                src="https://img.icons8.com/officel/344/speech-bubble.png"
+                src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/insrtuctionsBoxCorrect.svg"
               />{" "}
+              <p
+                className="speech-bubble"
+                onClick={() => {
+                  toggleFaq(false);
+                }}
+              >
+                x
+              </p>
             </>
           ) : null}
         </div>
@@ -204,7 +207,7 @@ function Cart(props) {
             //   .then(() => {
             //     checkout(props);
             //   });
-            props.history.push("/checkout")
+            props.history.push("/checkout");
           }}
           className="checkout-button"
         >

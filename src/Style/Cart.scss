@@ -211,18 +211,15 @@
   .speechBubble {
     height: 35vh;
     position: absolute;
-    transform: scaleX(-0.8) rotateY(180deg) rotateX(0deg) rotateZ(180deg);
-    top: 39px;
-    right: -20px;
+    top: 50px;
+    right: 0px;
     z-index: 1;
   }
-
-  .cart-faq-text {
-    position: absolute;
-    top: 95px;
-    left: 213px;
-    width: 150px;
-    font-weight: 800;
+  .speech-bubble {
     z-index: 2;
+    position: absolute;
+    top: 280px;
+    font-size: 22px;
+    right: 35px;
   }
 }
