@@ -13,7 +13,6 @@ function ForgotPassword(props) {
 
     const sendEmail = async(e) => {
         e.preventDefault();
-        console.log(email)
         await axios
             .post('/api/email', {email})
             .then(() => {

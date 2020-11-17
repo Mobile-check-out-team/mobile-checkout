@@ -34,7 +34,6 @@ function Auth(props) {
         })
         .catch(err => {
             alert(`Double check your email and password, and try again.`)
-            console.log(err)
         })
     }
     const handleRegister = () => {
@@ -47,7 +46,6 @@ function Auth(props) {
             })
             .catch(err => {
                 alert(`Email is already registered.`)
-                console.log(err)
             });
         }
         else if(firstName || lastName || email || password || verPassword === false){

@@ -12,17 +12,26 @@ module.exports = {
     const {user_id, date, total, numItems} = req.body
     const db = req.app.get('db');
     const invoice = await db.invoice.create_invoice(user_id, date, total, numItems);
-    console.log(invoice[0])
     res.status(200).send(invoice[0]);
   },
-  getCart: async (req, res) => {
-    req.session.user = { ...req.session.user, cart: [] };
+  // getCart: async (req, res) => {
+  //   req.session.user = { ...req.session.user, cart: [] };
 
-    res.status(200).send(req.session.user);
-  },
-  saveCart: async (req, res) => {
-    //find a way to save cart.
-    req.session.user = { ...req.session.user };
+  //   res.status(200).send(req.session.user);
+  // },
+  // saveCart: async (req, res) => {
+  //   //find a way to save cart.
+  //   req.session.user = { ...req.session.user };
+  //   res.sendStatus(200);
+  // },
+  purchasedItem: async (req, res) => {
+    const {cartArray, invoiceNumber} = req.body
+    const db = req.app.get('db');
+    for(let i=0; i < cartArray.length; i++){
+      const itemNumber = cartArray[i].inventory_id;
+      const qty = cartArray[i].qty;
+      await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty)
+    }
     res.sendStatus(200);
-  },
+  }
 };

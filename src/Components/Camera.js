@@ -22,7 +22,6 @@ function Camera(props) {
       .catch(err => {
         alert('UPC is not in the system')
         setData("");
-        console.log(err)
       })
     }
   }, [data]);
