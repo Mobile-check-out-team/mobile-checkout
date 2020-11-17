@@ -100,6 +100,9 @@ function Cart(props) {
   useEffect(() => {
     props.updateTotalPrice(totalPrice);
   }, [totalPrice]);
+  let numItems = props.cartReducer.cart.reduce((acc, el) => {
+    return acc + el.qty;
+  }, 0)
 
   return (
     <div className="cart">
@@ -213,12 +216,11 @@ function Cart(props) {
         </button>
 
         <div className="checkout-cart">
+          {numItems === 1?
           <p className="amount-of-items">
-            {props.cartReducer.cart.reduce((acc, el) => {
-              return acc + el.qty;
-            }, 0)}{" "}
-            items
-          </p>
+            {numItems} item</p>:
+          <p className="amount-of-items">
+            {numItems} items</p>}
           <div className="Subtotal-cart">
             <p>Subtotal</p>
             <p>
