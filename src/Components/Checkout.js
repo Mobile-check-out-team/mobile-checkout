@@ -221,7 +221,9 @@ const Checkout = (props) => {
         <section className='summary-box'>
             <div className='inner-summary-box'>
                 <div className='subtotal'>
-                    <span>Subtotal ({numItems} items)</span>
+                    {numItems === 1?
+                    <span>Subtotal ({numItems} item)</span>:
+                    <span>Subtotal ({numItems} items)</span>}
                     <span>${props.cartReducer.cart.reduce((acc, el) => {
                         const sum = el.price * el.qty;
                         return acc + sum;

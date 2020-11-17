@@ -6,10 +6,14 @@
 @media screen and (min-width: 471px) {
 }
 @media screen and (max-width: 10000000px) {
+  .cart {
+    width: 100vw;
+    height: 100vh;
+  }
   .cart-header {
-    padding: 20px;
+    // padding: 20px;
+    height: 60px;
     background-color: $header-color;
-    margin-top: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,10 +35,6 @@
     scrollbar-width: none;
   }
 
-  .cart {
-    width: 100vw;
-    height: 100vh;
-  }
   .cart-faq {
     border-radius: 100px;
     border: 2px solid white;
@@ -178,7 +178,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 12px;
   }
 
   .amount-of-items {
