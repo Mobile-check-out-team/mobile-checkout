@@ -50,12 +50,15 @@ app.get("/api/getItem/:upc", invCtrl.getItem);
 //Invoice
 app.post('/api/createInvoice', invCtrl.createInvoice)
 
-//Cart
-app.get("/api/getCart", invCtrl.getCart);
-app.post("/api/saveCart", invCtrl.saveCart);
+// //Cart
+// app.get("/api/getCart", invCtrl.getCart);
+// app.post("/api/saveCart", invCtrl.saveCart);
+
+//Purchased_Items
+app.post('/api/addPurchasedItem', invCtrl.purchasedItem);
 
 //Stripe Element Post Request
-app.post('/api/charge', stripeCtrl.charge)
+app.post('/api/charge', stripeCtrl.charge);
 
 //Stripe API Post Request
 app.post("/createSession", async (req, res) => {

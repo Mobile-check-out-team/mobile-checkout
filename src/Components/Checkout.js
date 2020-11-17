@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {createInvoice} from '../Redux/invoiceReducer'
-import {getCart} from '../Redux/cartReducer';
+import {clearCart} from '../Redux/cartReducer';
 import axios from 'axios';
 import '../Style/Checkout.scss';
 import {loadStripe} from '@stripe/stripe-js';
@@ -77,7 +77,6 @@ const CheckoutForm = (props) => {
         if (!error) {
           const { id } = paymentMethod;
 
-    
           try {
             const amount = props.amount;
             const response = await axios.post('/api/charge', {id, amount})
@@ -85,7 +84,6 @@ const CheckoutForm = (props) => {
             console.log(response);
           } catch (error) {
               alert(error.message)
-            console.log(error)
           }
         }
       };
@@ -181,11 +179,21 @@ const Checkout = (props) => {
         axios
         .post('/api/createInvoice', {user_id, date, total, numItems})
         .then(res => {
-            console.log(res.data)
             props.createInvoice(res.data)
+            addPurchasedItems(res.data.invoice_number)
             props.history.push('/ExitPass')
         })
         .catch(err => console.log(err))
+    }
+    const addPurchasedItems = (invoiceNumber) => {
+        const cartArray = props.cartReducer.cart
+        axios
+        .post('/api/addPurchasedItem', {cartArray, invoiceNumber})
+        .then(res => {
+            props.clearCart()
+        })
+        .catch(err => console.log(err))
+
     }
     const [status, setStatus] = useState('');
     useEffect(()=>{
@@ -246,4 +254,4 @@ const Checkout = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, {createInvoice})(Checkout);
+export default connect(mapStateToProps, {createInvoice, clearCart})(Checkout);
