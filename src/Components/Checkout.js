@@ -48,8 +48,6 @@ const CheckoutForm = (props) => {
         city: '',
         state: '',
         zip: ''
-        // address: '',
-        // zip: ''
     });
 
     const handleFocus = () => {
@@ -166,6 +164,7 @@ const CheckoutForm = (props) => {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Checkout = (props) => {
+    const [date, setDate] = useState(new Date());
     
     let subtotal = props.cartReducer.cart.reduce((acc, el) => {
         const sum = el.price * el.qty;
@@ -176,74 +175,73 @@ const Checkout = (props) => {
     let numItems = props.cartReducer.cart.reduce((acc, el) => {
         return acc + el.qty;}, 0)
         
-        const createInv = () =>  {
-            const {user_id} = props.authReducer.user
-            const date = new Date()
-            
-            axios
-            .post('/api/createInvoice', {user_id, date, total, numItems})
-            .then(res => {
-                console.log(res.data)
-                props.createInvoice(res.data)
-                props.history.push('/ExitPass')
-            })
-            .catch(err => console.log(err))
-        }
-        const [status, setStatus] = useState('');
-        useEffect(()=>{
-            if (status === "success"){
-                createInv()
-            }
-        },[status])
+    const createInv = () =>  {
+        const {user_id} = props.authReducer.user
         
-        const amount = props.cartReducer.totalPrice * 100;
-        
-        const success = () => {
-            setStatus('success')
-        }
-        
-        return(
-            <div>
-            <header className="checkout-header">
-                <p className="checkout-exit"  onClick={() => {
-                    props.history.push("/cart")
-                }}>Back</p>
-                <p className="checkout-title">Checkout</p>
-                <button className="checkout-faq">?</button>
-            </header>
-            <div className='summary-title'>Summary</div>
-            <section className='summary-box'>
-                <div className='inner-summary-box'>
-                    <div className='subtotal'>
-                        <span>Subtotal ({numItems} items)</span>
-                        <span>${props.cartReducer.cart.reduce((acc, el) => {
-                            const sum = el.price * el.qty;
-                            return acc + sum;
-                        }, 0)}</span>
-                    </div>
-                    <div className='tax'>
-                        <span>Tax</span>
-                        <span>{tax.toFixed(2)}</span>
-                    </div>
-                    <div className='total'>
-                        <span>Total</span>
-                        <span>{total.toFixed(2)}</span>
-                    </div>
-                </div>
-
-
-            </section>
-
-            <Elements stripe={stripePromise}>
-                <CheckoutForm 
-                    success={success}
-                    amount={amount}/>
-                    
-
-            </Elements>
-        </div>
-        )
+        axios
+        .post('/api/createInvoice', {user_id, date, total, numItems})
+        .then(res => {
+            console.log(res.data)
+            props.createInvoice(res.data)
+            props.history.push('/ExitPass')
+        })
+        .catch(err => console.log(err))
     }
+    const [status, setStatus] = useState('');
+    useEffect(()=>{
+        if (status === "success"){
+            createInv()
+        }
+    },[status])
+        
+    const amount = props.cartReducer.totalPrice * 100;
+    
+    const success = () => {
+        setStatus('success')
+    }
+    
+    return(
+        <div>
+        <header className="checkout-header">
+            <p className="checkout-exit"  onClick={() => {
+                props.history.push("/cart")
+            }}>Back</p>
+            <p className="checkout-title">Checkout</p>
+            <button className="checkout-faq">?</button>
+        </header>
+        <div className='summary-title'>Summary</div>
+        <section className='summary-box'>
+            <div className='inner-summary-box'>
+                <div className='subtotal'>
+                    <span>Subtotal ({numItems} items)</span>
+                    <span>${props.cartReducer.cart.reduce((acc, el) => {
+                        const sum = el.price * el.qty;
+                        return acc + sum;
+                    }, 0)}</span>
+                </div>
+                <div className='tax'>
+                    <span>Tax</span>
+                    <span>{tax.toFixed(2)}</span>
+                </div>
+                <div className='total'>
+                    <span>Total</span>
+                    <span>{total.toFixed(2)}</span>
+                </div>
+            </div>
+
+
+        </section>
+
+        <Elements stripe={stripePromise}>
+            <CheckoutForm 
+                success={success}
+                amount={amount}/>
+                
+
+        </Elements>
+    </div>
+    )
+}
 
 
 const mapStateToProps = (reduxState) => reduxState;
