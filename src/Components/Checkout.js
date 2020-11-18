@@ -173,27 +173,27 @@ const Checkout = (props) => {
     let numItems = props.cartReducer.cart.reduce((acc, el) => {
         return acc + el.qty;}, 0)
         
+        const addPurchasedItems = (invoiceNumber) => {
+            const cartArray = props.cartReducer.cart
+            axios
+            .post('/api/purchasedItem', {cartArray, invoiceNumber})
+            .then(res => {
+                props.clearCart()
+            })
+            .catch(err => console.log(err))
+    
+        }
     const createInv = () =>  {
         const {user_id} = props.authReducer.user
         
         axios
-        .post('/api/createInvoice', {user_id, date, total, numItems})
+        .post('/api/invoice', {user_id, date, total, numItems})
         .then(res => {
             props.createInvoice(res.data)
             addPurchasedItems(res.data.invoice_number)
             props.history.push('/ExitPass')
         })
         .catch(err => console.log(err))
-    }
-    const addPurchasedItems = (invoiceNumber) => {
-        const cartArray = props.cartReducer.cart
-        axios
-        .post('/api/addPurchasedItem', {cartArray, invoiceNumber})
-        .then(res => {
-            props.clearCart()
-        })
-        .catch(err => console.log(err))
-
     }
     const [status, setStatus] = useState('');
     useEffect(()=>{

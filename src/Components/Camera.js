@@ -13,7 +13,7 @@ function Camera(props) {
   useEffect(() => {
     if (data.length > 12) {
       axios
-      .get(`/api/getItem/${data}`)
+      .get(`/api/item/${data}`)
       .then(res => {
         props.addToCart(res.data);
         setData("");

@@ -4,6 +4,7 @@ import '../Style/Auth.scss'
 import {connect} from 'react-redux'
 import {getUser} from '../Redux/authReducer'
 import {Link} from 'react-router-dom';
+import {Alert} from 'react-bootstrap';
 
 
 
@@ -16,6 +17,9 @@ function Auth(props) {
         verPassword: '',
         registerView: false
     })
+    const [showReject, setShowReject] = useState(false);
+    const [doNotMatch, setDoNotMatch] = useState(false);
+    const [emailRegistered, setEmailRegistered] = useState(false);
     const handleInput = (event) => {
         sState({...state, [event.target.name]: event.target.value})
     }  
@@ -33,31 +37,51 @@ function Auth(props) {
             props.history.push('/instructions')
         })
         .catch(err => {
-            alert(`Double check your email and password, and try again.`)
+            setShowReject(true)
         })
     }
     const handleRegister = () => {
         const {firstName, lastName, email, password, verPassword} = state;
-        if(password && password === verPassword){
+        if(firstName && lastName && email && password && verPassword === false){
+            alert('Please enter missing information.')
+        }
+        else if(password && password === verPassword){
             axios.post('/api/register', {firstName, lastName, email,  password})
             .then(res => {
                 props.getUser(res.data);
                 props.history.push('instructions');
             })
             .catch(err => {
-                alert(`Email is already registered.`)
+                setEmailRegistered(true)
             });
         }
-        else if(firstName || lastName || email || password || verPassword === false){
-            alert('Please enter missing information.')
+        else if(password && password !== verPassword){
+            setDoNotMatch(true)
         }
-        else{
-            alert(`Passwords do not match. \n Please try again.`)
-        }
+        
+        
     }
 
     return (    
         <div className="Auth">
+            {emailRegistered?
+                <Alert className="incorrect-alert" variant="danger" onClose={() => setEmailRegistered(false)} dismissible>
+                    <Alert.Heading>Oh snap!</Alert.Heading>
+                      <p>Email is already registered!</p>
+                </Alert>:<></>
+            }
+            {doNotMatch?
+                <Alert className="incorrect-alert" variant="danger" onClose={() => setDoNotMatch(false)} dismissible>
+                    <Alert.Heading>Oh snap!</Alert.Heading>
+                      <p>Passwords do not match! Try again.</p>
+                </Alert>:<></>
+            }
+            {showReject?
+                <Alert className="incorrect-alert" variant="danger" onClose={() => setShowReject(false)} dismissible>
+                    <Alert.Heading>Oh snap!</Alert.Heading>
+                      <p>Incorrect email or password. Try again.</p>
+                </Alert>:<></>
+            }
             <header className='auth-header'>
                 <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
                 <h5 className="scangotxt">SCAN AND GO</h5>
@@ -118,13 +142,13 @@ function Auth(props) {
                             // placeholder='Verify Password'
                             onChange={(e) => handleInput(e)}/>
                         <button 
-                            className={state.firstName && state.lastName && state.email && state.password && state.verPassword?'auth-button change':'auth-button'}
+                            className='auth-button'
                             onClick={handleRegister}
                                 >CREATE ACCOUNT</button>
                        </>)
                     : (<div>
                         <button 
-                            className={state.email && state.password?'auth-button change':'auth-button'}
+                            className='auth-button'
                             onClick={handleLogin}
                                 >LOG IN</button>
                         
