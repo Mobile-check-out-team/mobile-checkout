@@ -10,6 +10,11 @@
     // background-color: #5680e9;
     height: 100vh;
     width: 100vw;
+    .incorrect-alert{
+        position: fixed;
+        top: 30px;
+        height: 80px;
+    }
     .scango{
         margin-top: 30px;
         width: 15vw;
@@ -24,7 +29,7 @@
     h1{
         color: white;
     }
-    button{
+    .auth-button{
         background-color: #0d19a3;
         border: none;
         border-radius: 20px;

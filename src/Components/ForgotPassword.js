@@ -4,40 +4,35 @@ import {Link} from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert'
 import '../Style/ForgotPassword.scss'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 
 
 function ForgotPassword(props) {
     const [email, setEmail] = useState('')
-    const [show, setShow] = useState(false);
+    const [showReject, setShowReject] = useState(false);
 
     const sendEmail = async(e) => {
         e.preventDefault();
         await axios
             .post('/api/email', {email})
             .then(() => {
-                alert(`Reset password email has been sent.`)
+                alert('email sent!')
                 setEmail('')
                 props.history.push('/')
             })
             .catch(err => {
-                setShow(true)
+                setShowReject(true)
                 console.log(err)
             })     
     }
 
-    if (show) {
-        return (
-          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-            <p>Email is not on file</p>
-          </Alert>
-        );
-    }
-    
-
     return(
         <div className='fpw-component'>
+            {showReject?
+                <Alert className="email-alert" variant="danger" onClose={() => setShowReject(false)} dismissible>
+                    <Alert.Heading>Oh snap!</Alert.Heading>
+                      <p>Email is not on file</p>
+                </Alert>:<></>
+            }
             <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
             <h5 className="scangotxt">SCAN AND GO</h5>
             <div className ='fpw-box'>
@@ -50,7 +45,7 @@ function ForgotPassword(props) {
                         <Form.Control className="fpw-email-input" type="email" onChange={(e) =>  setEmail(e.target.value)}/>
                     </Form.Group>
                 </Form>
-                <button onClick={sendEmail}>
+                <button className="email-button" onClick={sendEmail}>
                         SEND EMAIL</button>{' '}
                 <div>
                     <span>Remember your password?</span>

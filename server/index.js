@@ -45,45 +45,45 @@ app.post("/api/logout", authCtrl.logout);
 app.post("/api/email", nodeMailerCtrl.email);
 
 //Inventory
-app.get("/api/getItem/:upc", invCtrl.getItem);
+app.get("/api/item/:upc", invCtrl.getItem);
 
 //Invoice
-app.post('/api/createInvoice', invCtrl.createInvoice)
+app.post('/api/invoice', invCtrl.createInvoice)
 
 // //Cart
 // app.get("/api/getCart", invCtrl.getCart);
 // app.post("/api/saveCart", invCtrl.saveCart);
 
 //Purchased_Items
-app.post('/api/addPurchasedItem', invCtrl.purchasedItem);
+app.post('/api/purchasedItem', invCtrl.purchasedItem);
 
 //Stripe Element Post Request
 app.post('/api/charge', stripeCtrl.charge);
 
 //Stripe API Post Request
-app.post("/createSession", async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "Scan and Go Cart",
-            images: [
-              "https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png",
-            ],
-          },
-          unit_amount: req.body.price * 100,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: "payment",
-    success_url: `http://localhost:3000/#/ExitPass`,
-    cancel_url: `http://localhost:3000/#/checkout/cancel`,
-  });
-  res.json({ id: session.id });
-});
+// app.post("/createSession", async (req, res) => {
+//   const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ["card"],
+//     line_items: [
+//       {
+//         price_data: {
+//           currency: "usd",
+//           product_data: {
+//             name: "Scan and Go Cart",
+//             images: [
+//               "https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png",
+//             ],
+//           },
+//           unit_amount: req.body.price * 100,
+//         },
+//         quantity: 1,
+//       },
+//     ],
+//     mode: "payment",
+//     success_url: `http://localhost:3000/#/ExitPass`,
+//     cancel_url: `http://localhost:3000/#/checkout/cancel`,
+//   });
+//   res.json({ id: session.id });
+// });
 
 // app.listen(SERVER_PORT, () => console.log(`Server connected to port ${SERVER_PORT}`))
