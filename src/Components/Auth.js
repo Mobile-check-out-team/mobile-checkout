@@ -20,6 +20,7 @@ function Auth(props) {
     const [showReject, setShowReject] = useState(false);
     const [doNotMatch, setDoNotMatch] = useState(false);
     const [emailRegistered, setEmailRegistered] = useState(false);
+    const [filledForm, setFilledForm] = useState(false);
     const handleInput = (event) => {
         sState({...state, [event.target.name]: event.target.value})
     }  
@@ -42,8 +43,8 @@ function Auth(props) {
     }
     const handleRegister = () => {
         const {firstName, lastName, email, password, verPassword} = state;
-        if(firstName && lastName && email && password && verPassword === false){
-            alert('Please enter missing information.')
+        if((firstName && lastName && email && password && verPassword) == false){
+            setFilledForm(true)
         }
         else if(password && password === verPassword){
             axios.post('/api/register', {firstName, lastName, email,  password})
@@ -58,30 +59,30 @@ function Auth(props) {
         else if(password && password !== verPassword){
             setDoNotMatch(true)
         }
-        
-        
     }
 
     return (    
         <div className="Auth">
+            {filledForm?
+                <Alert className="incorrect-alert" variant="danger" onClose={() => setFilledForm(false)} dismissible>
+                    <Alert.Heading>Oh snap!</Alert.Heading>
+                      <p>Please enter missing information.</p>
+                </Alert>:<></>}
             {emailRegistered?
                 <Alert className="incorrect-alert" variant="danger" onClose={() => setEmailRegistered(false)} dismissible>
                     <Alert.Heading>Oh snap!</Alert.Heading>
                       <p>Email is already registered!</p>
-                </Alert>:<></>
-            }
+                </Alert>:<></>}
             {doNotMatch?
                 <Alert className="incorrect-alert" variant="danger" onClose={() => setDoNotMatch(false)} dismissible>
                     <Alert.Heading>Oh snap!</Alert.Heading>
                       <p>Passwords do not match! Try again.</p>
-                </Alert>:<></>
-            }
+                </Alert>:<></>}
             {showReject?
                 <Alert className="incorrect-alert" variant="danger" onClose={() => setShowReject(false)} dismissible>
                     <Alert.Heading>Oh snap!</Alert.Heading>
                       <p>Incorrect email or password. Try again.</p>
-                </Alert>:<></>
-            }
+                </Alert>:<></>}
             <header className='auth-header'>
                 <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
                 <h5 className="scangotxt">SCAN AND GO</h5>
