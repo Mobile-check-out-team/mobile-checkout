@@ -5,15 +5,16 @@
     background-size: 450vw;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
-    // background-color: #5680e9;
     height: 100vh;
     width: 100vw;
     .incorrect-alert{
         position: fixed;
         top: 30px;
-        height: 80px;
+        height: 90px;
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
     }
     .scango{
         margin-top: 30px;
@@ -36,13 +37,12 @@
         padding: 2vw 7vw;
         color: white;
         font-weight: 700;
-        margin-top: 10px;
+        margin-top: 20px;
         margin-bottom: 10px;
         font-size: 3.5vw;
     }
 
     .auth-box{
-        
         h5{
             margin-top: 0;
             margin-bottom: 0;
@@ -63,10 +63,6 @@
             align-items: left;
             text-align: left;
             width: 60vw;
-            // .auth_input{
-            //     font-size: 1.0rem;
-            //     border-radius: 10px;
-            // }
             input{
                 margin-bottom: 1vw;
                 width: 60vw;
@@ -76,7 +72,6 @@
                 font-size: 3vw;
             }
         }
-        
         h5{
             justify-content: left;
             align-items: left;
@@ -84,31 +79,93 @@
             text-align: left;
             font-size: 0.8rem;
         }
-
-        input{
-            // margin-bottom: 10px;
-            width: 60vw;
-            font-size: 3.5vw;
-            border: rgb(201, 201, 201) solid 1px;
-            padding: 10px;
-        }
-
         .ChangeViewsContext{
             font-size: 3.5vw;
-            margin-bottom: 0;
+            margin-bottom: 5px;
         }
 
         .ChangeViews{
-            color: grey;
-            text-decoration: underline;
+            color: #4183c4;
             font-size: 3.5vw;
+        }
+        .ChangeViews:hover{
+            cursor: pointer;
         }
 
         .forgotPassword{
-            color: grey;
-            text-decoration: underline;
             font-size: 3.5vw;
-            // align-items: left;
+            margin-top: 10px;
+        }
+        button:hover{
+            background-color: #5680e9;
         }
     }
+}
+
+@media (min-width: $breakpoint-tablet){
+    .Auth .auth-box h5 {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    .Auth .auth-button{
+        margin-top: 20px;
+        padding: 1.5vw 5vw;
+        font-size: 2.5vw;
+    }
+    .Auth .auth-box .ChangeViewsContext{
+        font-size: 2.5vw;
+        margin-bottom: 10px;
+    }
+    .Auth .auth-box .ChangeViews{
+        font-size: 2.5vw;
+    }
+    .Auth .auth-box .forgotPassword{
+        font-size: 2.5vw;
+    }
+    .Auth .auth-box .auth-input-fields input{
+        font-size:2.4vw;
+    }
+}
+
+@media (min-width: $breakpoint-desktop){
+    .Auth .scango{
+        width: 100px;
+    }
+    .Auth .scangotxt{
+        font-size: 16px;
+    }
+    .Auth .auth-box{
+        margin-top: 5vh;
+        width: 450px;
+        height: 65vh;
+    }
+    .Auth .auth-box h5 {
+        font-size: 11px;
+    }
+    .Auth .auth-button{
+        margin-top: 10px;
+        padding: 5px 2px;
+        font-size: 14px;
+    }
+    .Auth .auth-box .ChangeViewsContext{
+        font-size: 14px;
+    }
+    .Auth .auth-box .ChangeViews{
+        font-size: 14px;
+    }
+    .Auth .auth-box .forgotPassword{
+        font-size: 14px;
+    }
+    .Auth .auth-box .auth-input-fields{
+        width: 20vw;
+        input{
+            margin-bottom: 1vw;
+            width: 20vw;
+            font-size: 14px;
+            border: rgb(201, 201, 201) solid 1px;
+            padding: 5px;
+ 
+        }
+    }
+
 }
