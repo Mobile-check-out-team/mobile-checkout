@@ -1,6 +1,9 @@
 // variables
 $header-color: #5680e9;
 
+$breakpoint-tablet: 550px;
+$breakpoint-desktop: 901px;
+
 @mixin flex-container {
   display: flex;
   justify-content: center;

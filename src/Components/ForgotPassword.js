@@ -15,7 +15,7 @@ function ForgotPassword(props) {
         await axios
             .post('/api/email', {email})
             .then(() => {
-                alert('email sent!')
+                // alert('email sent!')
                 setEmail('')
                 props.history.push('/')
             })
@@ -34,7 +34,7 @@ function ForgotPassword(props) {
                 </Alert>:<></>
             }
             <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
-            <h5 className="scangotxt">SCAN AND GO</h5>
+            <h5 className="scangotxt">SCAN & GO</h5>
             <div className ='fpw-box'>
                 <h1 className="ForgotPasswordTxt">Forgot your password?</h1> 
                 <span className="fpw-texts">Enter your account's email and we'll 
@@ -47,11 +47,10 @@ function ForgotPassword(props) {
                 </Form>
                 <button className="email-button" onClick={sendEmail}>
                         SEND EMAIL</button>{' '}
-                <div>
-                    <span>Remember your password?</span>
-                    <br></br>
-                    <Link to='/' className="links">Sign in</Link>
-                </div>
+                
+                    <span className='fpw-texts'>Remember your password?</span>
+                    <Link to='/' className='fpw-link'>Sign in</Link>
+                
             </div>
         </div>
     )

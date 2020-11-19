@@ -85,7 +85,7 @@ function Auth(props) {
                 </Alert>:<></>}
             <header className='auth-header'>
                 <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
-                <h5 className="scangotxt">SCAN AND GO</h5>
+                <h5 className="scangotxt">SCAN & GO</h5>
             </header>
             
             <section className='auth-box'>
@@ -98,7 +98,6 @@ function Auth(props) {
                     <>
                         <h5>FIRST NAME:</h5>
                         <input
-                            className='auth-input'
                             value={state.firstName}
                             name='firstName'
                             // placeholder='First Name'
@@ -106,7 +105,6 @@ function Auth(props) {
                         />
                         <h5>LAST NAME:</h5>
                         <input
-                            className='auth-input'
                             value={state.lastName}
                             name='lastName'
                             // placeholder='Last Name'
@@ -117,44 +115,38 @@ function Auth(props) {
                     }
                     <h5>EMAIL:</h5>
                     <input
-                        className='auth-input'
                         value={state.email}
                         name='email'
-                        // placeholder='Email Address'
                         onChange={(e) =>  handleInput(e)}/>
                     <h5>PASSWORD:</h5>
                     <input 
-                        className='auth-input'
                         type='password'
                         value={state.password}
                         name='password'
-                        // placeholder='Password'
                         onChange={(e) => handleInput(e)}/>
-                </div>
 
-                {state.registerView
-                    ? (<>
-                        <h5>VERIFY PASSWORD:</h5>
-                        <input 
-                            className='auth-input'
-                            type='password'
-                            value={state.verPassword}
-                            name='verPassword'
-                            // placeholder='Verify Password'
-                            onChange={(e) => handleInput(e)}/>
-                        <button 
-                            className='auth-button'
-                            onClick={handleRegister}
+                    {state.registerView?
+                        (<>
+                            <h5>VERIFY PASSWORD:</h5>
+                            <input 
+                                type='password'
+                                value={state.verPassword}
+                                name='verPassword'
+                                onChange={(e) => handleInput(e)}/>
+                            <button 
+                                className='auth-button'
+                                onClick={handleRegister}
                                 >CREATE ACCOUNT</button>
-                       </>)
-                    : (<div>
-                        <button 
-                            className='auth-button'
-                            onClick={handleLogin}
+                        </>):
+                        (<>
+                            <button 
+                                className='auth-button'
+                                onClick={handleLogin}
                                 >LOG IN</button>
-                        
-                       </div>)
-                }
+                            
+                        </>)
+                    }
+                </div>
                 {state.registerView
                 ?<div>
                     <p className="ChangeViewsContext">Already have an account? </p>
@@ -168,11 +160,9 @@ function Auth(props) {
                     name='registerView'
                     onClick={handleToggle}>Create account</span>
                 </div>
-                }<br></br>
+                }
                 {state.registerView?null:
-                <Link className='forgot-pw-link' to='/forgotpassword'> 
-                    <span className="forgotPassword">Forgot your password?</span>
-                </Link>
+                <Link  className='forgotPassword' to='/forgotpassword'>Forgot your password?</Link>
                 }
             </section>
         </div>

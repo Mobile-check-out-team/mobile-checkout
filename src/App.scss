@@ -5,3 +5,9 @@
   text-align: center;
   // margin: 0 auto;
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
