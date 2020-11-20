@@ -289,7 +289,7 @@ const Checkout = (props) => {
     }
     
     return(
-        <div>
+        <div className="Checkout">
             <header className="checkout-header">
                 <p className="checkout-exit"  onClick={() => {
                     props.history.push("/cart")

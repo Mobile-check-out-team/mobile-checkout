@@ -81,16 +81,18 @@ function Cart(props) {
             <>
               <img
                 className="speechBubble"
-                src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/insrtuctionsBoxCorrect.svg"
+                onClick={() => {toggleFaq(false)}}
+                src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/instruction+box+CORRECT+USE+ME.svg"
               />{" "}
-              <p
+              {/* <p
                 className="speech-bubble"
                 onClick={() => {
                   toggleFaq(false);
                 }}
               >
                 x
-              </p>
+              </p> */}
+              {/* <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="x-icon" className="x-Icon" onClick={() => {toggleFaq(false)}}  /> */}
             </>
           ) : null}
         </div>
