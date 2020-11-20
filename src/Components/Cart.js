@@ -61,7 +61,7 @@ function Cart(props) {
         <p
           className="cart-exit"
           onClick={() => {
-            props.clearCart();
+            // props.clearCart();
             props.history.push("/instructions");
           }}
         >

@@ -1,6 +1,7 @@
 @import './variables';
 
-@media screen and (min-width: 0px) and (max-width: 773px) {
+// @media screen and (min-width: 0px) and (max-width: 773px) {
+  @media screen and (min-width: 0px) and (max-width: 773px) {
     .checkout-header {
       background-color: $header-color;
       display: flex;
