@@ -2,13 +2,15 @@ INSERT INTO checkout_users(
     first_name,
     last_name,
     email,
-    password
+    password,
+    stripe_id
 )
 VALUES(
     ${firstName},
     ${lastName},
     ${email},
-    ${hash}
+    ${hash},
+    ${customerId}
 )
 
-returning user_id, first_name, last_name, email;
+returning user_id, first_name, last_name, email, stripe_id;

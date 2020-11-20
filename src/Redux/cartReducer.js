@@ -70,7 +70,9 @@ export default function reducer(state = initialState, action) {
         newArray[i] = { ...newArray[i], qty: ++currQty };
         return { ...state, cart: newArray };
       } else {
-        return { ...state, cart: [...state.cart, { ...payload, qty: 1 }] };
+        let newArray = [...state.cart];
+        newArray.unshift({...payload, qty: 1})
+        return { ...state, cart: newArray };
       }
 
     //////////UPDATE_PRICE/////////////

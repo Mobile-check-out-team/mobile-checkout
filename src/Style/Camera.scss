@@ -1,35 +1,46 @@
-// @import './variables';
+@import './variables';
 .cameraContainer{
     background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
     width: 100vw;
     height: 100vh;
-    background-size: 450vw;
-
+    background-size: 380vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .incorrect-alert{
+        position: fixed;
+        top: 30px;
+        height: 90px;
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
+        z-index: 5;
+    }
     .camera-exit{
         position:fixed;
         left:30px;
         top: 30px;
-        font-size: 24px;
     }
-
     .x-Icon{
         position: fixed;
         left: 30px;
         top: 30px;
-        width: 7vw;
+        width: 6vw;
     }
-
     .scango{
-        margin-top: 30px;
-        width: 15vw;
+        width: 25vw;
         margin-top: 2vh;
     }
     .scangotxt{
         color: white;
         font-family: Arial, Helvetica, sans-serif;
         margin-top: 5px;
-        font-size: 3.5vw;
-        margin-bottom: 80px;
+        font-size: 4vw;
+    }
+    .upc-input{
+        margin-top: 120px;
+        font-size: 18px;
+        font-weight: 900;
     }
     .camera-toggle{
         background-color: #0d19a3;
@@ -38,8 +49,64 @@
         padding: 2vw 7vw;
         color: white;
         font-weight: 700;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-size: 1.0rem;
+        margin: 10px;
+    }
+    .camera-toggle:hover{
+        background-color: rgb(69, 104, 227);
+    }
+}
+@media (min-width: $breakpoint-tablet){
+    .cameraContainer .incorrect-alert{
+        width: 500px;
+        height: 120px;
+        font-size: 18px;
+    }
+    .alert-heading {
+        font-size: 2rem;
+    }
+    .alert-dismissible .close {
+        font-size: 28px;
+    }
+    .cameraContainer .x-Icon{
+        width: 5vw;
+    }
+    .cameraContainer .upc-input{
+        font-size: 28px;
+    }
+    .cameraContainer .camera-toggle{
+        font-size: 20px;
+    }
+}
+
+@media (min-width: $breakpoint-desktop){
+    .cameraContainer{
+        background-size: 150vw;
+    }
+    .cameraContainer .scango {
+        width: 120px;
+    }
+    .cameraContainer .scangotxt {
+        font-size: 26px;
+    }
+    .cameraContainer .incorrect-alert{
+        width: 500px;
+        height: 120px;
+        font-size: 18px;
+    }
+    .alert-heading {
+        font-size: 2rem;
+    }
+    .alert-dismissible .close {
+        font-size: 28px;
+    }
+    .cameraContainer .x-Icon{
+        width: 30px;
+    }
+    .cameraContainer .upc-input{
+        font-size: 28px;
+    }
+    .cameraContainer .camera-toggle{
+        font-size: 20px;
+        padding: 1vw 5vw;
     }
 }

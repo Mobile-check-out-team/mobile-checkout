@@ -10,65 +10,16 @@ import {
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "../Style/Cart.scss";
-import { loadStripe } from "@stripe/stripe-js";
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(
-  "pk_test_51HdVx7GwZEaH5JVh0j5mSh6bwTYCmFN50iYTpTTtqZLjRYLyi0i9M5ZRmOcMXNU2TGN6XhZAS5YMBsUBZs6ZmIkO00KEZ8tkIo"
-);
 
-const qtyOptions = [
-  {
-    key: 1,
-    text: 1,
-    value: 1,
-  },
-  {
-    key: 2,
-    text: 2,
-    value: 2,
-  },
-  {
-    key: 3,
-    text: 3,
-    value: 3,
-  },
-  {
-    key: 4,
-    text: 4,
-    value: 4,
-  },
-  {
-    key: 5,
-    text: 5,
-    value: 5,
-  },
-  {
-    key: 6,
-    text: 6,
-    value: 6,
-  },
-  {
-    key: 7,
-    text: 7,
-    value: 7,
-  },
-  {
-    key: 8,
-    text: 8,
-    value: 8,
-  },
-  {
-    key: 9,
-    text: 9,
-    value: 9,
-  },
-  {
-    key: 10,
-    text: 10,
-    value: 10,
-  },
-];
+const qtyOptions = [] 
+for(let i=1; i <= 10; i++){
+  const numObj = {
+    key: i,
+    text: i,
+    value: i
+  }
+  qtyOptions.push(numObj)
+}
 
 //////////////////////////////////////////////////
 
@@ -162,8 +113,7 @@ function Cart(props) {
                   <p className="qty-text">Qty</p>
                   <Dropdown
                     className="dropdown"
-                    compact
-                    selection
+                    scrolling
                     value={el.qty}
                     options={qtyOptions}
                     onChange={(e, data) => {

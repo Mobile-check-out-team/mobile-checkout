@@ -1,10 +1,9 @@
+@import './variables';
 .Instruction{
     display: flex;
     flex-direction: column;
-    // background-color: #5680e9;
     background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
     background-size: 450vw;
-    // justify-content: space-around;
     align-items: center;
     height: 100vh;
     .scango{
@@ -28,6 +27,7 @@
         margin-top: 5vh;
         background-color: white;
         text-align: center;
+        padding: 20px;
         .scanYourItems{
             h5{
                 font-size: 4vw;
@@ -82,6 +82,107 @@
             font-weight: 700;
         }
     }
+}
+@media (min-width: $breakpoint-tablet){
+    .Instruction .tutorial {
+        height: 65vh;
+        width: 70vw;
+        margin-top: 3vh;
+    }
+    .Instruction .tutorial .scanYourItems{
+        margin: 10px 0px 0px 0px;
+    }
+    .Instruction .tutorial .scanYourItems h5 {
+        font-size: 26px;
+    }
+    .Instruction .tutorial .scanYourItems p {
+        font-size: 22px;
+    }
+    .Instruction .tutorial .payWithPhone h5 {
+        font-size: 26px;
+    }
+    .Instruction .tutorial .payWithPhone p {
+        font-size: 22px;
+    }
+    .Instruction .tutorial .getYourReceipt h5 {
+        font-size: 26px;
+    }
+    .Instruction .tutorial .getYourReceipt p {
+        font-size: 22px;
+    }
+    .Instruction .tutorial .ProceedToCamera {
+        font-size: 18px;
+    }
 
+}
+
+@media (min-width: $breakpoint-desktop){
+    .Instruction{
+        background-size: 150vw;
+    }
+    .Instruction .scango {
+        width: 80px;
+    }
+    .Instruction .scangotxt {
+        font-size: 20px;
+    }
+    .Instruction .tutorial {
+        height: 65vh;
+        margin-top: 3vh;
+        padding: 30px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .Instruction .tutorial .scanYourItems{
+        margin: auto 30px;
+        width: 200px;
+        height: 80%;
+    }
+    .Instruction .tutorial .scanYourItems h5 {
+        font-size: 20px;
+    }
+    .Instruction .tutorial .scanYourItems p {
+        font-size: 16px;
+    }
+    .Instruction .tutorial .scanYourItems .barcode {
+        height: 150px;
+    }
+    .Instruction .tutorial .payWithPhone{
+        margin: auto 30px;
+        width: 200px;
+        height: 80%;
+    }
+    .Instruction .tutorial .payWithPhone h5 {
+        font-size: 20px;
+    }
+    .Instruction .tutorial .payWithPhone p {
+        font-size: 16px;
+    }
+    .Instruction .tutorial .payWithPhone .phoneIcon {
+        height: 150px;
+    }
+    .Instruction .tutorial .getYourReceipt{
+        margin: auto 30px;
+        width: 200px;
+        height: 80%;
+    }
+    .Instruction .tutorial .getYourReceipt h5 {
+        font-size: 20px;
+    }
+    .Instruction .tutorial .getYourReceipt p {
+        font-size: 16px;
+    }
+    .Instruction .tutorial .getYourReceipt .recieptIcon {
+        height: 150px;
+    }
+    .Instruction .tutorial .ProceedToCamera {
+        font-size: 18px;
+        position:fixed;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+        padding: 10px 40px;
+    }
 
 }
