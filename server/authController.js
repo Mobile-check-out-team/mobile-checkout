@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const {STRIPE_SECRET} = process.env;
+const stripe = require('stripe')(STRIPE_SECRET)
 
 module.exports = {
   register: async (req, res) => {
@@ -8,6 +10,12 @@ module.exports = {
     if (foundUser[0]) {
       return res.status(400).send("Email already in use");
     }
+    const customer = await stripe.customers.create({
+      email: email,
+      name: `${firstName} ${lastName}`,
+      description: 'My First Test Customer'
+    });
+    const customerId = customer.id
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
     const newUser = await db.users.register_user({
@@ -15,6 +23,7 @@ module.exports = {
       lastName,
       email,
       hash,
+      customerId
     });
     req.session.user = newUser[0];
     console.log("registered");

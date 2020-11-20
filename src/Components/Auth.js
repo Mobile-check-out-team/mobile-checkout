@@ -20,7 +20,7 @@ function Auth(props) {
     const [showReject, setShowReject] = useState(false);
     const [doNotMatch, setDoNotMatch] = useState(false);
     const [emailRegistered, setEmailRegistered] = useState(false);
-    const [filledForm, setFilledForm] = useState(false);
+    const [formNotFilled, setFormNotFilled] = useState(false);
     const handleInput = (event) => {
         sState({...state, [event.target.name]: event.target.value})
     }  
@@ -30,7 +30,6 @@ function Auth(props) {
 
     const handleLogin = () => {
         const {email, password} = state
-
         axios
         .post('/api/login', {email, password})
         .then(res => {
@@ -43,8 +42,8 @@ function Auth(props) {
     }
     const handleRegister = () => {
         const {firstName, lastName, email, password, verPassword} = state;
-        if((firstName && lastName && email && password && verPassword) == false){
-            setFilledForm(true)
+        if(!firstName || !lastName || !email || !password || !verPassword){
+            setFormNotFilled(true)
         }
         else if(password && password === verPassword){
             axios.post('/api/register', {firstName, lastName, email,  password})
@@ -63,8 +62,8 @@ function Auth(props) {
 
     return (    
         <div className="Auth">
-            {filledForm?
-                <Alert className="incorrect-alert" variant="danger" onClose={() => setFilledForm(false)} dismissible>
+            {formNotFilled?
+                <Alert className="incorrect-alert" variant="danger" onClose={() => setFormNotFilled(false)} dismissible>
                     <Alert.Heading>Oh snap!</Alert.Heading>
                       <p>Please enter missing information.</p>
                 </Alert>:<></>}

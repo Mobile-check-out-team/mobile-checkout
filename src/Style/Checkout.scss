@@ -3,13 +3,13 @@
 @media screen and (min-width: 0px) and (max-width: 773px) {
     .checkout-header {
       background-color: $header-color;
-      margin-top: 0px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100vw;
       padding: 20px 25px;
       color: white;
+      margin-bottom: 30px;
     }
 
     input::placeholder{
@@ -36,13 +36,21 @@
         color: white;
     }
     .checkout-title {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
         font-weight: 900;
         margin-bottom: 0px;
+        font-size: 18px;
+        font-weight: 100;
     }
     .summary-title{
-        width: 90vw;
-        margin: 10px 10px 10px 21px;
-        text-align:left;
+        background-color: white;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 82px;
+        padding: 0px 10px;
     }
     .summary-box{
         width: 90vw;
@@ -57,7 +65,6 @@
     .inner-summary-box{
         width:80vw;
         margin: 10px auto;
-        // border-bottom: 1px solid lightgray;
     }
     .tax{
         padding-bottom:10px;
@@ -68,11 +75,24 @@
         border-top: 1px solid lightgray;
         padding-top: 10px;
     }
-    .checkout-form{
-        width: 85vw;
-        margin: 20px auto;
+    /////////////////////////////
+    .outer-form{
+        width: 90vw;
+        border: 1px solid black;
+        margin: 50px auto;
+        border-radius: 5px;
+    }
+    .form-title{
+        background-color: white;
+        position: fixed;
+        top: 232px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0px 10px;
     }
     .checkout-form{
+        width:80vw;
+        margin: 10px auto;
         display:flex;
         flex-direction: column;
     }
@@ -80,10 +100,9 @@
         display:flex; 
         justify-content: space-between;
         margin: 20px 0px 20px 0px;
-
     }
     .first-name{
-        width:40vw;
+        width:35vw;
         outline: none;
         border-top-style: hidden;
         border-right-style: hidden;
@@ -91,7 +110,7 @@
         border-bottom-style: solid;
         border-width: .5px;
         border-color: rgb(200, 200, 200);
-        font-size: 16px;
+        font-size: 14px;
         text-indent: 5px;
     }
 
@@ -108,7 +127,7 @@
         border-bottom-style: solid;
         border-width: .5px;
         border-color: rgb(200, 200, 200);
-        font-size: 16px;
+        font-size: 14px;
         text-indent: 5px;
     }
 
@@ -135,12 +154,29 @@
         border-bottom-style: solid;
         border-width: .5px;
         border-color: rgb(200, 200, 200);
-        font-size: 16px;
+        font-size: 14px;
         text-indent: 5px;
         margin-bottom: 20px;
       }
 
       .address:focus{
+        transition: 0.2s;
+        border-bottom: 0.5px solid black;
+      }
+      .line2{
+        width: 100%;
+        outline: none;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: solid;
+        border-width: .5px;
+        border-color: rgb(200, 200, 200);
+        font-size: 14px;
+        text-indent: 5px;
+        margin-bottom: 20px;
+      }
+      .line2:focus{
         transition: 0.2s;
         border-bottom: 0.5px solid black;
       }
@@ -151,7 +187,7 @@
           justify-content: space-between;
           margin-bottom: 20px;
           .city{
-            width:40vw;
+            width:35vw;
             outline: none;
             border-top-style: hidden;
             border-right-style: hidden;
@@ -159,7 +195,7 @@
             border-bottom-style: solid;
             border-width: .5px;
             border-color: rgb(200, 200, 200);
-            font-size: 16px;
+            font-size: 14px;
             text-indent: 5px;
           }
 
@@ -169,25 +205,27 @@
           }
 
           .state{
-            width:20vw;
-            outline: none;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
+            width: 12vw;
             border-bottom-style: solid;
             border-width: .5px;
             border-color: rgb(200, 200, 200);
-            font-size: 16px;
-            text-indent: 5px;
+            // color: rgb(200, 200, 200);
+            font-size: 14px;
+            text-align: right;
           }
-
           .state:focus{
             transition: 0.2s;
             border-bottom: 0.5px solid black;
           }
-
+          .ui.dropdown{
+            text-align: right;
+          }
+          .ui.dropdown .menu>.item{
+            font-size: 1rem;
+            padding: .5em 1em!important;
+          }
           .zip{
-            width:20vw;
+            width:15vw;
             outline: none;
             border-top-style: hidden;
             border-right-style: hidden;
@@ -195,15 +233,12 @@
             border-bottom-style: solid;
             border-width: .5px;
             border-color: rgb(200, 200, 200);
-            font-size: 16px;
+            font-size: 14px;
             text-indent: 5px;
           }
-
           .zip:focus{
             transition: 0.2s;
             border-bottom: 0.5px solid black;
           }
-
       }
-
 }
