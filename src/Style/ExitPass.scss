@@ -1,5 +1,115 @@
 @import "./variables";
 
+@media(min-width: 774px){
+  .exit-pass-cont{
+    background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
+    background-size: 180vw;
+    width: 100vw;
+    height: 100vh;
+  }
+  .exit-body {
+    margin-top: 0px;
+    height: 100vh;
+    width: 100vw;
+  }
+  .exit-head {
+    display: flex;
+    padding-top: 20px;
+    margin-bottom: 0px;
+    justify-content: center;
+    width: 100%;
+    background-color: $header-color;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+  }
+  .exit-page {
+    position: fixed;
+    top: 22px;
+    right: 20px;
+    font-weight: bold;
+    font-size: 17px;
+    color: white;
+  }
+  .thank-you-message{
+    justify-content: center;
+    display: flex;
+    width: 80%;
+    margin: 70px auto;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    line-height: 1.2em;
+  }
+
+  .bar-code-box {
+    background-color: white;
+    padding: 20px;
+    border: 5px;
+    border-radius: 8px;
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25),
+      0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    height: 50vh;
+    width: 80%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-color: 10px dimgray;
+  }
+
+  .pass-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+  }
+
+  .bar-pass {
+    font-size: 14px;
+    font-weight: 1000;
+    color: $header-color;
+  }
+  .date {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .name {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+  }
+  .total-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+  }
+  .totalAmount {
+    display: flex;
+    align-items: center;
+  }
+  .itemTotal {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .bar-code {
+    display: flex;
+    align-items: center;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+  }
+  .exit-pass-barcode {
+    width: 60%;
+    margin: 0px auto;
+  }
+}
+
 @media screen and (min-width: 0px) and (max-width: 773px) {
   .exit-pass-cont{
     background-image: url("https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/background.svg");
@@ -33,11 +143,12 @@
   }
   .thank-you-message{
     display: flex;
+    justify-content: center;
     width: 80%;
     margin: 70px auto;
     font-weight: bold;
     font-size: 40px;
-    text-align: left;
+    text-align: center;
     color: white;
     line-height: 1.2em;
   }
