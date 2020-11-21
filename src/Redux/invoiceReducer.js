@@ -5,7 +5,6 @@ const initialState = {
 const CREATE_INVOICE = 'CREATE_INVOICE';
 
 export function createInvoice(invoiceObj){
-    console.log(invoiceObj)
     return {
         type: CREATE_INVOICE,
         payload: invoiceObj

@@ -45,8 +45,8 @@ function Camera(props) {
         <h5 className="scangotxt">SCAN & GO</h5>
         {toggle?
         <section className='upc-input'>
-        <p>Enter UPC</p>
         <input
+        placeholder ='Enter UPC'
           value={data}
           onChange={(e) => setData(e.target.value)}/></section>:
         <>
@@ -62,8 +62,8 @@ function Camera(props) {
           </>}
           <br></br>
           {toggle?
-          <button class="camera-toggle" onClick={() => {setToggle(false)}}>Scan with camera</button>:
-          <button class="camera-toggle" onClick={() => {setToggle(true)}}>Can't scan item?</button>}
+          <button className="camera-toggle" onClick={() => {setToggle(false)}}>Scan with camera</button>:
+          <button className="camera-toggle" onClick={() => {setToggle(true)}}>Can't scan item?</button>}
       </div>
   );
 }

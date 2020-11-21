@@ -1,16 +1,29 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import '../Style/instructions.scss';
 import {Link} from 'react-router-dom';
+import { usePosition } from 'use-position';
+import {geoLocation} from '../Redux/geoReducer';
+import {connect} from 'react-redux';
+import Axios from 'axios';
+
 
 function Instructions(props) {
-
+    const watch = true;
+    const {latitude, longitude, error} = usePosition(watch);
+    useEffect(() => {  
+        Axios
+            .post('/api/geoLocation', {latitude, longitude})
+            .then(res => {
+                props.geoLocation(res.data)
+            })
+            .catch(err => console.log(err))
+    },[latitude])
 
     return(
         <div className="Instruction">
             <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
             <h5 className="scangotxt">SCAN & GO</h5>
             <div className="tutorial">
-                {/* <div className='instructions-flex'> */}
                     <div className="scanYourItems">
                         <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/barcode.svg" alt="barcode" className="barcode" />
                         <h5 className="Headertxt">Scan your items</h5>
@@ -26,7 +39,6 @@ function Instructions(props) {
                         <h5 className="Headertxt">Get your receipt</h5>
                         <p>Scan the QR code at the self-checkout if you do not have a card on file!</p>
                     </div>
-                {/* </div> */}
                 <Link to='/camera'>
                     <button className="ProceedToCamera">Start Shopping</button>
                 </Link>
@@ -36,4 +48,5 @@ function Instructions(props) {
     )
 }
 
-export default Instructions;
+const mapStateToProps = (reduxState) => reduxState;
+export default connect(mapStateToProps, {geoLocation})(Instructions);

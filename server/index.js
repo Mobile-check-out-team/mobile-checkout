@@ -9,7 +9,7 @@ const stripeCtrl = require('./stripeController');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, STRIPE_SECRET} = process.env;
 const app = express();
-const stripe = require("stripe")(STRIPE_SECRET);
+// const stripe = require("stripe")(STRIPE_SECRET);
 
 //FOR req.body
 app.use(express.json());
@@ -51,40 +51,15 @@ app.get("/api/item/:upc", invCtrl.getItem);
 app.post('/api/invoice', invCtrl.createInvoice)
 app.get('/api/orders', invCtrl.orders)
 
-// //Cart
-// app.get("/api/getCart", invCtrl.getCart);
-// app.post("/api/saveCart", invCtrl.saveCart);
-
 //Purchased_Items
 app.post('/api/purchasedItem', invCtrl.purchasedItem);
 
 //Stripe Element Post Request
 app.post('/api/charge', stripeCtrl.charge);
 
-//Stripe API Post Request
-// app.post("/createSession", async (req, res) => {
-//   const session = await stripe.checkout.sessions.create({
-//     payment_method_types: ["card"],
-//     line_items: [
-//       {
-//         price_data: {
-//           currency: "usd",
-//           product_data: {
-//             name: "Scan and Go Cart",
-//             images: [
-//               "https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png",
-//             ],
-//           },
-//           unit_amount: req.body.price * 100,
-//         },
-//         quantity: 1,
-//       },
-//     ],
-//     mode: "payment",
-//     success_url: `http://localhost:3000/#/ExitPass`,
-//     cancel_url: `http://localhost:3000/#/checkout/cancel`,
-//   });
-//   res.json({ id: session.id });
-// });
+//Reverse-Geo
+app.post('/api/geoLocation', invCtrl.getReverseGeo)
 
-// app.listen(SERVER_PORT, () => console.log(`Server connected to port ${SERVER_PORT}`))
+//Tax-rate taxjar
+app.post('/api/taxRate', invCtrl.getTaxRate)
+
