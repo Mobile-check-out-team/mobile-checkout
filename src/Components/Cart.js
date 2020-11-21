@@ -143,6 +143,11 @@ function Cart(props) {
         <p onClick={props.clearCart} className="remove-all-text">
           Remove All
         </p>
+        {props.cartReducer.cart.length < 2?
+        <p className="popup-bubble">
+          <p>Add an item to cart</p>
+        </p>:
+        <></>}
         <img
           onClick={() => {
             props.history.push("/camera");
