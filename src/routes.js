@@ -10,6 +10,7 @@ import Success from "./Components/stripeComponents/success/success.pages";
 import Cancel from "./Components/stripeComponents/cancel/cancelled.pages";
 import ForgotPassword from "./Components/ForgotPassword";
 import YourOrders from "./Components/YourOrders";
+import Receipts from "./Components/Receipts";
 
 export default (
   <Switch>
@@ -23,5 +24,6 @@ export default (
     <Route path="/checkout/success" component={Success} />
     <Route path="/checkout/cancel" component={Cancel} />
     <Route path="/orders" component={YourOrders} />
+    <Route path="receipts" component={Receipts} />
   </Switch>
 );
