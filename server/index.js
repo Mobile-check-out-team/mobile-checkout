@@ -49,6 +49,7 @@ app.get("/api/item/:upc", invCtrl.getItem);
 
 //Invoice
 app.post('/api/invoice', invCtrl.createInvoice)
+app.get('/api/orders', invCtrl.orders)
 
 // //Cart
 // app.get("/api/getCart", invCtrl.getCart);

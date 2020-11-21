@@ -14,6 +14,39 @@ module.exports = {
     const invoice = await db.invoice.create_invoice(user_id, date, total, numItems);
     res.status(200).send(invoice[0]);
   },
+  orders: async(req,res) =>{
+    const db = req.app.get('db')
+    const {user_id} = req.session.user;
+    console.log('hit')
+    // const {id} = req.params;
+    let orders = await db.inventory.get_invoices(user_id)
+    console.log(orders)
+    res.status(200).send(orders);
+  },
+//   getAllEntries: async(req, res) => {
+//     const db = req.app.get('db');
+//     const {user_id} = req.session.user;
+//     const {search} = req.query;
+//     let entries = await db.get_entries(user_id)
+//     entries.forEach( el => {
+//         return el.date = [el.date.toDateString(), el.date.toLocaleString()]
+//     })
+//     if(search){
+//         const filteredEntries = entries.filter( el =>{
+//             return (el.title.toLowerCase().includes(search.toLowerCase())||
+//                     el.content.toLowerCase().includes(search.toLowerCase())||
+//                     el.date[0].toLowerCase().includes(search.toLowerCase())
+//             )
+//         })
+//     return res.status(200).send(filteredEntries)
+//     }
+//     return res.status(200).send(entries)
+// },
+  
+  
+  
+  
+  
   // getCart: async (req, res) => {
   //   req.session.user = { ...req.session.user, cart: [] };
 
