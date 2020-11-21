@@ -2,7 +2,6 @@ import React, {useState, useEffect, useLayoutEffect} from 'react';
 import axios from 'axios'
 import {Link, useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
-//import viewAll from '../assets/view-all.png'
 
 
 

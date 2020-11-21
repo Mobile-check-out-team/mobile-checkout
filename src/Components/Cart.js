@@ -61,7 +61,7 @@ function Cart(props) {
         <p
           className="cart-exit"
           onClick={() => {
-            props.clearCart();
+            // props.clearCart();
             props.history.push("/instructions");
           }}
         >
@@ -84,15 +84,6 @@ function Cart(props) {
                 onClick={() => {toggleFaq(false)}}
                 src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/instruction+box+CORRECT+USE+ME.svg"
               />{" "}
-              {/* <p
-                className="speech-bubble"
-                onClick={() => {
-                  toggleFaq(false);
-                }}
-              >
-                x
-              </p> */}
-              {/* <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="x-icon" className="x-Icon" onClick={() => {toggleFaq(false)}}  /> */}
             </>
           ) : null}
         </div>
@@ -143,13 +134,20 @@ function Cart(props) {
         <p onClick={props.clearCart} className="remove-all-text">
           Remove All
         </p>
-        <img
-          onClick={() => {
-            props.history.push("/camera");
-          }}
-          className="camera-logo"
-          src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/camera+icon+WHITE.svg"
-        />
+        <div className='camera-icon'>
+          {props.cartReducer.cart.length < 2?
+          <p className="popup-bubble">
+            <p>Add an item to cart</p>
+          </p>:
+          <></>}
+          <img
+            onClick={() => {
+              props.history.push("/camera");
+            }}
+            className="camera-logo"
+            src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/camera+icon+WHITE.svg"
+          />
+        </div>
       </section>
 
       <section className="bottom-of-cart">

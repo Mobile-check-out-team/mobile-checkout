@@ -58,8 +58,6 @@
     position: absolute;
     left: 30px;
   }
-
-
   .item-img-box {
     height: 169.5px;
     display: flex;
@@ -67,7 +65,6 @@
     justify-content: center;
     margin-left: 65px;
   }
-
   .cart-indiv-item {
     display: flex;
     align-items: flex-start;
@@ -75,7 +72,6 @@
     border-bottom: 1px solid rgb(221, 221, 221);
     position: relative;
   }
-
   .cart-item-img {
     height: 120px;
     width: auto;
@@ -131,7 +127,6 @@
     font-size: 20px;
     color: grey;
   }
-
   .x-icon {
     position: absolute;
     width: 2.5vh;
@@ -139,21 +134,6 @@
     margin-left: 10vw;
     right: 20px;
   }
-
-  .second-last-cart {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-    height: 13vh;
-    border-bottom: 2px solid rgb(233, 233, 233);
-    border-top: 2px solid rgb(233, 233, 233);
-  }
-
-  .remove-all-text {
-    margin-left: 33px;
-    text-decoration: underline;
-  }
-
   .bottom-of-cart {
     display: flex;
     justify-content: space-between;
@@ -165,23 +145,56 @@
     width: 110px;
     justify-content: space-between;
   }
-
   .checkout-cart {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
-
   .amount-of-items {
     margin-bottom: 0px;
     margin-right: 0px;
   }
+  .second-last-cart {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px 15px 25px;
+    height: 13vh;
+    border-bottom: 2px solid rgb(233, 233, 233);
+    border-top: 2px solid rgb(233, 233, 233);
+  }
+  .remove-all-text {
+    text-decoration: underline;
+  }
+  .camera-icon{
+    display:flex;
+    flex-direction:column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .popup-bubble {
+    position: relative;
+    background: #b8b8b8;
+    border-radius: 4px;
+    max-width: 120px;
+    padding: 5px;
+    margin-bottom: 7px;
+    p {
+      font-size: 12px;
+      }
+      &::after {
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-top: 10px solid #b8b8b8;
+        bottom: -5px;
+        content: "";
+        position: absolute;
+        right: 15px;
+      }
+    }
 
   .camera-logo {
     height: 45px;
     width: 45px;
-    margin-right: 20px;
-    margin-top: 25px;
     background-color: rgb(206, 53, 155);
     padding: 8px;
     border-radius: 17px;

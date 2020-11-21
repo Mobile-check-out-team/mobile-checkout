@@ -1,3 +1,10 @@
+const Taxjar = require('taxjar');
+const reverse = require('reverse-geocode');
+const {TAXJAR_SANDBOX_API_KEY} = process.env;
+const client = new Taxjar({
+  apiKey: TAXJAR_SANDBOX_API_KEY
+});
+
 module.exports = {
   getItem: async (req, res) => {
     const { upc } = req.params;
@@ -18,7 +25,6 @@ module.exports = {
     const db = req.app.get('db')
     const {user_id} = req.session.user;
     console.log('hit')
-    // const {id} = req.params;
     let orders = await db.inventory.get_invoices(user_id)
     console.log(orders)
     res.status(200).send(orders);
@@ -58,7 +64,7 @@ module.exports = {
   //   res.sendStatus(200);
   // },
   purchasedItem: async (req, res) => {
-    const {cartArray, invoiceNumber} = req.body
+    const {cartArray, invoiceNumber} = req.body;
     const db = req.app.get('db');
     for(let i=0; i < cartArray.length; i++){
       const itemNumber = cartArray[i].inventory_id;
@@ -66,5 +72,19 @@ module.exports = {
       await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty)
     }
     res.sendStatus(200);
+  },
+  getReverseGeo: async(req, res) => {
+    const {latitude, longitude} = req.body;
+    console.log(latitude)
+    const locationObj = await reverse.lookup(latitude, longitude, 'us');
+    res.status(200).send(locationObj);
+  },
+  getTaxRate: async(req,res) => {
+    console.log('hit')
+    const {zipCode} = req.body;
+    console.log(zipCode)
+    const rates = await client.ratesForLocation(zipCode)
+    console.log(rates)
+    res.status(200).send(rates);
   }
 };

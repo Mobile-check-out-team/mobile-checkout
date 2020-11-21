@@ -243,13 +243,22 @@ const CheckoutForm = (props) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Checkout = (props) => {
     const [date, setDate] = useState(new Date());
+    const [taxRate, setTaxRate] = useState();
+    const zipCode = props.geoReducer.geo.zipcode
+    useEffect(() => {
+        axios
+            .post('/api/taxRate', {zipCode})
+            .then(res => setTaxRate(res.data))
+            .catch(err => console.log(err))
+    },[])
     
     let subtotal = props.cartReducer.cart.reduce((acc, el) => {
         const sum = el.price * el.qty;
         return acc + sum;
     }, 0)
-    let tax = subtotal*.0825
-    let total = subtotal + tax
+    let taxR = +taxRate.rate.combined_rate;
+    let tax = subtotal * taxR;
+    let total = subtotal + tax;
     let numItems = props.cartReducer.cart.reduce((acc, el) => {
         return acc + el.qty;}, 0)
         
@@ -310,7 +319,7 @@ const Checkout = (props) => {
                         }, 0)}</span>
                     </div>
                     <div className='tax'>
-                        <span>Tax</span>
+                        <span>Tax ({taxR*100}%)</span>
                         <span>{tax.toFixed(2)}</span>
                     </div>
                     <div className='total'>
