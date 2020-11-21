@@ -10,7 +10,6 @@ function YourOrders(props) {
         invoice: '',
         orders: []   
     })
-    // let location = useLocation();
     useEffect(()=> {
         getOrders();
     },[])

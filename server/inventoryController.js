@@ -29,6 +29,42 @@ module.exports = {
     console.log(orders)
     res.status(200).send(orders);
   },
+
+  singleOrder: async(req,res) => {
+    const db = req.app.get('db');
+    const {user_id} = req.params;
+    const entry = await db.get_single_invoice(id)
+    order.forEach( el => {
+        return el.date = el.date.toLocaleString().split(',')
+    })
+    res.status(200).send(entry[0]);
+  },
+
+  purchasedItem: async (req, res) => {
+    const {cartArray, invoiceNumber} = req.body;
+    const db = req.app.get('db');
+    for(let i=0; i < cartArray.length; i++){
+      const itemNumber = cartArray[i].inventory_id;
+      const qty = cartArray[i].qty;
+      await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty)
+    }
+    res.sendStatus(200);
+  },
+  getReverseGeo: async(req, res) => {
+    const {latitude, longitude} = req.body;
+    console.log(latitude)
+    const locationObj = await reverse.lookup(latitude, longitude, 'us');
+    res.status(200).send(locationObj);
+  },
+  getTaxRate: async(req,res) => {
+    console.log('hit')
+    const {zipCode} = req.body;
+    console.log(zipCode)
+    const rates = await client.ratesForLocation(zipCode)
+    console.log(rates)
+    res.status(200).send(rates);
+  }
+};
 //   getAllEntries: async(req, res) => {
 //     const db = req.app.get('db');
 //     const {user_id} = req.session.user;
@@ -63,28 +99,3 @@ module.exports = {
   //   req.session.user = { ...req.session.user };
   //   res.sendStatus(200);
   // },
-  purchasedItem: async (req, res) => {
-    const {cartArray, invoiceNumber} = req.body;
-    const db = req.app.get('db');
-    for(let i=0; i < cartArray.length; i++){
-      const itemNumber = cartArray[i].inventory_id;
-      const qty = cartArray[i].qty;
-      await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty)
-    }
-    res.sendStatus(200);
-  },
-  getReverseGeo: async(req, res) => {
-    const {latitude, longitude} = req.body;
-    console.log(latitude)
-    const locationObj = await reverse.lookup(latitude, longitude, 'us');
-    res.status(200).send(locationObj);
-  },
-  getTaxRate: async(req,res) => {
-    console.log('hit')
-    const {zipCode} = req.body;
-    console.log(zipCode)
-    const rates = await client.ratesForLocation(zipCode)
-    console.log(rates)
-    res.status(200).send(rates);
-  }
-};
