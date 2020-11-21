@@ -1,244 +1,488 @@
 @import './variables';
 
-@media screen and (min-width: 0px) and (max-width: 773px) {
-    .checkout-header {
+.Checkout{
+  // font-size: 1.0vw;
+  .checkout-header {
+    background-color: $header-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 20px 25px;
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  input::placeholder{
+      color: rgb(199, 199, 199);
+  }
+
+  .StripeElement{
+      border-bottom: 0.5px solid rgb(197, 197, 197);
+      margin-bottom: 20px;
+  }
+
+  .StripeElement--focus{
+      transition: 0.2s;
+      border-bottom: 0.5px solid black;
+  }
+
+  .checkout-exit {
+      margin-bottom: 0px;
+  }
+  .checkout-faq {
+      border-radius: 100px;
+      border: 2px solid white;
       background-color: $header-color;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100vw;
-      padding: 20px 25px;
       color: white;
-      margin-bottom: 30px;
+  }
+  .checkout-title {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 900;
+      margin-bottom: 0px;
+      font-size: 18px;
+      font-weight: 100;
+  }
+  .summary-title{
+      background-color: white;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 82px;
+      padding: 0px 10px;
+  }
+  .summary-box{
+      width: 90vw;
+      border: 1px solid black;
+      margin: 0 auto;
+      border-radius: 5px;
+  }
+  .inner-summary-box div{
+      display:flex;
+      justify-content: space-between;
+  }
+  .inner-summary-box{
+      width:80vw;
+      margin: 10px auto;
+  }
+  .tax{
+      padding-bottom:10px;
+  }
+  .total{
+      font-weight: 900;
+      font-size: 16px;
+      border-top: 1px solid lightgray;
+      padding-top: 10px;
+  }
+  /////////////////////////////
+  .outer-form{
+      width: 90vw;
+      border: 1px solid black;
+      margin: 50px auto;
+      border-radius: 5px;
+  }
+  .form-title{
+      background-color: white;
+      position: fixed;
+      top: 232px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0px 10px;
+  }
+  .checkout-form{
+      width:80vw;
+      margin: 10px auto;
+      display:flex;
+      flex-direction: column;
+  }
+  .name-flex{
+      display:flex; 
+      justify-content: space-between;
+      margin: 20px 0px 20px 0px;
+  }
+  .first-name{
+      width:35vw;
+      outline: none;
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-width: .5px;
+      border-color: rgb(200, 200, 200);
+      font-size: 14px;
+      text-indent: 5px;
+  }
+
+  .first-name:focus{
+      transition: 0.2s;
+      border-bottom: 0.5px solid black;
+  }
+
+  .last-name{
+      width:40vw;
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-width: .5px;
+      border-color: rgb(200, 200, 200);
+      font-size: 14px;
+      text-indent: 5px;
+  }
+
+  .last-name:focus{
+      transition: 0.2s;
+      border-bottom: 0.5px solid black;
+  }
+
+  .pay-button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background-color: #515ccf;
+      color: white;
     }
 
-    input::placeholder{
-        color: rgb(199, 199, 199);
+    .address{
+      // width:80vw;
+      width: 100%;
+      outline: none;
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-width: .5px;
+      border-color: rgb(200, 200, 200);
+      font-size: 14px;
+      text-indent: 5px;
+      margin-bottom: 20px;
     }
 
-    .StripeElement{
-        border-bottom: 0.5px solid rgb(197, 197, 197);
-        margin-bottom: 20px;
+    .address:focus{
+      transition: 0.2s;
+      border-bottom: 0.5px solid black;
+    }
+    .line2{
+      width: 100%;
+      outline: none;
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-width: .5px;
+      border-color: rgb(200, 200, 200);
+      font-size: 14px;
+      text-indent: 5px;
+      margin-bottom: 20px;
+    }
+    .line2:focus{
+      transition: 0.2s;
+      border-bottom: 0.5px solid black;
     }
 
-    .StripeElement--focus{
-        transition: 0.2s;
-        border-bottom: 0.5px solid black;
-    }
-
-    .checkout-exit {
-        margin-bottom: 0px;
-    }
-    .checkout-faq {
-        border-radius: 100px;
-        border: 2px solid white;
-        background-color: $header-color;
-        color: white;
-    }
-    .checkout-title {
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        font-weight: 900;
-        margin-bottom: 0px;
-        font-size: 18px;
-        font-weight: 100;
-    }
-    .summary-title{
-        background-color: white;
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 82px;
-        padding: 0px 10px;
-    }
-    .summary-box{
-        width: 90vw;
-        border: 1px solid black;
-        margin: 0 auto;
-        border-radius: 5px;
-    }
-    .inner-summary-box div{
-        display:flex;
+    .addressInfo{
+        display: flex;
+        flex-direction: row;
         justify-content: space-between;
-    }
-    .inner-summary-box{
-        width:80vw;
-        margin: 10px auto;
-    }
-    .tax{
-        padding-bottom:10px;
-    }
-    .total{
-        font-weight: 900;
-        font-size: 16px;
-        border-top: 1px solid lightgray;
-        padding-top: 10px;
-    }
-    /////////////////////////////
-    .outer-form{
-        width: 90vw;
-        border: 1px solid black;
-        margin: 50px auto;
-        border-radius: 5px;
-    }
-    .form-title{
-        background-color: white;
-        position: fixed;
-        top: 232px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 0px 10px;
-    }
-    .checkout-form{
-        width:80vw;
-        margin: 10px auto;
-        display:flex;
-        flex-direction: column;
-    }
-    .name-flex{
-        display:flex; 
-        justify-content: space-between;
-        margin: 20px 0px 20px 0px;
-    }
-    .first-name{
-        width:35vw;
-        outline: none;
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: solid;
-        border-width: .5px;
-        border-color: rgb(200, 200, 200);
-        font-size: 14px;
-        text-indent: 5px;
-    }
-
-    .first-name:focus{
-        transition: 0.2s;
-        border-bottom: 0.5px solid black;
-    }
-
-    .last-name{
-        width:40vw;
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: solid;
-        border-width: .5px;
-        border-color: rgb(200, 200, 200);
-        font-size: 14px;
-        text-indent: 5px;
-    }
-
-    .last-name:focus{
-        transition: 0.2s;
-        border-bottom: 0.5px solid black;
-    }
-
-    .pay-button {
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px;
-        background-color: #515ccf;
-        color: white;
-      }
-
-      .address{
-        // width:80vw;
-        width: 100%;
-        outline: none;
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: solid;
-        border-width: .5px;
-        border-color: rgb(200, 200, 200);
-        font-size: 14px;
-        text-indent: 5px;
         margin-bottom: 20px;
-      }
+        .city{
+          width:35vw;
+          outline: none;
+          border-top-style: hidden;
+          border-right-style: hidden;
+          border-left-style: hidden;
+          border-bottom-style: solid;
+          border-width: .5px;
+          border-color: rgb(200, 200, 200);
+          font-size: 14px;
+          text-indent: 5px;
+        }
 
-      .address:focus{
-        transition: 0.2s;
-        border-bottom: 0.5px solid black;
-      }
-      .line2{
-        width: 100%;
-        outline: none;
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: solid;
-        border-width: .5px;
-        border-color: rgb(200, 200, 200);
-        font-size: 14px;
-        text-indent: 5px;
-        margin-bottom: 20px;
-      }
-      .line2:focus{
-        transition: 0.2s;
-        border-bottom: 0.5px solid black;
-      }
+        .city:focus{
+          transition: 0.2s;
+          border-bottom: 0.5px solid black;
+        }
 
-      .addressInfo{
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          margin-bottom: 20px;
-          .city{
-            width:35vw;
-            outline: none;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: solid;
-            border-width: .5px;
-            border-color: rgb(200, 200, 200);
-            font-size: 14px;
-            text-indent: 5px;
-          }
-
-          .city:focus{
-            transition: 0.2s;
-            border-bottom: 0.5px solid black;
-          }
-
-          .state{
-            width: 12vw;
-            border-bottom-style: solid;
-            border-width: .5px;
-            border-color: rgb(200, 200, 200);
-            // color: rgb(200, 200, 200);
-            font-size: 14px;
-            text-align: right;
-          }
-          .state:focus{
-            transition: 0.2s;
-            border-bottom: 0.5px solid black;
-          }
-          .ui.dropdown{
-            text-align: right;
-          }
-          .ui.dropdown .menu>.item{
-            font-size: 1rem;
-            padding: .5em 1em!important;
-          }
-          .zip{
-            width:15vw;
-            outline: none;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: solid;
-            border-width: .5px;
-            border-color: rgb(200, 200, 200);
-            font-size: 14px;
-            text-indent: 5px;
-          }
-          .zip:focus{
-            transition: 0.2s;
-            border-bottom: 0.5px solid black;
-          }
-      }
+        .state{
+          width: 12vw;
+          border-bottom-style: solid;
+          border-width: .5px;
+          border-color: rgb(200, 200, 200);
+          // color: rgb(200, 200, 200);
+          font-size: 14px;
+          text-align: right;
+        }
+        .state:focus{
+          transition: 0.2s;
+          border-bottom: 0.5px solid black;
+        }
+        .ui.dropdown{
+          text-align: right;
+        }
+        .ui.dropdown .menu>.item{
+          font-size: 1rem;
+          padding: .5em 1em!important;
+        }
+        .zip{
+          width:15vw;
+          outline: none;
+          border-top-style: hidden;
+          border-right-style: hidden;
+          border-left-style: hidden;
+          border-bottom-style: solid;
+          border-width: .5px;
+          border-color: rgb(200, 200, 200);
+          font-size: 14px;
+          text-indent: 5px;
+        }
+        .zip:focus{
+          transition: 0.2s;
+          border-bottom: 0.5px solid black;
+        }
+    }
 }
+
+// @media screen and (min-width: 0px) and (max-width: 773px) {
+//     .checkout-header {
+//       background-color: $header-color;
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       width: 100vw;
+//       padding: 20px 25px;
+//       color: white;
+//       margin-bottom: 30px;
+//     }
+
+//     input::placeholder{
+//         color: rgb(199, 199, 199);
+//     }
+
+//     .StripeElement{
+//         border-bottom: 0.5px solid rgb(197, 197, 197);
+//         margin-bottom: 20px;
+//     }
+
+//     .StripeElement--focus{
+//         transition: 0.2s;
+//         border-bottom: 0.5px solid black;
+//     }
+
+//     .checkout-exit {
+//         margin-bottom: 0px;
+//     }
+//     .checkout-faq {
+//         border-radius: 100px;
+//         border: 2px solid white;
+//         background-color: $header-color;
+//         color: white;
+//     }
+//     .checkout-title {
+//         position: fixed;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         font-weight: 900;
+//         margin-bottom: 0px;
+//         font-size: 18px;
+//         font-weight: 100;
+//     }
+//     .summary-title{
+//         background-color: white;
+//         position: fixed;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         top: 82px;
+//         padding: 0px 10px;
+//     }
+//     .summary-box{
+//         width: 90vw;
+//         border: 1px solid black;
+//         margin: 0 auto;
+//         border-radius: 5px;
+//     }
+//     .inner-summary-box div{
+//         display:flex;
+//         justify-content: space-between;
+//     }
+//     .inner-summary-box{
+//         width:80vw;
+//         margin: 10px auto;
+//     }
+//     .tax{
+//         padding-bottom:10px;
+//     }
+//     .total{
+//         font-weight: 900;
+//         font-size: 16px;
+//         border-top: 1px solid lightgray;
+//         padding-top: 10px;
+//     }
+//     /////////////////////////////
+//     .outer-form{
+//         width: 90vw;
+//         border: 1px solid black;
+//         margin: 50px auto;
+//         border-radius: 5px;
+//     }
+//     .form-title{
+//         background-color: white;
+//         position: fixed;
+//         top: 232px;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         padding: 0px 10px;
+//     }
+//     .checkout-form{
+//         width:80vw;
+//         margin: 10px auto;
+//         display:flex;
+//         flex-direction: column;
+//     }
+//     .name-flex{
+//         display:flex; 
+//         justify-content: space-between;
+//         margin: 20px 0px 20px 0px;
+//     }
+//     .first-name{
+//         width:35vw;
+//         outline: none;
+//         border-top-style: hidden;
+//         border-right-style: hidden;
+//         border-left-style: hidden;
+//         border-bottom-style: solid;
+//         border-width: .5px;
+//         border-color: rgb(200, 200, 200);
+//         font-size: 14px;
+//         text-indent: 5px;
+//     }
+
+//     .first-name:focus{
+//         transition: 0.2s;
+//         border-bottom: 0.5px solid black;
+//     }
+
+//     .last-name{
+//         width:40vw;
+//         border-top-style: hidden;
+//         border-right-style: hidden;
+//         border-left-style: hidden;
+//         border-bottom-style: solid;
+//         border-width: .5px;
+//         border-color: rgb(200, 200, 200);
+//         font-size: 14px;
+//         text-indent: 5px;
+//     }
+
+//     .last-name:focus{
+//         transition: 0.2s;
+//         border-bottom: 0.5px solid black;
+//     }
+
+//     .pay-button {
+//         border: none;
+//         padding: 10px 20px;
+//         border-radius: 20px;
+//         background-color: #515ccf;
+//         color: white;
+//       }
+
+//       .address{
+//         // width:80vw;
+//         width: 100%;
+//         outline: none;
+//         border-top-style: hidden;
+//         border-right-style: hidden;
+//         border-left-style: hidden;
+//         border-bottom-style: solid;
+//         border-width: .5px;
+//         border-color: rgb(200, 200, 200);
+//         font-size: 14px;
+//         text-indent: 5px;
+//         margin-bottom: 20px;
+//       }
+
+//       .address:focus{
+//         transition: 0.2s;
+//         border-bottom: 0.5px solid black;
+//       }
+//       .line2{
+//         width: 100%;
+//         outline: none;
+//         border-top-style: hidden;
+//         border-right-style: hidden;
+//         border-left-style: hidden;
+//         border-bottom-style: solid;
+//         border-width: .5px;
+//         border-color: rgb(200, 200, 200);
+//         font-size: 14px;
+//         text-indent: 5px;
+//         margin-bottom: 20px;
+//       }
+//       .line2:focus{
+//         transition: 0.2s;
+//         border-bottom: 0.5px solid black;
+//       }
+
+//       .addressInfo{
+//           display: flex;
+//           flex-direction: row;
+//           justify-content: space-between;
+//           margin-bottom: 20px;
+//           .city{
+//             width:35vw;
+//             outline: none;
+//             border-top-style: hidden;
+//             border-right-style: hidden;
+//             border-left-style: hidden;
+//             border-bottom-style: solid;
+//             border-width: .5px;
+//             border-color: rgb(200, 200, 200);
+//             font-size: 14px;
+//             text-indent: 5px;
+//           }
+
+//           .city:focus{
+//             transition: 0.2s;
+//             border-bottom: 0.5px solid black;
+//           }
+
+//           .state{
+//             width: 12vw;
+//             border-bottom-style: solid;
+//             border-width: .5px;
+//             border-color: rgb(200, 200, 200);
+//             // color: rgb(200, 200, 200);
+//             font-size: 14px;
+//             text-align: right;
+//           }
+//           .state:focus{
+//             transition: 0.2s;
+//             border-bottom: 0.5px solid black;
+//           }
+//           .ui.dropdown{
+//             text-align: right;
+//           }
+//           .ui.dropdown .menu>.item{
+//             font-size: 1rem;
+//             padding: .5em 1em!important;
+//           }
+//           .zip{
+//             width:15vw;
+//             outline: none;
+//             border-top-style: hidden;
+//             border-right-style: hidden;
+//             border-left-style: hidden;
+//             border-bottom-style: solid;
+//             border-width: .5px;
+//             border-color: rgb(200, 200, 200);
+//             font-size: 14px;
+//             text-indent: 5px;
+//           }
+//           .zip:focus{
+//             transition: 0.2s;
+//             border-bottom: 0.5px solid black;
+//           }
+//       }
+// }
