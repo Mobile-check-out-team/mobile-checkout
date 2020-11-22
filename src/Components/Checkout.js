@@ -256,8 +256,10 @@ const Checkout = (props) => {
         const sum = el.price * el.qty;
         return acc + sum;
     }, 0)
-    let taxR = +taxRate.rate.combined_rate;
-    let tax = subtotal * taxR;
+    let taxR
+    {taxRate?taxR = taxRate.rate.combined_rate:taxR = .06}
+    
+    let tax = subtotal * +taxR;
     let total = subtotal + tax;
     let numItems = props.cartReducer.cart.reduce((acc, el) => {
         return acc + el.qty;}, 0)

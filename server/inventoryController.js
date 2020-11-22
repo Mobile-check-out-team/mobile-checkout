@@ -21,15 +21,12 @@ module.exports = {
     const invoice = await db.invoice.create_invoice(user_id, date, total, numItems);
     res.status(200).send(invoice[0]);
   },
-  orders: async(req,res) =>{
+  getOrders: async(req,res) =>{
     const db = req.app.get('db')
     const {user_id} = req.session.user;
-    console.log('hit')
-    let orders = await db.inventory.get_invoices(user_id)
-    console.log(orders)
+    let orders = await db.invoice.get_invoices(user_id);
     res.status(200).send(orders);
   },
-
   singleOrder: async(req,res) => {
     const db = req.app.get('db');
     const {user_id} = req.params;
@@ -39,7 +36,6 @@ module.exports = {
     })
     res.status(200).send(entry[0]);
   },
-
   purchasedItem: async (req, res) => {
     const {cartArray, invoiceNumber} = req.body;
     const db = req.app.get('db');
@@ -65,37 +61,4 @@ module.exports = {
     res.status(200).send(rates);
   }
 };
-//   getAllEntries: async(req, res) => {
-//     const db = req.app.get('db');
-//     const {user_id} = req.session.user;
-//     const {search} = req.query;
-//     let entries = await db.get_entries(user_id)
-//     entries.forEach( el => {
-//         return el.date = [el.date.toDateString(), el.date.toLocaleString()]
-//     })
-//     if(search){
-//         const filteredEntries = entries.filter( el =>{
-//             return (el.title.toLowerCase().includes(search.toLowerCase())||
-//                     el.content.toLowerCase().includes(search.toLowerCase())||
-//                     el.date[0].toLowerCase().includes(search.toLowerCase())
-//             )
-//         })
-//     return res.status(200).send(filteredEntries)
-//     }
-//     return res.status(200).send(entries)
-// },
-  
-  
-  
-  
-  
-  // getCart: async (req, res) => {
-  //   req.session.user = { ...req.session.user, cart: [] };
 
-  //   res.status(200).send(req.session.user);
-  // },
-  // saveCart: async (req, res) => {
-  //   //find a way to save cart.
-  //   req.session.user = { ...req.session.user };
-  //   res.sendStatus(200);
-  // },

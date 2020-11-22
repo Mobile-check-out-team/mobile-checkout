@@ -28,7 +28,7 @@ function ExitPass(props) {
           }}>Done </p>
         </div>
 
-        <p className ='thank-you-message'>Thanks for using <br/> scan & go!</p>
+        <p className ='thank-you-message'>Thanks for using <br/> Scan & Go!</p>
         <div className='bar-code-box'>
           <div className='pass-date'>
             <span className='bar-pass'>Exit Pass </span>

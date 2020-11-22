@@ -51,6 +51,7 @@ function Cart(props) {
   useEffect(() => {
     props.updateTotalPrice(totalPrice);
   }, [totalPrice]);
+
   let numItems = props.cartReducer.cart.reduce((acc, el) => {
     return acc + el.qty;
   }, 0)
@@ -135,7 +136,7 @@ function Cart(props) {
           Remove All
         </p>
         <div className='camera-icon'>
-          {props.cartReducer.cart.length < 2?
+          {numItems < 2?
           <p className="popup-bubble">
             <p>Add an item to cart</p>
           </p>:

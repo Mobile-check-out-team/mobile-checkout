@@ -51,7 +51,7 @@
     box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25),
       0 10px 10px 0 rgba(0, 0, 0, 0.26);
     height: 50vh;
-    width: 80%;
+    width: 50%;
     margin: 0px auto;
     display: flex;
     justify-content: flex-start;
@@ -218,4 +218,10 @@
     width: 100%;
     margin: 0px auto;
   }
+}
+@media (min-width: $breakpoint-tablet){
+
+}
+@media (min-width: $breakpoint-desktop){
+
 }
