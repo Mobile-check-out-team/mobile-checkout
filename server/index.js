@@ -7,7 +7,7 @@ const invCtrl = require("./inventoryController");
 const nodeMailerCtrl = require("./nodeMailerController");
 const stripeCtrl = require('./stripeController');
 
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, STRIPE_SECRET} = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const app = express();
 // const stripe = require("stripe")(STRIPE_SECRET);
 
