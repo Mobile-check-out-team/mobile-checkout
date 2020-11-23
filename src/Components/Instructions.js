@@ -44,9 +44,11 @@ function Instructions(props) {
                 <Link to='/camera'>
                     <button className="ProceedToCamera">Start Shopping</button>
                 </Link>
-                <br></br>
-                <Link to='/orders'>View Purchase History</Link>
+                
             </div>
+            <Link to='/orders'>
+                <button className ='view-ph-link'>View Purchase History</button>
+            </Link>
         </div>
 
     )

@@ -3,6 +3,8 @@ import { useBarcode } from "@createnextapp/react-barcode";
 import {connect} from 'react-redux';
 import '../Style/ExitPass.scss'
 import { clearCart } from "../Redux/cartReducer";
+import { clearUser } from "../Redux/authReducer";
+
 
 function ExitPass(props) {
   const { inputRef } = useBarcode({
@@ -23,6 +25,7 @@ function ExitPass(props) {
         <div className='exit-head'>
           <p>Exit Pass </p>
           <p className='exit-page'  onClick={() => {
+            props.clearUser()
             props.clearCart()
             props.history.push('/')
           }}>Done </p>
@@ -51,4 +54,4 @@ function ExitPass(props) {
   );
 }
 const mapStateToProps = (reduxState) => reduxState;
-export default connect(mapStateToProps, {clearCart})(ExitPass);
+export default connect(mapStateToProps, {clearCart, clearUser})(ExitPass);

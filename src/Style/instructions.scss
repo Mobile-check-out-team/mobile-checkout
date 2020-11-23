@@ -79,13 +79,29 @@
     }
 }
 .ProceedToCamera{
-background-color: #0d19a3;
-border: none;
-border-radius: 20px;
-padding: 2vw 7vw;
-color: white;
-font-weight: 700;
-margin-bottom: 15px;
+    background-color: #0d19a3;
+    border: none;
+    border-radius: 20px;
+    padding: 2vw 7vw;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.view-ph-link{
+    background-color: #0d19a3;
+    border: none;
+    border-radius: 20px;
+    padding: 2vw 7vw;
+    color: white;
+    font-weight: 700;
+    margin: 15px 0px 15px 0px;
+}
+.no-purchases{
+    font-size: 16px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
 }
 
 @media (min-width: $breakpoint-tablet){
@@ -120,6 +136,10 @@ margin-bottom: 15px;
     }
     .ProceedToCamera {
         font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .view-ph-link{
+        font-size: 20px;
     }
 
 }
@@ -185,6 +205,11 @@ margin-bottom: 15px;
     }
     .ProceedToCamera {
         padding: 10px 40px;
+        margin-bottom: 25px;
     }
-
+    .view-ph-link{
+        font-size: 18px;
+        padding: 10px 40px;
+        margin-bottom: 25px;
+    }
 }
