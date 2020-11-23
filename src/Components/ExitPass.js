@@ -48,7 +48,6 @@ function ExitPass(props) {
             <img ref={inputRef} className='exit-pass-barcode'/>
           </div>
         </div>
-      
       </header>
     </div>
   );

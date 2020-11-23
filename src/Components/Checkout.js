@@ -240,7 +240,6 @@ const CheckoutForm = (props) => {
         </section>
     )
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Checkout = (props) => {
     const [date, setDate] = useState(new Date());
     const [taxRate, setTaxRate] = useState();

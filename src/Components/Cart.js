@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 import { connect } from "react-redux";
-import {
-  getCart,
-  updateCart,
-  clearCart,
-  updateTotalPrice,
-} from "../Redux/cartReducer";
+import {getCart,updateCart,clearCart,updateTotalPrice,} from "../Redux/cartReducer";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "../Style/Cart.scss";
@@ -21,11 +16,10 @@ for(let i=1; i <= 10; i++){
   qtyOptions.push(numObj)
 }
 
-//////////////////////////////////////////////////
-
 function Cart(props) {
   const [cart, setCart] = useState([]);
   const [faq, toggleFaq] = useState(false);
+
 
   let totalPrice = props.cartReducer.cart.reduce((acc, el) => {
     const sum = el.price * el.qty;
@@ -136,7 +130,7 @@ function Cart(props) {
           Remove All
         </p>
         <div className='camera-icon'>
-          {numItems < 2?
+          {props.cartReducer.cart.length === 1?
           <p className="popup-bubble">
             <p>Add an item to cart</p>
           </p>:
@@ -185,9 +179,4 @@ function Cart(props) {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, {
-  getCart,
-  clearCart,
-  updateCart,
-  updateTotalPrice,
-})(withRouter(Cart));
+export default connect(mapStateToProps, {getCart,clearCart,updateCart,updateTotalPrice})(withRouter(Cart));

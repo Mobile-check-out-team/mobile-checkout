@@ -12,11 +12,14 @@
 .purchase-history-exit {
     margin-bottom: 0px;
 }
+.purchase-history-exit:hover{
+    cursor: pointer;
+}
 .purchase-history-title {
     font-weight: 900;
     margin-bottom: 0px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 500;
 }
 .purchase-history-faq {
     border-radius: 100px;

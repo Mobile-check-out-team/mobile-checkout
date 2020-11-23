@@ -12,11 +12,14 @@
 .purchase-details-exit {
     margin-bottom: 0px;
 }
+.purchase-details-exit:hover{
+    cursor: pointer;
+}
 .purchase-details-title {
     font-weight: 900;
     margin-bottom: 0px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 500;
 }
 .purchase-details-faq {
     border-radius: 100px;
