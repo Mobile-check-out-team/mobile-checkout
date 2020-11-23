@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useBarcode } from "@createnextapp/react-barcode";
 import {connect} from 'react-redux';
 import '../Style/ExitPass.scss'

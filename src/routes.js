@@ -6,11 +6,10 @@ import Cart from "./Components/Cart";
 import Camera from "./Components/Camera";
 import Checkout from "./Components/Checkout";
 import ExitPass from "./Components/ExitPass";
-import Success from "./Components/stripeComponents/success/success.pages";
-import Cancel from "./Components/stripeComponents/cancel/cancelled.pages";
 import ForgotPassword from "./Components/ForgotPassword";
 import YourOrders from "./Components/YourOrders";
 import Receipts from "./Components/Receipts";
+import PurchaseDetails from './Components/PurchaseDetails'
 
 export default (
   <Switch>
@@ -21,9 +20,8 @@ export default (
     <Route path="/checkout" component={Checkout} />
     <Route path="/exitpass" component={ExitPass} />
     <Route path="/forgotPassword" component={ForgotPassword} />
-    <Route path="/checkout/success" component={Success} />
-    <Route path="/checkout/cancel" component={Cancel} />
     <Route path="/orders" component={YourOrders} />
-    <Route path="receipts" component={Receipts} />
+    <Route path="/receipt/:invoiceNumber" component={Receipts} />
+    <Route path="/purchaseDetails/:invoiceNumber" component={PurchaseDetails} />
   </Switch>
 );

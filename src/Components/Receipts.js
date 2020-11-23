@@ -7,27 +7,25 @@ import {connect} from 'react-redux';
 
 function Receipts(props) {
     const [state, sState] = useState({
-        invoice: '',
-        date: [],
-        img_url: '',
-        price: []
+        order: []
     })
       useEffect(()=> {
             getReceipt();
-        },[])
+    },[])
 
     
     const getReceipt = () => {
-        const {invoiceId} = props.match.params;
-        console.log(invoiceId)
+        const {invoiceNumber} = props.match.params;
         axios
-           .get(`/api/orders/single/${invoiceId}`)
+           .get(`/api/orders/single/${invoiceNumber}`)
             .then(res => {
-                sState({...state,
-                        invoice: res.data.invoice,
-                        date: res.data.date,
-                        img_url: res.data.img_url,
-                        price: res.data.price })})
+                sState({...state, order: res.data})
+                // sState({...state,
+                //         invoice: res.data.invoice,
+                //         date: res.data.date,
+                //         img_url: res.data.img_url,
+                //         price: res.data.price })
+            })
         .catch(err => console.log(err.request));
     }
     
@@ -37,16 +35,16 @@ function Receipts(props) {
  
     return (
         <div>
-                <div className='up-new-entry'>
+                <div className='Purchase-Details'>Receipt
                     
-                    <section className='up-title-header'>
+                    {/* <section className='up-title-header'>
                         <div
                             className ='up-title-input'
                             name='title'
                             placeholder='Entry Title'
                             value={state.title}
                             onChange={handleInput}/>     
-                    </section>
+                    </section> */}
 
                    
                 </div>
