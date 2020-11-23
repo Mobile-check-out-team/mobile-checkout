@@ -50,7 +50,7 @@ app.get("/api/item/:upc", invCtrl.getItem);
 //Invoice
 app.post('/api/invoice', invCtrl.createInvoice)
 app.get('/api/orders', invCtrl.getOrders)
-app.get('/api/orders/single/', invCtrl.singleOrder)
+app.get('/api/orders/single/:invoiceNumber', invCtrl.singleOrder)
 
 //Purchased_Items
 app.post('/api/purchasedItem', invCtrl.purchasedItem);

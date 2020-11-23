@@ -4,33 +4,27 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../Style/YourOrders.scss'
 
-
-
 function YourOrders(props) {
     const [state, sState] = useState({
         invoice: '',
         orders: []   
     })
     useEffect(()=> {
-        getOrders();
-    },[])
-
-    const getOrders = () => {
         axios.get('/api/orders')
         .then(res => sState({...state, orders: res.data}))
         .catch(err => console.log('get entry request failed'))
-    }
-    console.log(state.orders)
+    },[])
+
     let mappedOrders = state.orders.map( el => {
         let date = new Date(el.invoice_date)
         return (
-            <Link className='order-fl' to={`/entry/${el.user_id}`} key={el.user_id} > 
+            <Link className='order-fl' to={`/purchaseDetails/${el.invoice_number}`} key={el.invoice_number} > 
                 <div className='order'>
                     <div className='order-title'>
-                        <p>{date.toDateString().split(' ').slice(1).join(' ')}</p>
-
+                        <span>Purchase on {date.toDateString().split(' ').slice(1).join(' ')}</span>
+                        <span className='chevron-right'>&#8250;</span>
                     </div>
-                    <p>{el.invoice_number}</p>
+                    <img className="purchase-history-img" src={el.img_url} />
                 </div>
             </Link>)})
 
@@ -44,7 +38,6 @@ function YourOrders(props) {
                 <p className="purchase-history-title">Purchase History</p>
                 <button className="purchase-history-faq">?</button>
             </header>
-            <div className='menu-user'>{props.authReducer.user.first_name}'s Orders</div>
             <div className='order-flex'>
                 {mappedOrders}
             </div>

@@ -16,9 +16,9 @@ module.exports = {
     res.status(200).send(invObj[0]);
   },
   createInvoice: async(req, res) => {
-    const {user_id, date, total, numItems} = req.body
+    const {user_id, date, total, numItems, tax_rate} = req.body
     const db = req.app.get('db');
-    const invoice = await db.invoice.create_invoice(user_id, date, total, numItems);
+    const invoice = await db.invoice.create_invoice(user_id, date, total, numItems, tax_rate);
     res.status(200).send(invoice[0]);
   },
   getOrders: async(req,res) =>{
@@ -29,12 +29,13 @@ module.exports = {
   },
   singleOrder: async(req,res) => {
     const db = req.app.get('db');
-    const {user_id} = req.params;
-    const entry = await db.get_single_invoice(id)
-    order.forEach( el => {
-        return el.date = el.date.toLocaleString().split(',')
-    })
-    res.status(200).send(entry[0]);
+    const {invoiceNumber} = req.params;
+    const invoice = await db.invoice.get_single_invoice(invoiceNumber)
+    // order.forEach( el => {
+    //     return el.date = el.date.toLocaleString().split(',')
+    // })
+    console.log(invoice)
+    res.status(200).send(invoice);
   },
   purchasedItem: async (req, res) => {
     const {cartArray, invoiceNumber} = req.body;
@@ -42,7 +43,8 @@ module.exports = {
     for(let i=0; i < cartArray.length; i++){
       const itemNumber = cartArray[i].inventory_id;
       const qty = cartArray[i].qty;
-      await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty)
+      const line_item = i + 1
+      await db.purchased_items.add_purchased_item(invoiceNumber, itemNumber, qty, line_item)
     }
     res.sendStatus(200);
   },
