@@ -6,6 +6,7 @@ const authCtrl = require("./authController");
 const invCtrl = require("./inventoryController");
 const nodeMailerCtrl = require("./nodeMailerController");
 const stripeCtrl = require('./stripeController');
+const path = require('path')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const app = express();
@@ -15,6 +16,9 @@ app.use(express.json());
 
 //HOSTING
 app.use(express.static(__dirname + '/../build'))
+app.get('*', (req ,res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 //USER SESSION
 app.use(
