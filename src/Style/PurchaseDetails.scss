@@ -12,11 +12,14 @@
 .purchase-details-exit {
     margin-bottom: 0px;
 }
+.purchase-details-exit:hover{
+    cursor: pointer;
+}
 .purchase-details-title {
     font-weight: 900;
     margin-bottom: 0px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 500;
 }
 .purchase-details-faq {
     border-radius: 100px;
@@ -103,7 +106,7 @@
     width: 95%;
     border: 1px solid rgb(200, 200, 200);
     margin:10px auto;
-    margin-bottom: 50px;
+
 }
 .receipt-barcode-title{
     background-color: rgb(230, 230, 230);
@@ -122,10 +125,45 @@
 .receipt-barcode-flex{
     display: flex;
     justify-content: flex-start;
-    margin: 15px 10px 0px 10px;
+    margin: 15px 10px 10px 10px;
 }
 .invoice-number{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     margin: 15px 10px 0px 10px;
+}
+.receipt-barcode-display{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px auto;
+    margin-bottom: 10px;
+}
+
+@media (min-width: $breakpoint-tablet){
+    .purchase-details-date{
+        width: 55%;
+    }
+    .order-indiv-item{
+        width: 55%;
+    }
+    .receipt-summary{
+        width: 55%;
+    }
+    .receipt-barcode{
+        width: 55%;
+    }
+}
+@media (min-width: $breakpoint-desktop){
+    .purchase-details-date{
+        width: 45%;
+    }
+    .order-indiv-item{
+        width: 45%;
+    }
+    .receipt-summary{
+        width: 45%;
+    }
+    .receipt-barcode{
+        width: 45%;
+    }
 }

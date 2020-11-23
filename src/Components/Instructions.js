@@ -4,19 +4,21 @@ import {Link} from 'react-router-dom';
 import { usePosition } from 'use-position';
 import {geoLocation} from '../Redux/geoReducer';
 import {connect} from 'react-redux';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 function Instructions(props) {
-    // const watch = true;
+    const watch = true;
     const {latitude, longitude, error} = usePosition();
     useEffect(() => {  
-        Axios
+        if(latitude){
+        axios
             .post('/api/geoLocation', {latitude, longitude})
             .then(res => {
                 props.geoLocation(res.data)
             })
             .catch(err => console.log(err))
+        }
     },[latitude])
 
     return(
@@ -44,9 +46,11 @@ function Instructions(props) {
                 <Link to='/camera'>
                     <button className="ProceedToCamera">Start Shopping</button>
                 </Link>
-                <br></br>
-                <Link to='/orders'>View Purchase History</Link>
+                
             </div>
+            <Link to='/orders'>
+                <button className ='view-ph-link'>View Purchase History</button>
+            </Link>
         </div>
 
     )

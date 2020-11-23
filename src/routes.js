@@ -8,7 +8,6 @@ import Checkout from "./Components/Checkout";
 import ExitPass from "./Components/ExitPass";
 import ForgotPassword from "./Components/ForgotPassword";
 import YourOrders from "./Components/YourOrders";
-import Receipts from "./Components/Receipts";
 import PurchaseDetails from './Components/PurchaseDetails'
 
 export default (
@@ -21,7 +20,6 @@ export default (
     <Route path="/exitpass" component={ExitPass} />
     <Route path="/forgotPassword" component={ForgotPassword} />
     <Route path="/orders" component={YourOrders} />
-    <Route path="/receipt/:invoiceNumber" component={Receipts} />
     <Route path="/purchaseDetails/:invoiceNumber" component={PurchaseDetails} />
   </Switch>
 );

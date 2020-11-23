@@ -12,11 +12,14 @@
 .purchase-history-exit {
     margin-bottom: 0px;
 }
+.purchase-history-exit:hover{
+    cursor: pointer;
+}
 .purchase-history-title {
     font-weight: 900;
     margin-bottom: 0px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 500;
 }
 .purchase-history-faq {
     border-radius: 100px;
@@ -25,14 +28,12 @@
     color: white;
 }
 .order-flex{
-    // background-color: lightcoral;
     width: 100vw;
     margin:0 auto;
 }
 .order-fl{
     width: 95%;
     height: 120px;
-    // background-color:lightgreen;
     margin:5px auto;
     display: flex;
     border: 1px solid rgb(230, 230, 230);

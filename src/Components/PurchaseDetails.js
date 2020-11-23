@@ -4,9 +4,6 @@ import {connect} from 'react-redux';
 import { useBarcode } from "@createnextapp/react-barcode";
 import '../Style/PurchaseDetails.scss'
 
-
-
-
 function PurchaseDetails(props) {
     const [state, sState] = useState({
         order: [],
@@ -36,6 +33,8 @@ function PurchaseDetails(props) {
         width: 1,
         height: "20",
         fontSize: '0',
+        margin: 0,
+        flat: true
         },
     });
     let formattedDate = new Date(state.date)
@@ -96,28 +95,29 @@ function PurchaseDetails(props) {
                             <div className='summary-line'></div>
                             <div className='receipt-summary-total'>
                                 <span>Total</span>
-                                <span>{total.toFixed(2)}</span>
+                                <span>$ {total.toFixed(2)}</span>
                             </div>
                         </div>
                     </section>
 
                     <section className='receipt-barcode'>
-                        <p className='receipt-barcode-title'>
+                        <span className='receipt-barcode-title'>
                             <strong>Returns are easy</strong>
-                        </p>
+                        </span>
                         <div className='receipt-barcode-details'>
                             <div className='receipt-barcode-flex'>
                                 <span>Bring this barcode to Customer Service</span>
                             </div>
+                            <div className='summary-line'></div>
                             <div className='invoice-number'>
                                 <span>Invoice # {state.invoiceNum.toString().padStart(14, "0")}</span>
                             </div>
                             <div>
-                            <img ref={inputRef} className='exit-pass-barcode'/>
+                            <img ref={inputRef} className='receipt-barcode-display'/>
                             </div>
-                            
                         </div>
                     </section>
+                    <br></br>
                 </div>
             </div>
     

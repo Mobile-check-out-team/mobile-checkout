@@ -16,9 +16,9 @@ module.exports = {
     res.status(200).send(invObj[0]);
   },
   createInvoice: async(req, res) => {
-    const {user_id, date, total, numItems, tax_rate} = req.body
+    const {user_id, date, total, numItems, taxR} = req.body
     const db = req.app.get('db');
-    const invoice = await db.invoice.create_invoice(user_id, date, total, numItems, tax_rate);
+    const invoice = await db.invoice.create_invoice(user_id, date, total, numItems, taxR);
     res.status(200).send(invoice[0]);
   },
   getOrders: async(req,res) =>{

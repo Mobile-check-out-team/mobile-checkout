@@ -9,10 +9,12 @@ const stripeCtrl = require('./stripeController');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const app = express();
-// const stripe = require("stripe")(STRIPE_SECRET);
 
 //FOR req.body
 app.use(express.json());
+
+//HOSTING
+app.use(express.static(__dirname + '/../build'))
 
 //USER SESSION
 app.use(

@@ -28,7 +28,6 @@ function YourOrders(props) {
                 </div>
             </Link>)})
 
-
     return (
         <div {...props}>
             <header className="purchase-history-header">
@@ -38,11 +37,19 @@ function YourOrders(props) {
                 <p className="purchase-history-title">Purchase History</p>
                 <button className="purchase-history-faq">?</button>
             </header>
+            {state.orders.length === 0?
+            <h1 className='no-purchases'>You have no purchases</h1>
+            
+            :
             <div className='order-flex'>
                 {mappedOrders}
             </div>
+            }
+            
         </div>
+        
     )
+    
 }
 const mapStateToProps = reduxState => reduxState;
 
