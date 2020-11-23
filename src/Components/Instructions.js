@@ -45,7 +45,7 @@ function Instructions(props) {
                     <button className="ProceedToCamera">Start Shopping</button>
                 </Link>
                 <br></br>
-                <Link to='/orders'>Purchase history</Link>
+                <Link to='/orders'>View Purchase History</Link>
             </div>
         </div>
 
