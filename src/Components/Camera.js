@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import BarcodeScannerComponent from "react-webcam-barcode-scanner";
 import { connect } from "react-redux";
 import { addToCart } from "../Redux/cartReducer";
-import {Link} from 'react-router-dom';
 import '../Style/Camera.scss'
 import axios from 'axios';
 import {Alert} from 'react-bootstrap';
@@ -38,9 +37,7 @@ function Camera(props) {
                 </Alert>:<></>}
          {props.cartReducer.cart[0]?
          <img onClick={() => {props.history.push('/cart')}} src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="exit" className="x-Icon" />:
-        // <span className='camera-exit' onClick={() => {props.history.push('/cart')}}>&#10005;</span>:
         <img onClick={() => {props.history.push('/instructions')}} src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/xIcon-DarkBlue.svg" alt="exit" class="x-Icon" />}
-        {/* <span className='camera-exit' onClick={() => {props.history.push('/instructions')}}>&#10005;</span>} */}
         <img src="https://gymsharkrepl.s3-us-west-1.amazonaws.com/icons/updatedLogo+USE+ME.svg" alt="scan & go" className="scango" />
         <h5 className="scangotxt">SCAN & GO</h5>
         {toggle?

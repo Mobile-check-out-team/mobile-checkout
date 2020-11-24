@@ -113,7 +113,7 @@ function PurchaseDetails(props) {
                                 <span>Invoice # {state.invoiceNum.toString().padStart(14, "0")}</span>
                             </div>
                             <div>
-                            <img ref={inputRef} className='receipt-barcode-display'/>
+                            <img ref={inputRef} className='receipt-barcode-display' alt='barcode'/>
                             </div>
                         </div>
                     </section>

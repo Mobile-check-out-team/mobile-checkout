@@ -3,7 +3,6 @@ const initialState = {
 }
 
 const REVERSE_GEO = 'REVERSE_GEO';
-const TAX_RATE = 'TAX_RATE';
 
 export function geoLocation(geoObj){
     console.log(geoObj)

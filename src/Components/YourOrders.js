@@ -24,7 +24,7 @@ function YourOrders(props) {
                         <span>Purchase on {date.toDateString().split(' ').slice(1).join(' ')}</span>
                         <span className='chevron-right'>&#8250;</span>
                     </div>
-                    <img className="purchase-history-img" src={el.img_url} />
+                    <img className="purchase-history-img" src={el.img_url} alt='product image'/>
                 </div>
             </Link>)})
 
