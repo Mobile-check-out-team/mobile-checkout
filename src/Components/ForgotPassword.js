@@ -39,7 +39,7 @@ function ForgotPassword(props) {
                 <h1 className="ForgotPasswordTxt">Forgot your password?</h1> 
                 <span className="fpw-texts">Enter your account's email and we'll 
                     send<br></br> you an email to reset the password</span>
-                <Form>
+                <Form onSubmit={sendEmail}>
                     <h5 className="fpw-email">EMAIL: </h5>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control className="fpw-email-input" type="email" onChange={(e) =>  setEmail(e.target.value)}/>
