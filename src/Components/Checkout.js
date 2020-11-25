@@ -313,18 +313,15 @@ const Checkout = (props) => {
                         {numItems === 1?
                         <span>Subtotal ({numItems} item)</span>:
                         <span>Subtotal ({numItems} items)</span>}
-                        <span>${props.cartReducer.cart.reduce((acc, el) => {
-                            const sum = el.price * el.qty;
-                            return acc + sum;
-                        }, 0)}</span>
+                        <span>${subtotal.toFixed(2)}</span>
                     </div>
                     <div className='tax'>
                         <span>Tax ({taxR*100}%)</span>
-                        <span>{tax.toFixed(2)}</span>
+                        <span>${tax.toFixed(2)}</span>
                     </div>
                     <div className='total'>
                         <span>Total</span>
-                        <span>{total.toFixed(2)}</span>
+                        <span>${total.toFixed(2)}</span>
                     </div>
                 </div>
             </section>
